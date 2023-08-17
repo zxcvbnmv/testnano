@@ -118,7 +118,7 @@ cp -rf ../lede/package/lean/ipv6-helper ./package/new/ipv6-helper
 sed -i 's/option timeout 30/option timeout 60/g' package/system/rpcd/files/rpcd.config
 sed -i 's#20) \* 1000#60) \* 1000#g' feeds/luci/modules/luci-base/htdocs/luci-static/resources/rpc.js
 # Translate
-cp -rf ../OpenWrt-Add/addition-trans-zh ./package/new/addition-trans-zh
+cp -rf ../PATCH/addition-trans-zh/ ./package/new/addition-trans-zh
 sed -i 's,iptables-mod-fullconenat,iptables-nft +kmod-nft-fullcone,g' package/new/addition-trans-zh/Makefile
 # Config
 rm -rf .config
