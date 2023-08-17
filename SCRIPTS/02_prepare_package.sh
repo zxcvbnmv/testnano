@@ -129,19 +129,6 @@ cp -rf ../lede/target/linux/x86/patches-5.15/996-intel-igc-i225-i226-disable-eee
 cp -rf ../immortalwrt_luci/applications/luci-app-arpbind ./feeds/luci/applications/luci-app-arpbind
 ln -sf ../../../feeds/luci/applications/luci-app-arpbind ./package/feeds/luci/luci-app-arpbind
 
-# Dnsproxy
-cp -rf ../OpenWrt-Add/luci-app-dnsproxy ./package/new/luci-app-dnsproxy
-# Edge 主题
-git clone -b master --depth 1 https://github.com/kiddin9/luci-theme-edge.git package/new/luci-theme-edge
-# FRP 内网穿透
-rm -rf ./feeds/luci/applications/luci-app-frps
-rm -rf ./feeds/luci/applications/luci-app-frpc
-rm -rf ./feeds/packages/net/frp
-rm -f ./package/feeds/packages/frp
-cp -rf ../lede_luci/applications/luci-app-frps ./package/new/luci-app-frps
-cp -rf ../lede_luci/applications/luci-app-frpc ./package/new/luci-app-frpc
-cp -rf ../lede_pkg/net/frp ./package/new/frp
-
 # IPv6 兼容助手
 cp -rf ../lede/package/lean/ipv6-helper ./package/new/ipv6-helper
 
