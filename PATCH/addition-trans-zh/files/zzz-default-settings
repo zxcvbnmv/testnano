@@ -1,0 +1,65 @@
+#!/bin/sh
+
+#timezone & loglevel
+uci set system.@system[0].timezone=CST-8
+uci set system.@system[0].zonename=Asia/Shanghai
+uci del system.ntp.server
+uci add_list system.ntp.server='ntp1.aliyun.com'
+uci add_list system.ntp.server='time1.cloud.tencent.com'
+uci set system.ntp='timeserver'
+uci set system.ntp.enabled='1'
+uci set system.ntp.enable_server='0'
+uci set system.@system[0].conloglevel='1'
+uci set system.@system[0].cronloglevel='9'
+uci commit system
+
+#Default theme
+uci set luci.main.mediaurlbase='/luci-static/bootstrap'	
+uci commit luci
+
+#Disable BBR
+sed -i 's/net.ipv4.tcp_congestion_control=bbr/#net.ipv4.tcp_congestion_control=bbr/g' /etc/sysctl.d/12-tcp-bbr.conf
+sysctl -p
+/etc/init.d/sysctl restart
+
+#uhttpd
+uci set uhttpd.main.rfc1918_filter=0
+uci set uhttpd.main.redirect_https=0
+uci set uhttpd.main.http_keepalive=0
+uci commit uhttpd
+/etc/init.d/uhttpd restart
+
+#network
+uci set network.lan.ipaddr='192.168.2.9'
+uci commit network
+/etc/init.d/network restart
+
+#firewall
+uci set firewall.@defaults[0].fullcone='2'
+uci set firewall.@defaults[0].flow_offloading='0'
+uci set firewall.@defaults[0].shortcut_fe='1'
+uci set firewall.@defaults[0].input='ACCEPT'
+uci commit firewall
+
+#SFE
+sed -i '/shortcutfe/d' /usr/share/rpcd/ucode/luci
+sed -i '/offloading/ a\                shortcutfe: access('\''/etc/init.d/shortcut-fe'\'') == true,' /usr/share/rpcd/ucode/luci
+
+#dnsmasq
+uci del dhcp.@dnsmasq[0].rebind_protection
+uci set dhcp.@dnsmasq[0].quietdhcp='1'
+uci set dhcp.@dnsmasq[0].rebind_protection='0'
+uci commit dhcp
+sed -i '/log-facility/d' /etc/dnsmasq.conf
+echo "log-facility=/dev/null" >> /etc/dnsmasq.conf
+
+#软链接
+[ ! -f '/usr/bin/ip' ] && [ -f '/sbin/ip' ] && ln -sf /sbin/ip /usr/bin/ip
+[ ! -f '/usr/bin/wget-ssl' ] && [ -f '/usr/bin/wget' ] && ln -sf /usr/bin/wget /usr/bin/wget-ssl
+#luci cache
+/etc/init.d/shortcut-fe enable 2>/dev/null
+/etc/init.d/shortcut-fe start
+rm -rf /tmp/luci-modulecache
+rm -f /tmp/luci-indexcache
+
+exit 0
