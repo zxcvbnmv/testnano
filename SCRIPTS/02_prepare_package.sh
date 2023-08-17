@@ -1,6 +1,5 @@
 #!/bin/bash
 clear
-
 ### 基础部分 ###
 # 使用 O2 级别的优化
 sed -i 's/Os/O2/g' include/target.mk
@@ -34,7 +33,6 @@ cp -rf ../immortalwrt/package/libs/mbedtls ./package/libs/mbedtls
 # fstool
 wget -qO - https://github.com/coolsnowwolf/lede/commit/8a4db76.patch | patch -p1
 
-
 ### Fullcone-NAT 部分 ###
 # Patch Kernel 以解决 FullCone 冲突
 cp -rf ../lede/target/linux/generic/hack-5.15/952-add-net-conntrack-events-support-multiple-registrant.patch ./target/linux/generic/hack-5.15/952-add-net-conntrack-events-support-multiple-registrant.patch
@@ -49,7 +47,7 @@ rm -rf ./package/libs/libnftnl
 cp -rf ../immortalwrt/package/libs/libnftnl ./package/libs/libnftnl
 rm -rf ./package/network/utils/nftables
 cp -rf ../immortalwrt/package/network/utils/nftables ./package/network/utils/nftables
-# FW3
+
 # iptables
 cp -rf ../lede/package/network/utils/iptables/patches/900-bcm-fullconenat.patch ./package/network/utils/iptables/patches/900-bcm-fullconenat.patch
 # network
@@ -81,7 +79,6 @@ sed -i 's,rootwait,rootwait mitigations=off,g' target/linux/rockchip/image/mmc.b
 sed -i 's,noinitrd,noinitrd mitigations=off,g' target/linux/x86/image/grub-efi.cfg
 sed -i 's,noinitrd,noinitrd mitigations=off,g' target/linux/x86/image/grub-iso.cfg
 sed -i 's,noinitrd,noinitrd mitigations=off,g' target/linux/x86/image/grub-pc.cfg
-
 
 ### 获取额外的 LuCI 应用、主题和依赖 ###
 # xdp
