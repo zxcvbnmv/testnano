@@ -1,43 +1,38 @@
 #!/bin/bash
 clear
-### 基础部分 ###
-# 使用 O2 级别的优化
+# Enable O3 & optimize
 sed -i 's/Os/O2/g' include/target.mk
-# 更新 Feeds
-./scripts/feeds update -a
-./scripts/feeds install -a
-# 默认开启 Irqbalance
+sed -i 's/O2/O3/g' ./rules.mk
+# Update feed
+./scripts/feeds update -a && ./scripts/feeds install -a
+# Irqbalance
 sed -i "s/enabled '0'/enabled '1'/g" feeds/packages/utils/irqbalance/files/irqbalance.config
-# 移除 SNAPSHOT 标签
+# rm SNAPSHOT tag
 sed -i 's,-SNAPSHOT,,g' include/version.mk
 sed -i 's,-SNAPSHOT,,g' package/base-files/image-config.in
-# 维多利亚的秘密
+# sysctl
 echo "net.netfilter.nf_conntrack_helper = 1" >>./package/kernel/linux/files/sysctl-nf-conntrack.conf
-
-### 必要的 Patches ###
 # TCP optimizations
 cp -rf ../PATCH/backport/TCP/* ./target/linux/generic/backport-5.15/
 # x86_csum
 cp -rf ../PATCH/backport/x86_csum/* ./target/linux/generic/backport-5.15/
-# Patch arm64 型号名称
+# Patch arm64 name
 cp -rf ../immortalwrt/target/linux/generic/hack-5.15/312-arm64-cpuinfo-Add-model-name-in-proc-cpuinfo-for-64bit-ta.patch ./target/linux/generic/hack-5.15/312-arm64-cpuinfo-Add-model-name-in-proc-cpuinfo-for-64bit-ta.patch
-
 # LRNG
 cp -rf ../PATCH/LRNG/* ./target/linux/generic/hack-5.15/
 echo '
 CONFIG_LRNG=y
 ' >>./target/linux/generic/config-5.15
-# SSL
+# mbedtls
 rm -rf ./package/libs/mbedtls
 cp -rf ../immortalwrt/package/libs/mbedtls ./package/libs/mbedtls
 # fstool
 wget -qO - https://github.com/coolsnowwolf/lede/commit/8a4db76.patch | patch -p1
-
-### Fullcone-NAT 部分 ###
-# Patch Kernel 以解决 FullCone 冲突
+### Fullcone-NAT ###
+# Patch Kernel FullCone
 cp -rf ../lede/target/linux/generic/hack-5.15/952-add-net-conntrack-events-support-multiple-registrant.patch ./target/linux/generic/hack-5.15/952-add-net-conntrack-events-support-multiple-registrant.patch
 cp -rf ../lede/target/linux/generic/hack-5.15/982-add-bcm-fullconenat-support.patch ./target/linux/generic/hack-5.15/982-add-bcm-fullconenat-support.patch
-# Patch FireWall 以增添 FullCone 功能
+# Patch FireWall FullCone
 # FW4
 rm -rf ./package/network/config/firewall4
 cp -rf ../immortalwrt/package/network/config/firewall4 ./package/network/config/firewall4
@@ -47,21 +42,19 @@ rm -rf ./package/libs/libnftnl
 cp -rf ../immortalwrt/package/libs/libnftnl ./package/libs/libnftnl
 rm -rf ./package/network/utils/nftables
 cp -rf ../immortalwrt/package/network/utils/nftables ./package/network/utils/nftables
-
 # iptables
 cp -rf ../lede/package/network/utils/iptables/patches/900-bcm-fullconenat.patch ./package/network/utils/iptables/patches/900-bcm-fullconenat.patch
 # network
 wget -qO - https://github.com/openwrt/openwrt/commit/bbf39d07.patch | patch -p1
-# Patch LuCI 以增添 FullCone 开关
+# Patch LuCI FullCone switch
 pushd feeds/luci
 wget -qO- https://github.com/openwrt/luci/commit/471182b2.patch | patch -p1
 popd
 # FullCone PKG
 git clone --depth 1 https://github.com/fullcone-nat-nftables/nft-fullcone package/new/nft-fullcone
 cp -rf ../Lienol/package/network/utils/fullconenat ./package/new/fullconenat
-
-### 获取额外的基础软件包 ###
-# 更换为 ImmortalWrt Uboot 以及 Target
+### basic package ###
+# Make target for support NanoPi R4S
 rm -rf ./target/linux/rockchip
 cp -rf ../immortalwrt_23/target/linux/rockchip ./target/linux/rockchip
 cp -rf ../PATCH/rockchip-5.15/* ./target/linux/rockchip/patches-5.15/
@@ -69,7 +62,10 @@ rm -rf ./package/boot/uboot-rockchip
 cp -rf ../immortalwrt_23/package/boot/uboot-rockchip ./package/boot/uboot-rockchip
 rm -rf ./package/boot/arm-trusted-firmware-rockchip
 cp -rf ../immortalwrt_23/package/boot/arm-trusted-firmware-rockchip ./package/boot/arm-trusted-firmware-rockchip
-#intel-firmware
+rm ./target/linux/rockchip/patches-5.15/992-rockchip-rk3399-overclock-to-2.2-1.8-GHz.patch
+cp -f ../PATCH/766-rk3399-overclock.patch ./target/linux/rockchip/patches-5.15/
+cp -f ../PATCH/249-rk3399dtsi.patch ./target/linux/rockchip/patches-5.15/
+# intel-firmware
 wget -qO - https://github.com/openwrt/openwrt/commit/9c58add.patch | patch -p1
 wget -qO - https://github.com/openwrt/openwrt/commit/64f1a65.patch | patch -p1
 wget -qO - https://github.com/openwrt/openwrt/commit/c21a3570.patch | patch -p1
@@ -79,8 +75,7 @@ sed -i 's,rootwait,rootwait mitigations=off,g' target/linux/rockchip/image/mmc.b
 sed -i 's,noinitrd,noinitrd mitigations=off,g' target/linux/x86/image/grub-efi.cfg
 sed -i 's,noinitrd,noinitrd mitigations=off,g' target/linux/x86/image/grub-iso.cfg
 sed -i 's,noinitrd,noinitrd mitigations=off,g' target/linux/x86/image/grub-pc.cfg
-
-### 获取额外的 LuCI 应用、主题和依赖 ###
+### luci app ###
 # xdp
 wget -qO - https://github.com/openwrt/openwrt/commit/47ea58b.patch | patch -p1
 wget -qO - https://github.com/openwrt/openwrt/commit/ce3082d.patch | patch -p1
@@ -109,44 +104,32 @@ rm -rf ./feeds/packages/utils/coremark
 cp -rf ../immortalwrt_pkg/utils/coremark ./feeds/packages/utils/coremark
 sed -i "s,-O3,-Ofast -funroll-loops -fpeel-loops -fgcse-sm -fgcse-las,g" feeds/packages/utils/coremark/Makefile
 cp -rf ../immortalwrt_23/package/utils/mhz ./package/utils/mhz
-
-# luci-app-irqbalance
-cp -rf ../OpenWrt-Add/luci-app-irqbalance ./package/new/luci-app-irqbalance
-
-# R8168驱动
+# Add R8168 driver
 git clone -b master --depth 1 https://github.com/BROBIRD/openwrt-r8168.git package/new/r8168
 patch -p1 <../PATCH/r8168/r8168-fix_LAN_led-for_r4s-from_TL.patch
-# R8152驱动
-cp -rf ../immortalwrt/package/kernel/r8152 ./package/new/r8152
-# r8125驱动
-git clone https://github.com/sbwml/package_kernel_r8125 package/new/r8125
 # igc-fix
 cp -rf ../lede/target/linux/x86/patches-5.15/996-intel-igc-i225-i226-disable-eee.patch ./target/linux/x86/patches-5.15/996-intel-igc-i225-i226-disable-eee.patch
-# MAC 地址与 IP 绑定
+# Arpbind
 cp -rf ../immortalwrt_luci/applications/luci-app-arpbind ./feeds/luci/applications/luci-app-arpbind
 ln -sf ../../../feeds/luci/applications/luci-app-arpbind ./package/feeds/luci/luci-app-arpbind
-
-# IPv6 兼容助手
+# ipv6-helper
 cp -rf ../lede/package/lean/ipv6-helper ./package/new/ipv6-helper
-
 # rpcd
 sed -i 's/option timeout 30/option timeout 60/g' package/system/rpcd/files/rpcd.config
 sed -i 's#20) \* 1000#60) \* 1000#g' feeds/luci/modules/luci-base/htdocs/luci-static/resources/rpc.js
-# 翻译及部分功能优化
+# Translate
 cp -rf ../OpenWrt-Add/addition-trans-zh ./package/new/addition-trans-zh
 sed -i 's,iptables-mod-fullconenat,iptables-nft +kmod-nft-fullcone,g' package/new/addition-trans-zh/Makefile
-
-# 生成默认配置及缓存
+# Config
 rm -rf .config
 sed -i 's,CONFIG_WERROR=y,# CONFIG_WERROR is not set,g' target/linux/generic/config-5.15
-
-### Shortcut-FE 部分 ###
-# Patch Kernel 以支持 Shortcut-FE
+### Shortcut-FE ###
+# Patch Kernel Shortcut-FE
 cp -rf ../lede/target/linux/generic/hack-5.15/953-net-patch-linux-kernel-to-support-shortcut-fe.patch ./target/linux/generic/hack-5.15/953-net-patch-linux-kernel-to-support-shortcut-fe.patch
 cp -rf ../lede/target/linux/generic/pending-5.15/613-netfilter_optional_tcp_window_check.patch ./target/linux/generic/pending-5.15/613-netfilter_optional_tcp_window_check.patch
-# Patch LuCI 以增添 Shortcut-FE 开关
+# SFE-switch
 patch -p1 < ../PATCH/firewall/luci-app-firewall_add_sfe_switch.patch
-# Shortcut-FE 相关组件
+# Shortcut-FE module
 mkdir ./package/lean
 mkdir ./package/lean/shortcut-fe
 cp -rf ../lede/package/lean/shortcut-fe/fast-classifier ./package/lean/shortcut-fe/fast-classifier
