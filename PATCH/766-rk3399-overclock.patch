@@ -1,0 +1,41 @@
+From 44efd21889eededca21d91f9f6b1254ff7419904 Mon Sep 17 00:00:00 2001
+From: zxcvbnmv <40834572+zxcvbnmv@users.noreply.github.com>
+Date: Sun, 20 Dec 2020 13:49:04 +0800
+Subject: [PATCH] Create 991-rk3399-overclock1.8-2.2GHz.dtsi
+
+---
+ arch/arm64/boot/dts/rockchip/rk3399-opp.dtsi | 16 ++++++++++++++++
+ 1 file changed, 16 insertions(+)
+
+--- a/arch/arm64/boot/dts/rockchip/rk3399-opp.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3399-opp.dtsi
+@@ -33,6 +33,14 @@
+ 			opp-hz = /bits/ 64 <1416000000>;
+ 			opp-microvolt = <1125000 1125000 1250000>;
+ 		};
++		opp06 {
++			opp-hz = /bits/ 64 <1608000000>;
++			opp-microvolt = <1200000>;
++		};
++		opp07 {
++			opp-hz = /bits/ 64 <1800000000>;
++			opp-microvolt = <1250000>;
++		};
+ 	};
+ 
+ 	cluster1_opp: opp-table1 {
+@@ -72,6 +80,14 @@
+ 			opp-hz = /bits/ 64 <1800000000>;
+ 			opp-microvolt = <1200000 1200000 1250000>;
+ 		};
++		opp08 {
++			opp-hz = /bits/ 64 <2016000000>;
++			opp-microvolt = <1250000>;
++		};
++		opp09 {
++			opp-hz = /bits/ 64 <2208000000>;
++			opp-microvolt = <1300000>;
++		};
+ 	};
+ 
+ 	gpu_opp_table: opp-table2 {

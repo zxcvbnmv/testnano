@@ -1,0 +1,28 @@
+From 459ba39b76980d06c2cfe40353e57e061635c4ef Mon Sep 17 00:00:00 2001
+From: zxcvbnmv <40834572+zxcvbnmv@users.noreply.github.com>
+Date: Sun, 20 Dec 2020 13:32:06 +0800
+Subject: [PATCH] Update rk3399.dtsi
+
+---
+ PATCH/rk3399.dtsi | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/rockchip/rk3399.dtsi b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
+index c5d8d1c..8d16721 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3399.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
+@@ -740,12 +740,12 @@
+ 
+ 			trips {
+ 				cpu_alert0: cpu_alert0 {
+-					temperature = <70000>;
++					temperature = <80000>;
+ 					hysteresis = <2000>;
+ 					type = "passive";
+ 				};
+ 				cpu_alert1: cpu_alert1 {
+-					temperature = <75000>;
++					temperature = <85000>;
+ 					hysteresis = <2000>;
+ 					type = "passive";
+ 				};
