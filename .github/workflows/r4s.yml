@@ -14,6 +14,12 @@ jobs:
     if: github.event.repository.owner.id == github.event.sender.id
 
     steps:
+    - name: Show system
+      run: |
+        echo -e "Total CPU cores\t: $(nproc)"
+        cat /proc/cpuinfo | grep 'model name'
+        cpu_name=$(cat /proc/cpuinfo | grep "model name" | head -n 1 | awk -F: '{print $2}' | sed 's/^[ \t]*//')
+        ulimit -a
     - name: Maximize build space
       uses: easimon/maximize-build-space@master
       with:
