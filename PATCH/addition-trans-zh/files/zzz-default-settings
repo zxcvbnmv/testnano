@@ -26,6 +26,7 @@ sysctl -p
 uci set uhttpd.main.rfc1918_filter=0
 uci set uhttpd.main.redirect_https=0
 uci set uhttpd.main.http_keepalive=0
+uci del uhttpd.main.listen_https
 uci commit uhttpd
 /etc/init.d/uhttpd restart
 
@@ -49,6 +50,7 @@ sed -i '/offloading/ a\                shortcutfe: access('\''/etc/init.d/shortc
 uci del dhcp.@dnsmasq[0].rebind_protection
 uci set dhcp.@dnsmasq[0].quietdhcp='1'
 uci set dhcp.@dnsmasq[0].rebind_protection='0'
+uci set dhcp.@dnsmasq[0].sequential_ip='1'
 uci commit dhcp
 sed -i '/log-facility/d' /etc/dnsmasq.conf
 echo "log-facility=/dev/null" >> /etc/dnsmasq.conf
