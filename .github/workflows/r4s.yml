@@ -107,10 +107,9 @@ jobs:
     - name: Copy config
       run: |
         cd openwrt
-        cp .config bin/targets/rockchip/armv8
+        cp .config bin/targets/rockchip/armv8/allconfig.bak
     - name: move packages to publish
       run: |
-        ls
         mkdir -p publish
         mv openwrt/bin/targets/rockchip/armv8/* ./publish/
     - name: Git push assets to "release" branch
