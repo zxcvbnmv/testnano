@@ -143,5 +143,11 @@ wget -qO - https://github.com/coolsnowwolf/lede/commit/0e29809.patch | patch -p1
 wget -qO - https://github.com/coolsnowwolf/lede/commit/eb70dad.patch | patch -p1
 wget -qO - https://github.com/coolsnowwolf/lede/commit/7ba3ec0.patch | patch -p1
 cp -rf ../lede/package/lean/shortcut-fe/simulated-driver ./package/lean/shortcut-fe/simulated-driver
-
+#LTO/GC
+# Grub 2
+sed -i 's,no-lto,no-lto no-gc-sections,g' package/boot/grub2/Makefile
+# openssl disable LTO
+sed -i 's,no-mips16 gc-sections,no-mips16 gc-sections no-lto,g' package/libs/openssl/Makefile
+# libsodium
+sed -i 's,no-mips16,no-mips16 no-lto,g' feeds/packages/libs/libsodium/Makefile
 #exit 0
