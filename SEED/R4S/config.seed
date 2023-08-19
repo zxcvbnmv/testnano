@@ -39,25 +39,24 @@ CONFIG_PACKAGE_dnsmasq-full=y
 CONFIG_PACKAGE_dnsmasq_full_ipset=y
 # CONFIG_PACKAGE_dnsmasq is not set
 # CONFIG_PACKAGE_luci-app-cpufreq is not set
+CONFIG_PACKAGE_ipv6helper=y
 CONFIG_PACKAGE_kmod-fs-f2fs=y
 CONFIG_PACKAGE_libustream-openssl=y
 # CONFIG_PACKAGE_libustream-wolfssl is not set
 CONFIG_PACKAGE_wget-ssl=y
 
-### 22.03 FW4 ###
+### FW4 ###
 # CONFIG_PACKAGE_firewall is not set
 CONFIG_PACKAGE_firewall4=y
-CONFIG_PACKAGE_kmod-ipt-offload=y
+CONFIG_PACKAGE_kmod-nf-nathelper=y
 CONFIG_DEFAULT_kmod-nft-offload=y
 # CONFIG_PACKAGE_arptables-legacy is not set
 CONFIG_PACKAGE_arptables-nft=y
 # CONFIG_PACKAGE_ebtables-legacy is not set
 CONFIG_PACKAGE_ebtables-nft=y
 # CONFIG_PACKAGE_ip6tables-legacy is not set
-CONFIG_PACKAGE_ip6tables-mod-fullconenat=y
 CONFIG_PACKAGE_ip6tables-nft=y
 # CONFIG_PACKAGE_iptables-legacy is not set
-CONFIG_PACKAGE_iptables-mod-fullconenat=y
 CONFIG_PACKAGE_iptables-nft=y
 CONFIG_PACKAGE_kmod-nft-fullcone=y
 
