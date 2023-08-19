@@ -42,8 +42,6 @@ rm -rf ./package/libs/libnftnl
 cp -rf ../immortalwrt/package/libs/libnftnl ./package/libs/libnftnl
 rm -rf ./package/network/utils/nftables
 cp -rf ../immortalwrt/package/network/utils/nftables ./package/network/utils/nftables
-# iptables
-cp -rf ../lede/package/network/utils/iptables/patches/900-bcm-fullconenat.patch ./package/network/utils/iptables/patches/900-bcm-fullconenat.patch
 # network
 wget -qO - https://github.com/openwrt/openwrt/commit/bbf39d07.patch | patch -p1
 # Patch LuCI FullCone switch
