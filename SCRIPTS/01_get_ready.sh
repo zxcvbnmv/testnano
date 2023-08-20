@@ -27,18 +27,7 @@ lienol_repo="https://github.com/Lienol/openwrt.git"
 lienol_pkg_repo="https://github.com/Lienol/openwrt-package"
 openwrt_add_repo="https://github.com/QiuSimons/OpenWrt-Add.git"
 openwrt_node_repo="https://github.com/nxhack/openwrt-node-packages.git"
-passwall_pkg_repo="https://github.com/xiaorouji/openwrt-passwall"
-passwall_luci_repo="https://github.com/xiaorouji/openwrt-passwall"
-openwrt_third_repo="https://github.com/jjm2473/openwrt-third"
-dockerman_repo="https://github.com/lisaac/luci-app-dockerman"
-diskman_repo="https://github.com/lisaac/luci-app-diskman"
-docker_lib_repo="https://github.com/lisaac/luci-lib-docker"
-mosdns_repo="https://github.com/QiuSimons/openwrt-mos"
-ssrp_repo="https://github.com/fw876/helloworld"
-zxlhhyccc_repo="https://github.com/zxlhhyccc/bf-package-master"
-linkease_repo="https://github.com/linkease/openwrt-app-actions"
-linkease_pkg_repo="https://github.com/jjm2473/packages"
-linkease_luci_repo="https://github.com/jjm2473/luci"
+
 
 # 开始克隆仓库，并行执行
 clone_repo $openwrt_repo $latest_release openwrt &
@@ -62,18 +51,6 @@ clone_repo $lienol_repo master Lienol &
 clone_repo $lienol_pkg_repo main Lienol_pkg &
 clone_repo $openwrt_add_repo master OpenWrt-Add &
 clone_repo $openwrt_node_repo master openwrt-node &
-clone_repo $passwall_pkg_repo packages passwall_pkg &
-clone_repo $passwall_luci_repo luci passwall_luci &
-clone_repo $openwrt_third_repo main openwrt-third &
-clone_repo $dockerman_repo master dockerman &
-clone_repo $diskman_repo master diskman &
-clone_repo $docker_lib_repo master docker_lib &
-clone_repo $mosdns_repo master mosdns &
-clone_repo $ssrp_repo master ssrp &
-clone_repo $zxlhhyccc_repo main zxlhhyccc &
-clone_repo $linkease_repo main linkease &
-clone_repo $linkease_pkg_repo istoreos-21.02 linkease_pkg &
-clone_repo $linkease_luci_repo istoreos-21.02 linkease_luci &
 
 # 等待所有后台任务完成
 wait
