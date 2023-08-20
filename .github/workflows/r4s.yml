@@ -31,12 +31,6 @@ jobs:
         remove-codeql: 'true'
     - name: Checkout
       uses: actions/checkout@main
-    - name: Set up GCC
-      uses: egor-tensin/setup-gcc@v1
-      with:
-        version: 12
-        platform: x64
-        cc: 1
     - name: Init build dependencies
       env:
         DEBIAN_FRONTEND: noninteractive
@@ -46,6 +40,7 @@ jobs:
         sudo -E apt-get update -y
         sudo -E apt-get install -y dwarves llvm clang lldb lld build-essential rsync asciidoc binutils bzip2 gawk gettext git libncurses5-dev patch python3 python2.7 unzip zlib1g-dev lib32gcc-s1 libc6-dev-i386 subversion flex uglifyjs gcc-multilib p7zip p7zip-full msmtp libssl-dev texinfo libreadline-dev libglib2.0-dev xmlto qemu-utils upx-ucl libelf-dev autoconf automake libtool autopoint device-tree-compiler g++-multilib antlr3 gperf wget ccache curl swig coreutils vim nano python3 python3-pip python3-ply haveged lrzsz scons libpython3-dev
         sudo -E apt-get clean -y
+        sudo -E apt-get -qq autoremove --purge
         sudo -E git config --global user.name 'GitHub Actions' && git config --global user.email 'noreply@github.com'
         sudo -E git config --global core.abbrev auto
         df -h
