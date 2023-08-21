@@ -51,8 +51,6 @@ popd
 # FullCone PKG
 git clone --depth 1 https://github.com/fullcone-nat-nftables/nft-fullcone package/new/nft-fullcone
 cp -rf ../Lienol/package/network/utils/fullconenat ./package/new/fullconenat
-# Remove obsolete options
-sed -i 's/syn_flood/synflood_protect/g' package/network/config/firewall/files/firewall.config
 ### basic package ###
 # Make target for support NanoPi R4S
 rm -rf ./target/linux/rockchip
