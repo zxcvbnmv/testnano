@@ -49,10 +49,6 @@ CONFIG_PACKAGE_wget-ssl=y
 CONFIG_PACKAGE_firewall4=y
 CONFIG_PACKAGE_kmod-ipt-offload=y
 CONFIG_DEFAULT_kmod-nft-offload=y
-# CONFIG_PACKAGE_arptables-legacy is not set
-CONFIG_PACKAGE_arptables-nft=y
-# CONFIG_PACKAGE_ebtables-legacy is not set
-CONFIG_PACKAGE_ebtables-nft=y
 # CONFIG_PACKAGE_ip6tables-legacy is not set
 CONFIG_PACKAGE_ip6tables-mod-fullconenat=y
 CONFIG_PACKAGE_ip6tables-nft=y
@@ -78,6 +74,7 @@ CONFIG_PACKAGE_block-mount=y
 ### APPLICATION ###
 CONFIG_PACKAGE_luci-app-arpbind=y
 CONFIG_PACKAGE_luci-app-opkg=y
+CONFIG_PACKAGE_luci-app-xray=y
 CONFIG_PACKAGE_coremark=y
 CONFIG_PACKAGE_kmod-shortcut-fe-cm=y
 
