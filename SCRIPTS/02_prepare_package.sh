@@ -104,7 +104,7 @@ patch -p1 <../PATCH/r8168/r8168-fix_LAN_led-for_r4s-from_TL.patch
 # igc-fix
 cp -rf ../lede/target/linux/x86/patches-5.15/996-intel-igc-i225-i226-disable-eee.patch ./target/linux/x86/patches-5.15/996-intel-igc-i225-i226-disable-eee.patch
 # luci xray
-#git clone -b main --depth 1 https://github.com/ttimasdf/luci-app-xray.git package/new/luci-app-xray
+git clone -b main --depth 1 https://github.com/ttimasdf/luci-app-xray.git package/new/luci-app-xray
 # Arpbind
 cp -rf ../immortalwrt_luci/applications/luci-app-arpbind ./feeds/luci/applications/luci-app-arpbind
 ln -sf ../../../feeds/luci/applications/luci-app-arpbind ./package/feeds/luci/luci-app-arpbind
@@ -147,9 +147,5 @@ sed -i 's,no-lto,no-lto no-gc-sections,g' package/boot/grub2/Makefile
 sed -i 's,no-mips16 gc-sections,no-mips16 gc-sections no-lto,g' package/libs/openssl/Makefile
 # libsodium
 sed -i 's,no-mips16,no-mips16 no-lto,g' feeds/packages/libs/libsodium/Makefile
-# backport iptables-1.87
-rm -rf ./package/network/utils/iptables
-cp -rf ../openwrt_22/package/network/utils/iptables ./package/network/utils/iptables
-cp -rf ../lede/package/network/utils/iptables/patches/900-bcm-fullconenat.patch ./package/network/utils/iptables/patches/900-bcm-fullconenat.patch
 
 #exit 0
