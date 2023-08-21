@@ -53,6 +53,8 @@ popd
 # FullCone PKG
 git clone --depth 1 https://github.com/fullcone-nat-nftables/nft-fullcone package/new/nft-fullcone
 cp -rf ../Lienol/package/network/utils/fullconenat ./package/new/fullconenat
+# Remove obsolete options
+sed -i 's/syn_flood/synflood_protect/g' package/network/config/firewall/files/firewall.config
 ### basic package ###
 # Make target for support NanoPi R4S
 rm -rf ./target/linux/rockchip
@@ -76,10 +78,6 @@ sed -i 's,noinitrd,noinitrd mitigations=off,g' target/linux/x86/image/grub-efi.c
 sed -i 's,noinitrd,noinitrd mitigations=off,g' target/linux/x86/image/grub-iso.cfg
 sed -i 's,noinitrd,noinitrd mitigations=off,g' target/linux/x86/image/grub-pc.cfg
 ### luci app ###
-# xdp
-wget -qO - https://github.com/openwrt/openwrt/commit/47ea58b.patch | patch -p1
-wget -qO - https://github.com/openwrt/openwrt/commit/ce3082d.patch | patch -p1
-wget https://github.com/immortalwrt/immortalwrt/raw/openwrt-23.05/target/linux/generic/hack-5.15/901-debloat_sock_diag.patch -O target/linux/generic/hack-5.15/901-debloat_sock_diag.patch
 # btf
 wget -qO - https://github.com/immortalwrt/immortalwrt/commit/73e5679.patch | patch -p1
 wget https://github.com/immortalwrt/immortalwrt/raw/openwrt-23.05/target/linux/generic/backport-5.15/051-v5.18-bpf-Add-config-to-allow-loading-modules-with-BTF-mismatch.patch -O target/linux/generic/backport-5.15/051-v5.18-bpf-Add-config-to-allow-loading-modules-with-BTF-mismatch.patch
