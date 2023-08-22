@@ -33,12 +33,14 @@ wget -qO - https://github.com/coolsnowwolf/lede/commit/8a4db76.patch | patch -p1
 cp -rf ../lede/target/linux/generic/hack-5.15/952-add-net-conntrack-events-support-multiple-registrant.patch ./target/linux/generic/hack-5.15/952-add-net-conntrack-events-support-multiple-registrant.patch
 cp -rf ../lede/target/linux/generic/hack-5.15/982-add-bcm-fullconenat-support.patch ./target/linux/generic/hack-5.15/982-add-bcm-fullconenat-support.patch
 # Patch FireWall FullCone
+# FW4
 mkdir -p package/network/config/firewall4/patches
 cp -f ../PATCH/firewall/001-fix-fw4-flow-offload.patch ./package/network/config/firewall4/patches/001-fix-fw4-flow-offload.patch
 cp -f ../PATCH/firewall/990-unconditionally-allow-ct-status-dnat.patch ./package/network/config/firewall4/patches/990-unconditionally-allow-ct-status-dnat.patch
 cp -f ../PATCH/firewall/999-01-firewall4-add-fullcone-support.patch ./package/network/config/firewall4/patches/999-01-firewall4-add-fullcone-support.patch
 mkdir -p package/libs/libnftnl/patches
 cp -f ../PATCH/firewall/001-libnftnl-add-fullcone-expression-support.patch ./package/libs/libnftnl/patches/001-libnftnl-add-fullcone-expression-support.patch
+sed -i '/PKG_INSTALL:=/iPKG_FIXUP:=autoreconf' package/libs/libnftnl/Makefile
 mkdir -p package/network/utils/nftables/patches
 cp -f ../PATCH/firewall/002-nftables-add-fullcone-expression-support.patch ./package/network/utils/nftables/patches/002-nftables-add-fullcone-expression-support.patch
 # FW3
@@ -82,6 +84,9 @@ sed -i 's,noinitrd,noinitrd mitigations=off,g' target/linux/x86/image/grub-pc.cf
 # btf
 wget -qO - https://github.com/immortalwrt/immortalwrt/commit/73e5679.patch | patch -p1
 wget https://github.com/immortalwrt/immortalwrt/raw/openwrt-23.05/target/linux/generic/backport-5.15/051-v5.18-bpf-Add-config-to-allow-loading-modules-with-BTF-mismatch.patch -O target/linux/generic/backport-5.15/051-v5.18-bpf-Add-config-to-allow-loading-modules-with-BTF-mismatch.patch
+# netifd
+mkdir -p package/network/config/netifd/patches
+cp -f ../PATCH/100-system-linux-fix-autoneg-for-2.5G-5G-10G.patch ./package/network/config/netifd/patches/100-system-linux-fix-autoneg-for-2.5G-5G-10G.patch
 # mount cgroupv2
 pushd feeds/packages
 patch -p1 <../../../PATCH/cgroupfs-mount/0001-fix-cgroupfs-mount.patch
