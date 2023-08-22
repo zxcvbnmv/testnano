@@ -34,18 +34,20 @@ cp -rf ../lede/target/linux/generic/hack-5.15/952-add-net-conntrack-events-suppo
 cp -rf ../lede/target/linux/generic/hack-5.15/982-add-bcm-fullconenat-support.patch ./target/linux/generic/hack-5.15/982-add-bcm-fullconenat-support.patch
 # Patch FireWall FullCone
 # FW4
-rm -rf ./package/network/config/firewall4
-cp -rf ../immortalwrt/package/network/config/firewall4 ./package/network/config/firewall4
-cp -f ../PATCH/firewall/990-unconditionally-allow-ct-status-dnat.patch ./package/network/config/firewall4/patches/990-unconditionally-allow-ct-status-dnat.patch
+mkdir -p package/network/config/firewall4/patches
 cp -f ../PATCH/firewall/001-fix-fw4-flow-offload.patch ./package/network/config/firewall4/patches/001-fix-fw4-flow-offload.patch
-rm -rf ./package/libs/libnftnl
-cp -rf ../immortalwrt/package/libs/libnftnl ./package/libs/libnftnl
-rm -rf ./package/network/utils/nftables
-cp -rf ../immortalwrt/package/network/utils/nftables ./package/network/utils/nftables
+cp -f ../PATCH/firewall/990-unconditionally-allow-ct-status-dnat.patch ./package/network/config/firewall4/patches/990-unconditionally-allow-ct-status-dnat.patch
+cp -f ../PATCH/firewall/999-01-firewall4-add-fullcone-support.patch ./package/network/config/firewall4/patches/999-01-firewall4-add-fullcone-support.patch
+mkdir -p package/libs/libnftnl/patches
+cp -f ../PATCH/firewall/001-libnftnl-add-fullcone-expression-support.patch ./package/libs/libnftnl/patches/001-libnftnl-add-fullcone-expression-support.patch
+mkdir -p package/network/utils/nftables/patches
+cp -f ../PATCH/firewall/002-nftables-add-fullcone-expression-support.patch ./package/network/utils/nftables/patches/002-nftables-add-fullcone-expression-support.patch
 # patch nf_conntrack_expect_max
 wget -qO - https://github.com/openwrt/openwrt/commit/bbf39d07.patch | patch -p1
 # Patch LuCI FullCone switch
-patch -p1 <../PATCH/firewall/luci-app-firewall_add_fullcone.patch
+pushd feeds/luci
+patch -p1 <../../../PATCH/firewall/luci-app-firewall_add_fullcone_fw4.patch
+popd
 # Nftables fullcone expression kernel module
 git clone --depth 1 https://github.com/fullcone-nat-nftables/nft-fullcone package/new/nft-fullcone
 ### basic package ###
