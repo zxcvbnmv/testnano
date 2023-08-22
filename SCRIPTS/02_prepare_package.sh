@@ -112,8 +112,8 @@ cp -rf ../lede/target/linux/x86/patches-5.15/996-intel-igc-i225-i226-disable-eee
 # luci xray
 #git clone -b main --depth 1 https://github.com/ttimasdf/luci-app-xray.git package/new/luci-app-xray
 # Arpbind
-cp -rf ../immortalwrt_luci/applications/luci-app-arpbind ./feeds/luci/applications/luci-app-arpbind
-ln -sf ../../../feeds/luci/applications/luci-app-arpbind ./package/feeds/luci/luci-app-arpbind
+#cp -rf ../immortalwrt_luci/applications/luci-app-arpbind ./feeds/luci/applications/luci-app-arpbind
+#ln -sf ../../../feeds/luci/applications/luci-app-arpbind ./package/feeds/luci/luci-app-arpbind
 # ipv6-helper
 cp -rf ../lede/package/lean/ipv6-helper ./package/new/ipv6-helper
 patch -p1 <../PATCH/1002-odhcp6c-support-dhcpv6-hotplug.patch
