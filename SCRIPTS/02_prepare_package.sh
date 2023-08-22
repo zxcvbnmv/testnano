@@ -28,7 +28,7 @@ rm -rf ./package/libs/mbedtls
 cp -rf ../immortalwrt/package/libs/mbedtls ./package/libs/mbedtls
 # fstool
 wget -qO - https://github.com/coolsnowwolf/lede/commit/8a4db76.patch | patch -p1
-### Fullcone-NAT ###
+### Fullcone-NAT (lean's High Performing Mode unavailable for nftables) ###
 # Patch Kernel FullCone
 cp -rf ../lede/target/linux/generic/hack-5.15/952-add-net-conntrack-events-support-multiple-registrant.patch ./target/linux/generic/hack-5.15/952-add-net-conntrack-events-support-multiple-registrant.patch
 cp -rf ../lede/target/linux/generic/hack-5.15/982-add-bcm-fullconenat-support.patch ./target/linux/generic/hack-5.15/982-add-bcm-fullconenat-support.patch
@@ -42,21 +42,12 @@ rm -rf ./package/libs/libnftnl
 cp -rf ../immortalwrt/package/libs/libnftnl ./package/libs/libnftnl
 rm -rf ./package/network/utils/nftables
 cp -rf ../immortalwrt/package/network/utils/nftables ./package/network/utils/nftables
-# FW3
-#mkdir -p package/network/config/firewall/patches
-#cp -rf ../immortalwrt_21/package/network/config/firewall/patches/100-fullconenat.patch ./package/network/config/firewall/patches/100-fullconenat.patch
-#cp -rf ../lede/package/network/config/firewall/patches/101-bcm-fullconenat.patch ./package/network/config/firewall/patches/101-bcm-fullconenat.patch
-# iptables
-#cp -rf ../lede/package/network/utils/iptables/patches/900-bcm-fullconenat.patch ./package/network/utils/iptables/patches/900-bcm-fullconenat.patch
-# network
+# patch nf_conntrack_expect_max
 wget -qO - https://github.com/openwrt/openwrt/commit/bbf39d07.patch | patch -p1
 # Patch LuCI FullCone switch
-pushd feeds/luci
-wget -qO- https://github.com/openwrt/luci/commit/471182b2.patch | patch -p1
-popd
-# FullCone PKG
+patch -p1 <../PATCH/firewall/luci-app-firewall_add_fullcone.patch
+# Nftables fullcone expression kernel module
 git clone --depth 1 https://github.com/fullcone-nat-nftables/nft-fullcone package/new/nft-fullcone
-cp -rf ../Lienol/package/network/utils/fullconenat ./package/new/fullconenat
 ### basic package ###
 # Make target for support NanoPi R4S
 rm -rf ./target/linux/rockchip
@@ -112,8 +103,8 @@ cp -rf ../lede/target/linux/x86/patches-5.15/996-intel-igc-i225-i226-disable-eee
 # luci xray
 #git clone -b main --depth 1 https://github.com/ttimasdf/luci-app-xray.git package/new/luci-app-xray
 # Arpbind
-#cp -rf ../immortalwrt_luci/applications/luci-app-arpbind ./feeds/luci/applications/luci-app-arpbind
-#ln -sf ../../../feeds/luci/applications/luci-app-arpbind ./package/feeds/luci/luci-app-arpbind
+cp -rf ../immortalwrt_luci/applications/luci-app-arpbind ./feeds/luci/applications/luci-app-arpbind
+ln -sf ../../../feeds/luci/applications/luci-app-arpbind ./package/feeds/luci/luci-app-arpbind
 # ipv6-helper
 cp -rf ../lede/package/lean/ipv6-helper ./package/new/ipv6-helper
 patch -p1 <../PATCH/1002-odhcp6c-support-dhcpv6-hotplug.patch
@@ -153,5 +144,3 @@ sed -i 's,no-lto,no-lto no-gc-sections,g' package/boot/grub2/Makefile
 sed -i 's,no-mips16 gc-sections,no-mips16 gc-sections no-lto,g' package/libs/openssl/Makefile
 # libsodium
 sed -i 's,no-mips16,no-mips16 no-lto,g' feeds/packages/libs/libsodium/Makefile
-
-#exit 0
