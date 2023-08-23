@@ -32,7 +32,7 @@ CONFIG_KERNEL_XDP_SOCKETS=y
 CONFIG_PACKAGE_kmod-xdp-sockets-diag=y
 
 ### BASIC ###
-CONFIG_PACKAGE_kmod-tcp-bbr
+CONFIG_PACKAGE_kmod-tcp-bbr=y
 CONFIG_PACKAGE_addition-trans-zh=y
 CONFIG_PACKAGE_autocore=y
 CONFIG_PACKAGE_ethtool=y
