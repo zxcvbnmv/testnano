@@ -60,9 +60,9 @@ rm -rf ./package/boot/uboot-rockchip
 cp -rf ../immortalwrt_23/package/boot/uboot-rockchip ./package/boot/uboot-rockchip
 rm -rf ./package/boot/arm-trusted-firmware-rockchip
 cp -rf ../immortalwrt_23/package/boot/arm-trusted-firmware-rockchip ./package/boot/arm-trusted-firmware-rockchip
-rm ./target/linux/rockchip/patches-5.15/992-rockchip-rk3399-overclock-to-2.2-1.8-GHz.patch
-cp -f ../PATCH/766-rk3399-overclock.patch ./target/linux/rockchip/patches-5.15/
-cp -f ../PATCH/249-rk3399dtsi.patch ./target/linux/rockchip/patches-5.15/
+#rm ./target/linux/rockchip/patches-5.15/992-rockchip-rk3399-overclock-to-2.2-1.8-GHz.patch
+#cp -f ../PATCH/766-rk3399-overclock.patch ./target/linux/rockchip/patches-5.15/
+#cp -f ../PATCH/249-rk3399dtsi.patch ./target/linux/rockchip/patches-5.15/
 # intel-firmware
 wget -qO - https://github.com/openwrt/openwrt/commit/9c58add.patch | patch -p1
 wget -qO - https://github.com/openwrt/openwrt/commit/64f1a65.patch | patch -p1
@@ -79,7 +79,7 @@ wget -qO - https://github.com/immortalwrt/immortalwrt/commit/73e5679.patch | pat
 wget https://github.com/immortalwrt/immortalwrt/raw/openwrt-23.05/target/linux/generic/backport-5.15/051-v5.18-bpf-Add-config-to-allow-loading-modules-with-BTF-mismatch.patch -O target/linux/generic/backport-5.15/051-v5.18-bpf-Add-config-to-allow-loading-modules-with-BTF-mismatch.patch
 # netifd
 mkdir -p package/network/config/netifd/patches
-cp -f ../PATCH/100-system-linux-fix-autoneg-for-2.5G-5G-10G.patch ./package/network/config/netifd/patches/100-system-linux-fix-autoneg-for-2.5G-5G-10G.patch
+cp -f ../PATCH/firewall/100-system-linux-fix-autoneg-for-2.5G-5G-10G.patch ./package/network/config/netifd/patches/100-system-linux-fix-autoneg-for-2.5G-5G-10G.patch
 # mount cgroupv2
 pushd feeds/packages
 patch -p1 <../../../PATCH/cgroupfs-mount/0001-fix-cgroupfs-mount.patch
