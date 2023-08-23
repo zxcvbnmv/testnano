@@ -60,9 +60,9 @@ rm -rf ./package/boot/uboot-rockchip
 cp -rf ../immortalwrt_23/package/boot/uboot-rockchip ./package/boot/uboot-rockchip
 rm -rf ./package/boot/arm-trusted-firmware-rockchip
 cp -rf ../immortalwrt_23/package/boot/arm-trusted-firmware-rockchip ./package/boot/arm-trusted-firmware-rockchip
-#rm ./target/linux/rockchip/patches-5.15/992-rockchip-rk3399-overclock-to-2.2-1.8-GHz.patch
-#cp -f ../PATCH/766-rk3399-overclock.patch ./target/linux/rockchip/patches-5.15/
-#cp -f ../PATCH/249-rk3399dtsi.patch ./target/linux/rockchip/patches-5.15/
+rm ./target/linux/rockchip/patches-5.15/992-rockchip-rk3399-overclock-to-2.2-1.8-GHz.patch
+cp -f ../PATCH/766-rk3399-overclock.patch ./target/linux/rockchip/patches-5.15/
+cp -f ../PATCH/249-rk3399dtsi.patch ./target/linux/rockchip/patches-5.15/
 # intel-firmware
 wget -qO - https://github.com/openwrt/openwrt/commit/9c58add.patch | patch -p1
 wget -qO - https://github.com/openwrt/openwrt/commit/64f1a65.patch | patch -p1
