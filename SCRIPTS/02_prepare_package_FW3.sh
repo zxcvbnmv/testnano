@@ -1,8 +1,8 @@
 #!/bin/bash
 clear
 # Enable O3 & optimize
-sed -i 's/Os/O3/g' include/target.mk
-sed -i 's/O2/O3/g' ./rules.mk
+sed -i 's/Os/O2/g' include/target.mk
+#sed -i 's/O2/O3/g' ./rules.mk
 # Update feed
 ./scripts/feeds update -a && ./scripts/feeds install -a
 # Irqbalance
@@ -115,6 +115,9 @@ git clone -b master --depth 1 https://github.com/BROBIRD/openwrt-r8168.git packa
 patch -p1 <../PATCH/r8168/r8168-fix_LAN_led-for_r4s-from_TL.patch
 # igc-fix
 cp -rf ../lede/target/linux/x86/patches-5.15/996-intel-igc-i225-i226-disable-eee.patch ./target/linux/x86/patches-5.15/996-intel-igc-i225-i226-disable-eee.patch
+# golang
+rm -rf ./feeds/packages/lang/golang
+cp -rf ../openwrt_pkg_ma/lang/golang ./feeds/packages/lang/golang
 # Arpbind
 cp -rf ../immortalwrt_luci/applications/luci-app-arpbind ./feeds/luci/applications/luci-app-arpbind
 ln -sf ../../../feeds/luci/applications/luci-app-arpbind ./package/feeds/luci/luci-app-arpbind
