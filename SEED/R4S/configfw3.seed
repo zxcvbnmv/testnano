@@ -39,11 +39,14 @@ CONFIG_PACKAGE_ethtool=y
 CONFIG_PACKAGE_dnsmasq-full=y
 CONFIG_PACKAGE_dnsmasq_full_ipset=y
 # CONFIG_PACKAGE_dnsmasq is not set
-CONFIG_PACKAGE_ucode-mod-resolv=y
 CONFIG_PACKAGE_kmod-fs-f2fs=y
 CONFIG_PACKAGE_libustream-openssl=y
 # CONFIG_PACKAGE_libustream-wolfssl is not set
 CONFIG_PACKAGE_wget-ssl=y
+CONFIG_PACKAGE_iptables-mod-tproxy=y
+CONFIG_PACKAGE_kmod-ipt-tproxy=y
+CONFIG_PACKAGE_resolveip=y
+CONFIG_PACKAGE_ipset=y
 
 ### FW3 ###
 CONFIG_PACKAGE_firewall=y
@@ -58,7 +61,6 @@ CONFIG_PACKAGE_kmod-nft-offload=n
 CONFIG_PACKAGE_kmod-ipt-offload=y
 CONFIG_PACKAGE_dnsmasq_full_nftset=n
 CONFIG_PACKAGE_iptables-mod-fullconenat=y
-CONFIG_PACKAGE_kmod-ipt-tproxy=y
 
 ### LUCI ###
 CONFIG_LUCI_LANG_zh_Hans=y
