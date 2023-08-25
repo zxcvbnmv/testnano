@@ -11,6 +11,8 @@ CONFIG_DEVEL=y
 CONFIG_KERNEL_BUILD_DOMAIN="buildhost"
 CONFIG_KERNEL_BUILD_USER="builder"
 CONFIG_PACKAGE_r8169-firmware=y
+CONFIG_PACKAGE_arm-trusted-firmware-rk3399=y
+CONFIG_PACKAGE_arm-trusted-firmware-rockchip=y
 
 # GCC
 CONFIG_TOOLCHAINOPTS=y
