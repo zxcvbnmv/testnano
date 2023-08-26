@@ -93,7 +93,7 @@ jobs:
       continue-on-error: true
       run: |
         cd openwrt
-        #echo | make kernel_oldconfig -j$(($(nproc) + 1))
+        echo | make kernel_oldconfig -j$(($(nproc) + 1))
         IGNORE_ERRORS=1 make -j$(($(nproc) + 1))
         echo $?
     - name: If Error
@@ -106,8 +106,19 @@ jobs:
       run: |
         cd openwrt
         cp .config bin/targets/rockchip/armv8/allconfig.bak
-    - name: Upload Firmwares
-      uses: actions/upload-artifact@main
-      with:
-        name: Openwrt SNAPSHOT NanoPi-R4S
-        path: openwrt/bin/targets/rockchip/armv8
+    - name: Move packages to publish
+      run: |
+        mkdir -p publish
+        mv openwrt/bin/targets/rockchip/armv8/* ./publish/
+    - name: Git push assets to "release" branch
+      run: |
+        cd publish || exit 1
+        ls
+        git init
+        git config --local user.name "github-actions[bot]"
+        git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+        git checkout -b release-r4s-openwrt-fw3
+        git add -A
+        git commit -m "23.05RC3"
+        git remote add xnanopi "https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}"
+        git push -f -u xnanopi release-r4s-openwrt-fw3
