@@ -94,7 +94,7 @@ jobs:
       run: |
         cd openwrt
         echo | make kernel_oldconfig -j$(($(nproc) + 1)) 
-        IGNORE_ERRORS=1 make -j$(($(nproc) + 1))
+        #IGNORE_ERRORS=1 make -j$(($(nproc) + 1))
         echo $?
     - name: If Error
       if: steps.compileopenwrt.outcome == 'failure'
