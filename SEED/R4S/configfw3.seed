@@ -96,3 +96,5 @@ CONFIG_LIBCURL_OPENSSL=y
 # CONFIG_LIBCURL_WOLFSSL is not set
 # CONFIG_LIBCURL_GNUTLS is not set
 # CONFIG_LIBCURL_NOSSL is not set
+# CONFIG_PACKAGE_urandom-seed is not set
+# CONFIG_PACKAGE_urngd is not set
