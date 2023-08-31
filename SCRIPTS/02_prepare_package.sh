@@ -1,12 +1,10 @@
 #!/bin/bash
 clear
 # Enable O3 & optimize
-sed -i 's/Os/O3/g' include/target.mk
-sed -i 's/O2/O3/g' ./rules.mk
+sed -i 's/Os/O2/g' include/target.mk
+#sed -i 's/O2/O3/g' ./rules.mk
 # Update feed
 ./scripts/feeds update -a && ./scripts/feeds install -a
-# Irqbalance
-sed -i "s/enabled '0'/enabled '1'/g" feeds/packages/utils/irqbalance/files/irqbalance.config
 # rm SNAPSHOT tag
 sed -i 's,-SNAPSHOT,,g' include/version.mk
 sed -i 's,-SNAPSHOT,,g' package/base-files/image-config.in
@@ -105,6 +103,7 @@ sed -i "s,-O3,-Ofast -funroll-loops -fpeel-loops -fgcse-sm -fgcse-las,g" feeds/p
 cp -rf ../immortalwrt_23/package/utils/mhz ./package/utils/mhz
 # Add R8168 driver
 git clone -b master --depth 1 https://github.com/BROBIRD/openwrt-r8168.git package/new/r8168
+cp -f ../PATCH/r8168/Makefile ./package/new/r8168/src
 patch -p1 <../PATCH/r8168/r8168-fix_LAN_led-for_r4s-from_TL.patch
 # igc-fix
 cp -rf ../lede/target/linux/x86/patches-5.15/996-intel-igc-i225-i226-disable-eee.patch ./target/linux/x86/patches-5.15/996-intel-igc-i225-i226-disable-eee.patch
