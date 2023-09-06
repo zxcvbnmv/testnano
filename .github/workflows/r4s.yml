@@ -6,7 +6,7 @@ on:
     paths:
       - '.github/workflows/r4s.yml'
 #  schedule:
- #   - cron: '00 00 * * *'
+ #   - cron: '00 01 * * *'
 
 jobs:
   build:
