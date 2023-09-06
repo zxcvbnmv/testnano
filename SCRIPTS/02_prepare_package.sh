@@ -33,8 +33,6 @@ cp -rf ../immortalwrt/package/libs/mbedtls ./package/libs/mbedtls
 wget -qO - https://github.com/coolsnowwolf/lede/commit/8a4db76.patch | patch -p1
 # patch BBRv3
 cp -rf ../PATCH/BBRv3/* ./target/linux/generic/backport-5.15/
-# openssl hwrng
-sed -i "/-openwrt/iOPENSSL_OPTIONS += enable-ktls '-DDEVRANDOM=\"\\\\\"/dev/hwrng\\\\\"\"\'\n" package/libs/openssl/Makefile
 ### Fullcone-NAT (lean's High Performing Mode unavailable for nftables) ###
 # Patch Kernel FullCone
 cp -rf ../lede/target/linux/generic/hack-5.15/952-add-net-conntrack-events-support-multiple-registrant.patch ./target/linux/generic/hack-5.15/952-add-net-conntrack-events-support-multiple-registrant.patch
