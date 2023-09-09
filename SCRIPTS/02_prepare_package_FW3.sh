@@ -24,7 +24,6 @@ CONFIG_LRNG_IRQ=y
 CONFIG_LRNG_JENT=y
 CONFIG_LRNG_CPU=y
 CONFIG_LRNG_SCHED=y
-CONFIG_LRNG_HWRAND_IF=y
 ' >>./target/linux/generic/config-5.15
 # mbedtls
 rm -rf ./package/libs/mbedtls
@@ -75,6 +74,8 @@ cp -rf ../immortalwrt_23/package/boot/arm-trusted-firmware-rockchip ./package/bo
 rm ./target/linux/rockchip/patches-5.15/992-rockchip-rk3399-overclock-to-2.2-1.8-GHz.patch
 cp -f ../PATCH/766-rk3399-overclock.patch ./target/linux/rockchip/patches-5.15/
 cp -f ../PATCH/249-rk3399dtsi.patch ./target/linux/rockchip/patches-5.15/
+sed -i 's,DEFAULT_GOV_SCHEDUTIL,DEFAULT_GOV_PERFORMANCE,g' target/linux/rockchip/armv8/config-5.15
+sed -i 's,# CONFIG_CPU_FREQ_DEFAULT_GOV_PERFORMANCE,# CONFIG_CPU_FREQ_DEFAULT_GOV_SCHEDUTIL,g' target/linux/rockchip/armv8/config-5.15
 # intel-firmware
 wget -qO - https://github.com/openwrt/openwrt/commit/9c58add.patch | patch -p1
 wget -qO - https://github.com/openwrt/openwrt/commit/64f1a65.patch | patch -p1
