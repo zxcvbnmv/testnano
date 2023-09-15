@@ -42,7 +42,7 @@ mkdir -p package/network/utils/nftables/patches
 cp -f ../PATCH/firewall/002-nftables-add-fullcone-expression-support.patch ./package/network/utils/nftables/patches/002-nftables-add-fullcone-expression-support.patch
 # FW3
 mkdir -p package/network/config/firewall/patches
-cp -rf ../immortalwrt_23/network/config/firewall/patches/100-fullconenat.patch ./package/network/config/firewall/patches/100-fullconenat.patch
+cp -rf ../immortalwrt_23/package/network/config/firewall/patches/fullconenat.patch ./package/network/config/firewall/patches/fullconenat.patch
 cp -rf ../lede/package/network/config/firewall/patches/101-bcm-fullconenat.patch ./package/network/config/firewall/patches/101-bcm-fullconenat.patch
 # iptables
 cp -rf ../lede/package/network/utils/iptables/patches/900-bcm-fullconenat.patch ./package/network/utils/iptables/patches/900-bcm-fullconenat.patch
