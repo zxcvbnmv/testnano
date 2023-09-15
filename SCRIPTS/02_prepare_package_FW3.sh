@@ -42,7 +42,7 @@ mkdir -p package/network/utils/nftables/patches
 cp -f ../PATCH/firewall/002-nftables-add-fullcone-expression-support.patch ./package/network/utils/nftables/patches/002-nftables-add-fullcone-expression-support.patch
 # FW3
 mkdir -p package/network/config/firewall/patches
-cp -rf ../immortalwrt_21/package/network/config/firewall/patches/100-fullconenat.patch ./package/network/config/firewall/patches/100-fullconenat.patch
+cp -rf ../immortalwrt_23/network/config/firewall/patches/100-fullconenat.patch ./package/network/config/firewall/patches/100-fullconenat.patch
 cp -rf ../lede/package/network/config/firewall/patches/101-bcm-fullconenat.patch ./package/network/config/firewall/patches/101-bcm-fullconenat.patch
 # iptables
 cp -rf ../lede/package/network/utils/iptables/patches/900-bcm-fullconenat.patch ./package/network/utils/iptables/patches/900-bcm-fullconenat.patch
@@ -54,7 +54,8 @@ patch -p1 <../../../PATCH/firewall/luci-app-firewall_add_fullcone_fw3.patch
 popd
 # Nftables fullcone expression kernel module
 git clone --depth 1 https://github.com/fullcone-nat-nftables/nft-fullcone package/new/nft-fullcone
-cp -rf ../Lienol/package/network/utils/fullconenat ./package/new/fullconenat
+# iptables fullcone module
+cp -rf ../immortalwrt_23/package/network/utils/fullconenat ./package/new/fullconenat
 ### basic package ###
 # Make target for support NanoPi R4S
 rm -rf ./target/linux/rockchip
