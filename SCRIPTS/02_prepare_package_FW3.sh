@@ -8,6 +8,8 @@ sed -i 's/Os/O2/g' include/target.mk
 # rm SNAPSHOT tag
 sed -i 's,-SNAPSHOT,,g' include/version.mk
 sed -i 's,-SNAPSHOT,,g' package/base-files/image-config.in
+# LAN port IP
+sed -i 's/192.168.2.10/10.0.0.1/g' package/base-files/files/bin/config_generate
 # sysctl
 echo "net.netfilter.nf_conntrack_helper = 1" >>./package/kernel/linux/files/sysctl-nf-conntrack.conf
 # TCP optimizations
