@@ -1,6 +1,6 @@
 #!/bin/bash
 clear
-# Enable O3 & optimize
+# Enable O2 & optimize
 sed -i 's/Os/O2/g' include/target.mk
 #sed -i 's/O2/O3/g' ./rules.mk
 # Update feed
