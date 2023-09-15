@@ -30,37 +30,38 @@ uci del uhttpd.main.listen_https
 uci commit uhttpd
 /etc/init.d/uhttpd restart
 
-#network
-uci set network.lan.ipaddr='192.168.2.9'
-uci commit network
-/etc/init.d/network restart
-
-#firewall
-#uci set firewall.@defaults[0].fullcone='1'
-uci set firewall.@defaults[0].flow_offloading='0'
-uci set firewall.@defaults[0].shortcut_fe='1'
-uci set firewall.@defaults[0].input='ACCEPT'
-uci commit firewall
-
 #SFE
 sed -i '/shortcutfe/d' /usr/share/rpcd/ucode/luci
 sed -i '/offloading/ a\                shortcutfe: access('\''/etc/init.d/shortcut-fe'\'') == true,' /usr/share/rpcd/ucode/luci
 
-#dnsmasq
-uci del dhcp.@dnsmasq[0].rebind_protection
+#firewall
+[ -f '/sbin/fw4' ] && uci set firewall.@defaults[0].fullcone='1'
+uci set firewall.@defaults[0].flow_offloading='0'
+uci set firewall.@defaults[0].shortcut_fe='1'
+uci set firewall.@defaults[0].input='ACCEPT'
+uci commit firewall
+/etc/init.d/firewall restart
+/etc/init.d/shortcut-fe enable 2>/dev/null
+/etc/init.d/shortcut-fe start
+
+#dnsmasq&ipv6
 uci set dhcp.@dnsmasq[0].quietdhcp='1'
 uci set dhcp.@dnsmasq[0].rebind_protection='0'
 uci set dhcp.@dnsmasq[0].sequential_ip='1'
+uci del dhcp.lan.dhcpv6
+uci del dhcp.lan.ndp
+uci set dhcp.lan.ra='server'
 uci commit dhcp
+/etc/init.d/odhcpd restart
 sed -i '/log-facility/d' /etc/dnsmasq.conf
 echo "log-facility=/dev/null" >> /etc/dnsmasq.conf
+/etc/init.d/dnsmasq restart
 
-#软链接
+#Symbolic links
 [ ! -f '/usr/bin/ip' ] && [ -f '/sbin/ip' ] && ln -sf /sbin/ip /usr/bin/ip
 [ ! -f '/usr/bin/wget-ssl' ] && [ -f '/usr/bin/wget' ] && ln -sf /usr/bin/wget /usr/bin/wget-ssl
+
 #luci cache
-/etc/init.d/shortcut-fe enable 2>/dev/null
-/etc/init.d/shortcut-fe start
 rm -rf /tmp/luci-modulecache
 rm -f /tmp/luci-indexcache
 
