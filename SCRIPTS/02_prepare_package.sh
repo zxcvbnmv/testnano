@@ -16,16 +16,6 @@ cp -rf ../PATCH/backport/TCP/* ./target/linux/generic/backport-5.15/
 cp -rf ../PATCH/backport/x86_csum/* ./target/linux/generic/backport-5.15/
 # Patch arm64 name
 cp -rf ../immortalwrt/target/linux/generic/hack-5.15/312-arm64-cpuinfo-Add-model-name-in-proc-cpuinfo-for-64bit-ta.patch ./target/linux/generic/hack-5.15/312-arm64-cpuinfo-Add-model-name-in-proc-cpuinfo-for-64bit-ta.patch
-# LRNG
-cp -rf ../PATCH/LRNG/* ./target/linux/generic/hack-5.15/
-echo '
-CONFIG_LRNG=y
-CONFIG_LRNG_IRQ=y
-CONFIG_LRNG_JENT=y
-CONFIG_LRNG_CPU=y
-CONFIG_LRNG_SCHED=y
-CONFIG_LRNG_HWRAND_IF=y
-' >>./target/linux/generic/config-5.15
 # mbedtls
 rm -rf ./package/libs/mbedtls
 cp -rf ../immortalwrt/package/libs/mbedtls ./package/libs/mbedtls
