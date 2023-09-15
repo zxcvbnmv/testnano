@@ -3,7 +3,6 @@ clone_repo() {
   repo_url=$1
   branch_name=$2
   target_dir=$3
-  #
   git clone -b $branch_name --depth 1 $repo_url $target_dir
 }
 
@@ -35,13 +34,9 @@ clone_repo $openwrt_pkg_repo master openwrt_pkg_ma &
 clone_repo $openwrt_luci_repo master openwrt_luci_ma &
 
 #
-wait
-
-#
 find openwrt/package/* -maxdepth 0 ! -name 'firmware' ! -name 'kernel' ! -name 'base-files' ! -name 'Makefile' -exec rm -rf {} +
 rm -rf ./openwrt_snap/package/firmware ./openwrt_snap/package/kernel ./openwrt_snap/package/base-files ./openwrt_snap/package/Makefile
 cp -rf ./openwrt_snap/package/* ./openwrt/package/
 cp -rf ./openwrt_snap/feeds.conf.default ./openwrt/feeds.conf.default
 
-#
 exit 0
