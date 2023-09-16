@@ -17,6 +17,7 @@ lede_pkg_repo="https://github.com/coolsnowwolf/packages.git"
 openwrt_repo="https://github.com/openwrt/openwrt.git"
 openwrt_pkg_repo="https://github.com/openwrt/packages.git"
 openwrt_luci_repo="https://github.com/openwrt/luci.git"
+lienol_repo="https://github.com/Lienol/openwrt.git"
 
 # clone
 clone_repo $openwrt_repo $latest_release openwrt &
@@ -30,6 +31,7 @@ clone_repo $immortalwrt_luci_repo openwrt-23.05 immortalwrt_luci_23 &
 clone_repo $lede_repo master lede &
 clone_repo $lede_luci_repo master lede_luci &
 clone_repo $lede_pkg_repo master lede_pkg &
+clone_repo $lienol_repo main Lienol &
 clone_repo $openwrt_pkg_repo master openwrt_pkg_ma &
 clone_repo $openwrt_luci_repo master openwrt_luci_ma &
 #
