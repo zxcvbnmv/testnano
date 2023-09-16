@@ -2,7 +2,6 @@
 clear
 # Enable O2 & optimize
 sed -i 's/Os/O2/g' include/target.mk
-#sed -i 's/O2/O3/g' ./rules.mk
 # Update feed
 ./scripts/feeds update -a && ./scripts/feeds install -a
 # rm SNAPSHOT tag
@@ -25,12 +24,13 @@ cp -rf ../immortalwrt/package/libs/mbedtls ./package/libs/mbedtls
 wget -qO - https://github.com/coolsnowwolf/lede/commit/8a4db76.patch | patch -p1
 # patch BBRv3
 cp -rf ../PATCH/BBRv3/* ./target/linux/generic/backport-5.15/
+# patch nf_conntrack_expect_max
+wget -qO - https://github.com/openwrt/openwrt/commit/bbf39d07.patch | patch -p1
 ### Fullcone-NAT ###
 # Patch Kernel FullCone
 cp -rf ../lede/target/linux/generic/hack-5.15/952-add-net-conntrack-events-support-multiple-registrant.patch ./target/linux/generic/hack-5.15/952-add-net-conntrack-events-support-multiple-registrant.patch
 cp -rf ../lede/target/linux/generic/hack-5.15/982-add-bcm-fullconenat-support.patch ./target/linux/generic/hack-5.15/982-add-bcm-fullconenat-support.patch
-# Patch FireWall FullCone
-# FW4
+# ##FW4
 mkdir -p package/network/config/firewall4/patches
 cp -f ../PATCH/firewall/001-fix-fw4-flow-offload.patch ./package/network/config/firewall4/patches/001-fix-fw4-flow-offload.patch
 cp -f ../PATCH/firewall/990-unconditionally-allow-ct-status-dnat.patch ./package/network/config/firewall4/patches/990-unconditionally-allow-ct-status-dnat.patch
@@ -40,22 +40,20 @@ cp -f ../PATCH/firewall/001-libnftnl-add-fullcone-expression-support.patch ./pac
 sed -i '/PKG_INSTALL:=/iPKG_FIXUP:=autoreconf' package/libs/libnftnl/Makefile
 mkdir -p package/network/utils/nftables/patches
 cp -f ../PATCH/firewall/002-nftables-add-fullcone-expression-support.patch ./package/network/utils/nftables/patches/002-nftables-add-fullcone-expression-support.patch
-# FW3
+# Nftables fullcone expression kernel module
+git clone --depth 1 https://github.com/fullcone-nat-nftables/nft-fullcone package/new/nft-fullcone
+# ##FW3
 mkdir -p package/network/config/firewall/patches
-cp -rf ../immortalwrt_23/package/network/config/firewall/patches/fullconenat.patch ./package/network/config/firewall/patches/fullconenat.patch
+cp -rf ../lede/package/network/config/firewall/patches/100-fullconenat.patch ./package/network/config/firewall/patches/100-fullconenat.patch
 cp -rf ../lede/package/network/config/firewall/patches/101-bcm-fullconenat.patch ./package/network/config/firewall/patches/101-bcm-fullconenat.patch
 # iptables
 cp -rf ../lede/package/network/utils/iptables/patches/900-bcm-fullconenat.patch ./package/network/utils/iptables/patches/900-bcm-fullconenat.patch
-# patch nf_conntrack_expect_max
-wget -qO - https://github.com/openwrt/openwrt/commit/bbf39d07.patch | patch -p1
+# iptables fullcone module
+cp -rf ../Lienol/package/network/utils/fullconenat ./package/new/fullconenat
 # Patch LuCI FullCone switch
 pushd feeds/luci
 patch -p1 <../../../PATCH/firewall/luci-app-firewall_add_fullcone_fw3.patch
 popd
-# Nftables fullcone expression kernel module
-git clone --depth 1 https://github.com/fullcone-nat-nftables/nft-fullcone package/new/nft-fullcone
-# iptables fullcone module
-cp -rf ../Lienol/package/network/utils/fullconenat ./package/new/fullconenat
 ### basic package ###
 # Make target for support NanoPi R4S
 rm -rf ./target/linux/rockchip
@@ -116,7 +114,7 @@ cp -f ../PATCH/r8168/Makefile ./package/new/r8168/src
 patch -p1 <../PATCH/r8168/r8168-fix_LAN_led-for_r4s-from_TL.patch
 # igc-fix
 cp -rf ../lede/target/linux/x86/patches-5.15/996-intel-igc-i225-i226-disable-eee.patch ./target/linux/x86/patches-5.15/996-intel-igc-i225-i226-disable-eee.patch
-# golang
+# Golang
 rm -rf ./feeds/packages/lang/golang
 cp -rf ../openwrt_pkg_ma/lang/golang ./feeds/packages/lang/golang
 # Arpbind
@@ -161,4 +159,4 @@ sed -i 's,no-mips16 gc-sections,no-mips16 gc-sections no-lto,g' package/libs/ope
 # libsodium
 sed -i 's,no-mips16,no-mips16 no-lto,g' feeds/packages/libs/libsodium/Makefile
 
-#exit 0
+#exit
