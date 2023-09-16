@@ -55,7 +55,7 @@ popd
 # Nftables fullcone expression kernel module
 git clone --depth 1 https://github.com/fullcone-nat-nftables/nft-fullcone package/new/nft-fullcone
 # iptables fullcone module
-cp -rf ../immortalwrt_23/package/network/utils/fullconenat ./package/new/fullconenat
+cp -rf ../Lienol/package/network/utils/fullconenat ./package/new/fullconenat
 ### basic package ###
 # Make target for support NanoPi R4S
 rm -rf ./target/linux/rockchip
