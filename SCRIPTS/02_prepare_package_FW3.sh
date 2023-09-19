@@ -49,7 +49,7 @@ cp -rf ../lede/package/network/config/firewall/patches/101-bcm-fullconenat.patch
 # iptables
 cp -rf ../lede/package/network/utils/iptables/patches/900-bcm-fullconenat.patch ./package/network/utils/iptables/patches/900-bcm-fullconenat.patch
 # iptables fullcone module
-cp -rf ../Lienol/package/network/utils/fullconenat ./package/new/fullconenat
+cp -rf ../PATCH/fullconenat ./package/new/fullconenat
 # Patch LuCI FullCone switch
 pushd feeds/luci
 patch -p1 <../../../PATCH/firewall/luci-app-firewall_add_fullcone_fw3.patch
