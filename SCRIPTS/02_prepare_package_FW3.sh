@@ -126,7 +126,7 @@ sed -i 's#20) \* 1000#60) \* 1000#g' feeds/luci/modules/luci-base/htdocs/luci-st
 # Translate
 cp -rf ../PATCH/addition-trans-zh/ ./package/new/addition-trans-zh
 # maximize_nic_rx_tx_buffers
-cp -rf ../PATCH/files/etc/ ./files
+mkdir -p ./files/files && cp -rf ../PATCH/files/etc ./files/files
 # Config
 rm -rf .config
 sed -i 's,CONFIG_WERROR=y,# CONFIG_WERROR is not set,g' target/linux/generic/config-5.15
