@@ -125,6 +125,8 @@ sed -i 's/option timeout 30/option timeout 60/g' package/system/rpcd/files/rpcd.
 sed -i 's#20) \* 1000#60) \* 1000#g' feeds/luci/modules/luci-base/htdocs/luci-static/resources/rpc.js
 # Translate
 cp -rf ../PATCH/addition-trans-zh/ ./package/new/addition-trans-zh
+# maximize_nic_rx_tx_buffers
+cp -rf ../PATCH/files/etc/ ./files
 # Config
 rm -rf .config
 sed -i 's,CONFIG_WERROR=y,# CONFIG_WERROR is not set,g' target/linux/generic/config-5.15
