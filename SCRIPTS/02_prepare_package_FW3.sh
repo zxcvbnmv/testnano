@@ -1,13 +1,14 @@
 #!/bin/bash
 clear
-# Enable O3 & optimize
+# Enable O2 & optimize
 sed -i 's/Os/O2/g' include/target.mk
-#sed -i 's/O2/O3/g' ./rules.mk
 # Update feed
 ./scripts/feeds update -a && ./scripts/feeds install -a
 # rm SNAPSHOT tag
 sed -i 's,-SNAPSHOT,,g' include/version.mk
 sed -i 's,-SNAPSHOT,,g' package/base-files/image-config.in
+# LAN port IP
+sed -i 's/192.168.2.10/192.168.1.1/g' package/base-files/files/bin/config_generate
 # sysctl
 echo "net.netfilter.nf_conntrack_helper = 1" >>./package/kernel/linux/files/sysctl-nf-conntrack.conf
 # TCP optimizations
@@ -16,22 +17,20 @@ cp -rf ../PATCH/backport/TCP/* ./target/linux/generic/backport-5.15/
 cp -rf ../PATCH/backport/x86_csum/* ./target/linux/generic/backport-5.15/
 # Patch arm64 name
 cp -rf ../immortalwrt/target/linux/generic/hack-5.15/312-arm64-cpuinfo-Add-model-name-in-proc-cpuinfo-for-64bit-ta.patch ./target/linux/generic/hack-5.15/312-arm64-cpuinfo-Add-model-name-in-proc-cpuinfo-for-64bit-ta.patch
-# LRNG
-cp -rf ../PATCH/LRNG/* ./target/linux/generic/hack-5.15/
-echo '
-CONFIG_LRNG=y
-' >>./target/linux/generic/config-5.15
 # mbedtls
 rm -rf ./package/libs/mbedtls
 cp -rf ../immortalwrt/package/libs/mbedtls ./package/libs/mbedtls
 # fstool
 wget -qO - https://github.com/coolsnowwolf/lede/commit/8a4db76.patch | patch -p1
+# patch BBRv3
+cp -rf ../PATCH/BBRv3/* ./target/linux/generic/backport-5.15/
+# patch nf_conntrack_expect_max
+wget -qO - https://github.com/openwrt/openwrt/commit/bbf39d07.patch | patch -p1
 ### Fullcone-NAT ###
 # Patch Kernel FullCone
 cp -rf ../lede/target/linux/generic/hack-5.15/952-add-net-conntrack-events-support-multiple-registrant.patch ./target/linux/generic/hack-5.15/952-add-net-conntrack-events-support-multiple-registrant.patch
 cp -rf ../lede/target/linux/generic/hack-5.15/982-add-bcm-fullconenat-support.patch ./target/linux/generic/hack-5.15/982-add-bcm-fullconenat-support.patch
-# Patch FireWall FullCone
-# FW4
+# ##FW4
 mkdir -p package/network/config/firewall4/patches
 cp -f ../PATCH/firewall/001-fix-fw4-flow-offload.patch ./package/network/config/firewall4/patches/001-fix-fw4-flow-offload.patch
 cp -f ../PATCH/firewall/990-unconditionally-allow-ct-status-dnat.patch ./package/network/config/firewall4/patches/990-unconditionally-allow-ct-status-dnat.patch
@@ -41,21 +40,20 @@ cp -f ../PATCH/firewall/001-libnftnl-add-fullcone-expression-support.patch ./pac
 sed -i '/PKG_INSTALL:=/iPKG_FIXUP:=autoreconf' package/libs/libnftnl/Makefile
 mkdir -p package/network/utils/nftables/patches
 cp -f ../PATCH/firewall/002-nftables-add-fullcone-expression-support.patch ./package/network/utils/nftables/patches/002-nftables-add-fullcone-expression-support.patch
-# FW3
+# Nftables fullcone expression kernel module
+git clone --depth 1 https://github.com/fullcone-nat-nftables/nft-fullcone package/new/nft-fullcone
+# ##FW3
 mkdir -p package/network/config/firewall/patches
-cp -rf ../immortalwrt_21/package/network/config/firewall/patches/100-fullconenat.patch ./package/network/config/firewall/patches/100-fullconenat.patch
+cp -rf ../lede/package/network/config/firewall/patches/100-fullconenat.patch ./package/network/config/firewall/patches/100-fullconenat.patch
 cp -rf ../lede/package/network/config/firewall/patches/101-bcm-fullconenat.patch ./package/network/config/firewall/patches/101-bcm-fullconenat.patch
 # iptables
 cp -rf ../lede/package/network/utils/iptables/patches/900-bcm-fullconenat.patch ./package/network/utils/iptables/patches/900-bcm-fullconenat.patch
-# patch nf_conntrack_expect_max
-wget -qO - https://github.com/openwrt/openwrt/commit/bbf39d07.patch | patch -p1
+# iptables fullcone module
+cp -rf ../Lienol/package/network/utils/fullconenat ./package/new/fullconenat
 # Patch LuCI FullCone switch
 pushd feeds/luci
 patch -p1 <../../../PATCH/firewall/luci-app-firewall_add_fullcone_fw3.patch
 popd
-# Nftables fullcone expression kernel module
-git clone --depth 1 https://github.com/fullcone-nat-nftables/nft-fullcone package/new/nft-fullcone
-cp -rf ../Lienol/package/network/utils/fullconenat ./package/new/fullconenat
 ### basic package ###
 # Make target for support NanoPi R4S
 rm -rf ./target/linux/rockchip
@@ -68,6 +66,8 @@ cp -rf ../immortalwrt_23/package/boot/arm-trusted-firmware-rockchip ./package/bo
 rm ./target/linux/rockchip/patches-5.15/992-rockchip-rk3399-overclock-to-2.2-1.8-GHz.patch
 cp -f ../PATCH/766-rk3399-overclock.patch ./target/linux/rockchip/patches-5.15/
 cp -f ../PATCH/249-rk3399dtsi.patch ./target/linux/rockchip/patches-5.15/
+sed -i 's,DEFAULT_GOV_SCHEDUTIL,DEFAULT_GOV_PERFORMANCE,g' target/linux/rockchip/armv8/config-5.15
+sed -i 's,# CONFIG_CPU_FREQ_DEFAULT_GOV_PERFORMANCE,# CONFIG_CPU_FREQ_DEFAULT_GOV_SCHEDUTIL,g' target/linux/rockchip/armv8/config-5.15
 # intel-firmware
 wget -qO - https://github.com/openwrt/openwrt/commit/9c58add.patch | patch -p1
 wget -qO - https://github.com/openwrt/openwrt/commit/64f1a65.patch | patch -p1
@@ -93,10 +93,10 @@ mkdir -p feeds/packages/utils/cgroupfs-mount/patches
 cp -rf ../PATCH/cgroupfs-mount/900-mount-cgroup-v2-hierarchy-to-sys-fs-cgroup-cgroup2.patch ./feeds/packages/utils/cgroupfs-mount/patches/
 cp -rf ../PATCH/cgroupfs-mount/901-fix-cgroupfs-umount.patch ./feeds/packages/utils/cgroupfs-mount/patches/
 cp -rf ../PATCH/cgroupfs-mount/902-mount-sys-fs-cgroup-systemd-for-docker-systemd-suppo.patch ./feeds/packages/utils/cgroupfs-mount/patches/
-# AutoCore
+# AutoCore & coremark
 cp -rf ../immortalwrt_23/package/emortal/autocore ./package/new/autocore
 sed -i 's/"getTempInfo" /"getTempInfo", "getCPUBench", "getCPUUsage" /g' package/new/autocore/files/luci-mod-status-autocore.json
-cp -rf ../OpenWrt-Add/autocore/files/x86/autocore ./package/new/autocore/files/autocore
+cp -rf ../PATCH/autocore ./package/new/autocore/files/autocore
 sed -i '/i386 i686 x86_64/{n;n;n;d;}' package/new/autocore/Makefile
 sed -i '/i386 i686 x86_64/d' package/new/autocore/Makefile
 rm -rf ./feeds/luci/modules/luci-base
@@ -114,7 +114,7 @@ cp -f ../PATCH/r8168/Makefile ./package/new/r8168/src
 patch -p1 <../PATCH/r8168/r8168-fix_LAN_led-for_r4s-from_TL.patch
 # igc-fix
 cp -rf ../lede/target/linux/x86/patches-5.15/996-intel-igc-i225-i226-disable-eee.patch ./target/linux/x86/patches-5.15/996-intel-igc-i225-i226-disable-eee.patch
-# golang
+# Golang
 rm -rf ./feeds/packages/lang/golang
 cp -rf ../openwrt_pkg_ma/lang/golang ./feeds/packages/lang/golang
 # Arpbind
@@ -159,4 +159,4 @@ sed -i 's,no-mips16 gc-sections,no-mips16 gc-sections no-lto,g' package/libs/ope
 # libsodium
 sed -i 's,no-mips16,no-mips16 no-lto,g' feeds/packages/libs/libsodium/Makefile
 
-#exit 0
+#exit

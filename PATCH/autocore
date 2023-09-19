@@ -1,0 +1,37 @@
+#!/bin/sh /etc/rc.common
+# Copyright (C) 2017 lean <coolsnowwolf@gmail.com>
+
+START=99
+
+start() {
+	rps_flow_cnt=4096
+	cpu_count=$(grep -c '^processor' /proc/cpuinfo)
+	rps_cpus=`printf "%x" $((2**$cpu_count-1))`
+	rps_sock_flow_entries=0
+
+	for preset in /sys/class/net/*/queues/rx-*/
+	do
+		echo "$rps_cpus" > "$preset"/rps_cpus
+		echo "$rps_flow_cnt" > "$preset"/rps_flow_cnt
+		rps_sock_flow_entries=$(($rps_sock_flow_entries+$rps_flow_cnt))
+	done
+	
+	echo $rps_sock_flow_entries > /proc/sys/net/core/rps_sock_flow_entries
+
+	echo 1 > /proc/sys/net/core/backlog_threaded
+
+	for i in $(ip address | awk -F ': ' '/eth[0-9]+/ {print $2}' | grep -v '@' | xargs)
+	do
+		{
+			ethtool -K "$i" rx-checksum on
+			ethtool -K "$i" tx-checksum-ip-generic on || {
+				ethtool -K "$i" tx-checksum-ipv4 on
+				ethtool -K "$i" tx-checksum-ipv6 on
+			}
+			ethtool -K "$i" tx-scatter-gather on
+			ethtool -K "$i" gso on
+			ethtool -K "$i" tso on
+			ethtool -K "$i" ufo on
+		}
+	done
+} >"/dev/null" 2>&1

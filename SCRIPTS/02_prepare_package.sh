@@ -8,6 +8,8 @@ sed -i 's/Os/O2/g' include/target.mk
 # rm SNAPSHOT tag
 sed -i 's,-SNAPSHOT,,g' include/version.mk
 sed -i 's,-SNAPSHOT,,g' package/base-files/image-config.in
+# LAN port IP
+sed -i 's/192.168.2.10/192.168.1.1/g' package/base-files/files/bin/config_generate
 # sysctl
 echo "net.netfilter.nf_conntrack_helper = 1" >>./package/kernel/linux/files/sysctl-nf-conntrack.conf
 # TCP optimizations
@@ -16,16 +18,13 @@ cp -rf ../PATCH/backport/TCP/* ./target/linux/generic/backport-5.15/
 cp -rf ../PATCH/backport/x86_csum/* ./target/linux/generic/backport-5.15/
 # Patch arm64 name
 cp -rf ../immortalwrt/target/linux/generic/hack-5.15/312-arm64-cpuinfo-Add-model-name-in-proc-cpuinfo-for-64bit-ta.patch ./target/linux/generic/hack-5.15/312-arm64-cpuinfo-Add-model-name-in-proc-cpuinfo-for-64bit-ta.patch
-# LRNG
-cp -rf ../PATCH/LRNG/* ./target/linux/generic/hack-5.15/
-echo '
-CONFIG_LRNG=y
-' >>./target/linux/generic/config-5.15
 # mbedtls
 rm -rf ./package/libs/mbedtls
 cp -rf ../immortalwrt/package/libs/mbedtls ./package/libs/mbedtls
 # fstool
 wget -qO - https://github.com/coolsnowwolf/lede/commit/8a4db76.patch | patch -p1
+# patch BBRv3
+cp -rf ../PATCH/BBRv3/* ./target/linux/generic/backport-5.15/
 ### Fullcone-NAT (lean's High Performing Mode unavailable for nftables) ###
 # Patch Kernel FullCone
 cp -rf ../lede/target/linux/generic/hack-5.15/952-add-net-conntrack-events-support-multiple-registrant.patch ./target/linux/generic/hack-5.15/952-add-net-conntrack-events-support-multiple-registrant.patch
@@ -86,10 +85,10 @@ mkdir -p feeds/packages/utils/cgroupfs-mount/patches
 cp -rf ../PATCH/cgroupfs-mount/900-mount-cgroup-v2-hierarchy-to-sys-fs-cgroup-cgroup2.patch ./feeds/packages/utils/cgroupfs-mount/patches/
 cp -rf ../PATCH/cgroupfs-mount/901-fix-cgroupfs-umount.patch ./feeds/packages/utils/cgroupfs-mount/patches/
 cp -rf ../PATCH/cgroupfs-mount/902-mount-sys-fs-cgroup-systemd-for-docker-systemd-suppo.patch ./feeds/packages/utils/cgroupfs-mount/patches/
-# AutoCore
+# AutoCore & coremark
 cp -rf ../immortalwrt_23/package/emortal/autocore ./package/new/autocore
 sed -i 's/"getTempInfo" /"getTempInfo", "getCPUBench", "getCPUUsage" /g' package/new/autocore/files/luci-mod-status-autocore.json
-cp -rf ../OpenWrt-Add/autocore/files/x86/autocore ./package/new/autocore/files/autocore
+cp -rf ../PATCH/autocore ./package/new/autocore/files/autocore
 sed -i '/i386 i686 x86_64/{n;n;n;d;}' package/new/autocore/Makefile
 sed -i '/i386 i686 x86_64/d' package/new/autocore/Makefile
 rm -rf ./feeds/luci/modules/luci-base
