@@ -9,7 +9,7 @@ sed -i 's/Os/O2/g' include/target.mk
 sed -i 's,-SNAPSHOT,,g' include/version.mk
 sed -i 's,-SNAPSHOT,,g' package/base-files/image-config.in
 # LAN port IP
-sed -i 's/192.168.2.10/192.168.1.1/g' package/base-files/files/bin/config_generate
+sed -i 's/192.168.1.1/192.168.2.10/g' package/base-files/files/bin/config_generate
 # sysctl
 echo "net.netfilter.nf_conntrack_helper = 1" >>./package/kernel/linux/files/sysctl-nf-conntrack.conf
 # TCP optimizations
@@ -25,12 +25,14 @@ cp -rf ../immortalwrt/package/libs/mbedtls ./package/libs/mbedtls
 wget -qO - https://github.com/coolsnowwolf/lede/commit/8a4db76.patch | patch -p1
 # patch BBRv3
 cp -rf ../PATCH/BBRv3/* ./target/linux/generic/backport-5.15/
+# patch nf_conntrack_expect_max
+wget -qO - https://github.com/openwrt/openwrt/commit/bbf39d07.patch | patch -p1
 ### Fullcone-NAT (lean's High Performing Mode unavailable for nftables) ###
 # Patch Kernel FullCone
 cp -rf ../lede/target/linux/generic/hack-5.15/952-add-net-conntrack-events-support-multiple-registrant.patch ./target/linux/generic/hack-5.15/952-add-net-conntrack-events-support-multiple-registrant.patch
 cp -rf ../lede/target/linux/generic/hack-5.15/982-add-bcm-fullconenat-support.patch ./target/linux/generic/hack-5.15/982-add-bcm-fullconenat-support.patch
 # Patch FireWall FullCone
-# FW4
+# ##FW4
 mkdir -p package/network/config/firewall4/patches
 cp -f ../PATCH/firewall/001-fix-fw4-flow-offload.patch ./package/network/config/firewall4/patches/001-fix-fw4-flow-offload.patch
 cp -f ../PATCH/firewall/990-unconditionally-allow-ct-status-dnat.patch ./package/network/config/firewall4/patches/990-unconditionally-allow-ct-status-dnat.patch
@@ -40,14 +42,12 @@ cp -f ../PATCH/firewall/001-libnftnl-add-fullcone-expression-support.patch ./pac
 sed -i '/PKG_INSTALL:=/iPKG_FIXUP:=autoreconf' package/libs/libnftnl/Makefile
 mkdir -p package/network/utils/nftables/patches
 cp -f ../PATCH/firewall/002-nftables-add-fullcone-expression-support.patch ./package/network/utils/nftables/patches/002-nftables-add-fullcone-expression-support.patch
-# patch nf_conntrack_expect_max
-wget -qO - https://github.com/openwrt/openwrt/commit/bbf39d07.patch | patch -p1
+# Nftables fullcone expression kernel module
+git clone --depth 1 https://github.com/fullcone-nat-nftables/nft-fullcone package/new/nft-fullcone
 # Patch LuCI FullCone switch
 pushd feeds/luci
 patch -p1 <../../../PATCH/firewall/luci-app-firewall_add_fullcone_fw4.patch
 popd
-# Nftables fullcone expression kernel module
-git clone --depth 1 https://github.com/fullcone-nat-nftables/nft-fullcone package/new/nft-fullcone
 ### basic package ###
 # Make target for support NanoPi R4S
 rm -rf ./target/linux/rockchip
@@ -74,9 +74,6 @@ sed -i 's,noinitrd,noinitrd mitigations=off,g' target/linux/x86/image/grub-pc.cf
 # btf
 wget -qO - https://github.com/immortalwrt/immortalwrt/commit/73e5679.patch | patch -p1
 wget https://github.com/immortalwrt/immortalwrt/raw/openwrt-23.05/target/linux/generic/backport-5.15/051-v5.18-bpf-Add-config-to-allow-loading-modules-with-BTF-mismatch.patch -O target/linux/generic/backport-5.15/051-v5.18-bpf-Add-config-to-allow-loading-modules-with-BTF-mismatch.patch
-# netifd
-mkdir -p package/network/config/netifd/patches
-cp -f ../PATCH/firewall/100-system-linux-fix-autoneg-for-2.5G-5G-10G.patch ./package/network/config/netifd/patches/100-system-linux-fix-autoneg-for-2.5G-5G-10G.patch
 # mount cgroupv2
 pushd feeds/packages
 patch -p1 <../../../PATCH/cgroupfs-mount/0001-fix-cgroupfs-mount.patch
