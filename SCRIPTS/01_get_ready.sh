@@ -8,7 +8,7 @@ clone_repo() {
 
 #
 #latest_release="$(curl -s https://github.com/openwrt/openwrt/tags | grep -Eo "v[0-9\.]+\-*r*c*[0-9]*.tar.gz" | sed -n '/[2-9][3-9]/p' | sed -n 1p | sed 's/.tar.gz//g')"
-latest_release="$(v23.05.0-rc3)"
+latest_release="v23.05.0-rc3"
 immortalwrt_repo="https://github.com/immortalwrt/immortalwrt.git"
 immortalwrt_pkg_repo="https://github.com/immortalwrt/packages.git"
 immortalwrt_luci_repo="https://github.com/immortalwrt/luci.git"
