@@ -1,0 +1,1 @@
+{"architecture": "aarch64_generic", "packages":{"cgi-io": "2022-08-10-901b0f04-21", "coremark": "2023-01-25-d5fad6bd-1", "curl": "8.3.0-1", "htop": "3.2.2-1", "iperf3": "3.15-1", "libcurl4": "8.3.0-1", "libiperf3": "3.15-1", "libnghttp2-14": "1.51.0-1", "wget-ssl": "1.21.3-3"}}

@@ -1,0 +1,169 @@
+Package: cgi-io
+Version: 2022-08-10-901b0f04-21
+Depends: libc, libubox20230523, libubus20230605
+Source: feeds/packages/net/cgi-io
+SourceName: cgi-io
+License: GPL-2.0-or-later
+Section: net
+SourceDateEpoch: 1696071911
+Maintainer: John Crispin <blogic@openwrt.org>
+Architecture: aarch64_generic
+Installed-Size: 9255
+Filename: cgi-io_2022-08-10-901b0f04-21_aarch64_generic.ipk
+Size: 9902
+SHA256sum: 787649ab02b2f2b4f347c941e6392df096e2659c23d5ca6fbcd5299ebbf1e510
+Description:  This package contains an cgi utility that is useful for up/downloading files
+
+Package: coremark
+Version: 2023-01-25-d5fad6bd-1
+Depends: libc
+Source: feeds/packages/utils/coremark
+SourceName: coremark
+License: Apache-2.0
+LicenseFiles: LICENSE.md
+Section: utils
+SourceDateEpoch: 1696071911
+Maintainer: Lim Guo Wei <limguowei@gmail.com>
+Architecture: aarch64_generic
+Installed-Size: 17317
+Filename: coremark_2023-01-25-d5fad6bd-1_aarch64_generic.ipk
+Size: 18011
+SHA256sum: 102045d6f179b32d1aa4016ab8a99d59ff2f20558f31f8cf0d365d44e535a9a1
+Description:  Embedded Microprocessor Benchmark
+
+Package: curl
+Version: 8.3.0-1
+Depends: libc, libcurl4
+Source: feeds/packages/net/curl
+SourceName: curl
+License: MIT
+LicenseFiles: COPYING
+Section: net
+SourceDateEpoch: 1695729255
+CPE-ID: cpe:/a:haxx:libcurl
+Maintainer: Stan Grishin <stangri@melmac.ca>
+Architecture: aarch64_generic
+Installed-Size: 68361
+Filename: curl_8.3.0-1_aarch64_generic.ipk
+Size: 68998
+SHA256sum: 83de4823cf831c2ac75db16a70a2e20e6a2a3b962e996f01eaf39e0ce23f06b5
+Description:  A client-side URL transfer utility
+
+Package: htop
+Version: 3.2.2-1
+Depends: libc, libncurses6
+Source: feeds/packages/admin/htop
+SourceName: htop
+License: GPL-2.0-or-later
+LicenseFiles: COPYING
+Section: admin
+SourceDateEpoch: 1696071911
+CPE-ID: cpe:/a:htop:htop
+Maintainer: Etienne CHAMPETIER <champetier.etienne@gmail.com>
+Architecture: aarch64_generic
+Installed-Size: 129821
+Filename: htop_3.2.2-1_aarch64_generic.ipk
+Size: 130504
+SHA256sum: 5f0300d8362601e13a4d6341c93c82052514e4d3b0f9588727e4b1401af17fe4
+Description:  Htop is an ncursed-based process viewer similar to top, but
+ it allows to scroll the list vertically and horizontally to
+ see all processes and their full command lines.
+
+Package: iperf3
+Version: 3.15-1
+Depends: libc, libiperf3
+Source: feeds/packages/net/iperf3
+SourceName: iperf3
+License: BSD-3-Clause
+Section: net
+SourceDateEpoch: 1696071911
+Maintainer: Felix Fietkau <nbd@nbd.name>
+Architecture: aarch64_generic
+Installed-Size: 2409
+Filename: iperf3_3.15-1_aarch64_generic.ipk
+Size: 3078
+SHA256sum: 9498c3605cb682b29d776fb6dfab1104922446b9c6063a85178f4cc5dba772b4
+Description:  Iperf is a modern alternative for measuring TCP and UDP bandwidth
+ performance, allowing the tuning of various parameters and
+ characteristics.
+
+Package: libcurl4
+Version: 8.3.0-1
+Depends: libc, libopenssl3, libnghttp2-14, libnghttp3, libngtcp2, ca-bundle
+Provides: libcurl
+Source: feeds/packages/net/curl
+SourceName: libcurl
+License: MIT
+LicenseFiles: COPYING
+Section: libs
+SourceDateEpoch: 1695729255
+ABIVersion: 4
+CPE-ID: cpe:/a:haxx:libcurl
+Maintainer: Stan Grishin <stangri@melmac.ca>
+Architecture: aarch64_generic
+Installed-Size: 247157
+Filename: libcurl4_8.3.0-1_aarch64_generic.ipk
+Size: 247640
+SHA256sum: baa75d585fc5956ab7cec9c9c14099479edec4ec9e41b6597f88a714ff9918e6
+Description:  A client-side URL transfer library
+
+Package: libiperf3
+Version: 3.15-1
+Depends: libc
+Source: feeds/packages/net/iperf3
+SourceName: libiperf3
+License: BSD-3-Clause
+Section: libs
+SourceDateEpoch: 1696071911
+Maintainer: Felix Fietkau <nbd@nbd.name>
+Architecture: aarch64_generic
+Installed-Size: 72650
+Filename: libiperf3_3.15-1_aarch64_generic.ipk
+Size: 73365
+SHA256sum: b9714130cb3ac89d5d265c0a34fc6cde4e9a55f5f325c79613a6a5df7924cc14
+Description:  Libiperf is a library providing an API for iperf3 functionality.
+
+Package: libnghttp2-14
+Version: 1.51.0-1
+Depends: libc
+Provides: libnghttp2
+Source: feeds/packages/libs/nghttp2
+SourceName: libnghttp2
+License: MIT
+LicenseFiles: COPYING
+Section: libs
+SourceDateEpoch: 1696071911
+ABIVersion: -14
+Maintainer: Hans Dedecker <dedeckeh@gmail.com>
+Architecture: aarch64_generic
+Installed-Size: 70965
+Filename: libnghttp2-14_1.51.0-1_aarch64_generic.ipk
+Size: 69924
+SHA256sum: 247a2d26be80548254e03f4549c05cf79e0d6acbd4a79104db003d7b0bebdbfa
+Description:  C library implementing the framing layer of the HTTP/2 protocol. It can be used to build a HTTP/2-capable HTTP client or server
+
+Package: wget-ssl
+Version: 1.21.3-3
+Depends: libc, libpcre2, zlib, libopenssl3, librt
+Provides: gnu-wget, wget
+Alternatives: 300:/usr/bin/wget:/usr/libexec/wget-ssl
+Source: feeds/packages/net/wget
+SourceName: wget-ssl
+License: GPL-3.0-or-later
+LicenseFiles: COPYING
+Section: net
+SourceDateEpoch: 1696071911
+CPE-ID: cpe:/a:gnu:wget
+Architecture: aarch64_generic
+Installed-Size: 240607
+Filename: wget-ssl_1.21.3-3_aarch64_generic.ipk
+Size: 241254
+SHA256sum: 977717be39141e969aed26b7c3d96138b03525222412ba0e8296dbf941d9625b
+Description:  Wget is a network utility to retrieve files from the Web using http
+ and ftp, the two most widely used Internet protocols. It works
+ non-interactively, so it will work in the background, after having
+ logged off. The program supports recursive retrieval of web-authoring
+ pages as well as ftp sites -- you can use wget to make mirrors of
+ archives and home pages or to travel the Web like a WWW robot.
+ This package is built with SSL support.
+
