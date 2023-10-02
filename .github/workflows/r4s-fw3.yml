@@ -106,6 +106,7 @@ jobs:
       run: |
         cd openwrt
         cp .config bin/targets/rockchip/armv8/allconfig.bak
+        cp -rf bin/packages/aarch64_generic bin/targets/rockchip/armv8/aarch64_generic
     - name: Move packages to publish
       run: |
         mkdir -p publish
