@@ -21,6 +21,13 @@ cp -rf ../immortalwrt/target/linux/generic/hack-5.15/312-arm64-cpuinfo-Add-model
 # mbedtls
 rm -rf ./package/libs/mbedtls
 cp -rf ../immortalwrt/package/libs/mbedtls ./package/libs/mbedtls
+### DOH3 ###
+rm -rf package/libs/openssl
+git clone https://github.com/sbwml/package_libs_openssl package/libs/openssl
+rm -rf feeds/packages/net/curl
+git clone https://github.com/sbwml/feeds_packages_net_curl feeds/packages/net/curl
+git clone https://github.com/sbwml/package_libs_nghttp3 package/libs/nghttp3
+git clone https://github.com/sbwml/package_libs_ngtcp2 package/libs/ngtcp2
 # fstool
 wget -qO - https://github.com/coolsnowwolf/lede/commit/8a4db76.patch | patch -p1
 # patch BBRv3
