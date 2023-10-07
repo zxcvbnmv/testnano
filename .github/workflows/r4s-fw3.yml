@@ -121,5 +121,5 @@ jobs:
         git checkout -b release-r4s-openwrt-fw3
         git add -A
         git commit -m "23.05RC3"
-        git remote add xnanopi "https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}"
-        git push -f -u xnanopi release-r4s-openwrt-fw3
+        git remote add testnano "https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}"
+        git push -f -u testnano release-r4s-openwrt-fw3
