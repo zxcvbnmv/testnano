@@ -42,8 +42,9 @@ wait
 find openwrt/package/* -maxdepth 0 ! -name 'firmware' ! -name 'kernel' ! -name 'base-files' ! -name 'Makefile' -exec rm -rf {} +
 rm -rf ./openwrt_snap/package/base-files/image-config.in ./openwrt_snap/package/Makefile
 cp -rf ./openwrt_snap/package/* ./openwrt/package/
-cp -rf ./openwrt_snap/target/linux/* ./openwrt/target/linux/*
+cp -rf ./openwrt_snap/target/linux/* ./openwrt/target/linux/
 cp -rf ./openwrt_snap/include/* ./openwrt/include/
+cp -rf ./openwrt_snap/toolchain/* ./openwrt/toolchain/
 cp -rf ./openwrt_snap/feeds.conf.default ./openwrt/feeds.conf.default
 
 exit 0
