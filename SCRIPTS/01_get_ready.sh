@@ -1,4 +1,5 @@
 #!/bin/bash
+
 clone_repo() {
   repo_url=$1
   branch_name=$2
@@ -7,8 +8,7 @@ clone_repo() {
 }
 
 #
-#latest_release="$(curl -s https://github.com/openwrt/openwrt/tags | grep -Eo "v[0-9\.]+\-*r*c*[0-9]*.tar.gz" | sed -n '/[2-9][3-9]/p' | sed -n 1p | sed 's/.tar.gz//g')"
-latest_release="v23.05.0-rc4"
+latest_release="$(curl -s https://github.com/openwrt/openwrt/tags | grep -Eo "v[0-9\.]+\-*r*c*[0-9]*.tar.gz" | sed -n '/[2-9][3-9]/p' | sed -n 1p | sed 's/.tar.gz//g')"
 immortalwrt_repo="https://github.com/immortalwrt/immortalwrt.git"
 immortalwrt_pkg_repo="https://github.com/immortalwrt/packages.git"
 immortalwrt_luci_repo="https://github.com/immortalwrt/luci.git"
@@ -18,7 +18,6 @@ lede_pkg_repo="https://github.com/coolsnowwolf/packages.git"
 openwrt_repo="https://github.com/openwrt/openwrt.git"
 openwrt_pkg_repo="https://github.com/openwrt/packages.git"
 openwrt_luci_repo="https://github.com/openwrt/luci.git"
-lienol_repo="https://github.com/Lienol/openwrt.git"
 
 # clone
 clone_repo $openwrt_repo $latest_release openwrt &
@@ -32,9 +31,9 @@ clone_repo $immortalwrt_luci_repo openwrt-23.05 immortalwrt_luci_23 &
 clone_repo $lede_repo master lede &
 clone_repo $lede_luci_repo master lede_luci &
 clone_repo $lede_pkg_repo master lede_pkg &
-clone_repo $lienol_repo main Lienol &
 clone_repo $openwrt_pkg_repo master openwrt_pkg_ma &
 clone_repo $openwrt_luci_repo master openwrt_luci_ma &
+
 #
 wait
 
