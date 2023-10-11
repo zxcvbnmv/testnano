@@ -120,6 +120,6 @@ jobs:
         git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
         git checkout -b release-r4s-openwrt-fw3
         git add -A
-        git commit -m "23.05RC3"
+        git commit -m "23.05RC4"
         git remote add testnano "https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}"
         git push -f -u testnano release-r4s-openwrt-fw3
