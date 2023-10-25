@@ -129,9 +129,8 @@ rm -rf package/network/services/ppp
 git clone https://github.com/sbwml/package_network_services_ppp package/network/services/ppp
 # dnsmasq update
 wget -qO - https://github.com/openwrt/openwrt/commit/6b23836.patch | patch -p1
-wget -qO - https://github.com/openwrt/openwrt/commit/9f52a57.patch | patch -p1
-wget -qO - https://github.com/openwrt/openwrt/commit/002f180.patch | patch -p1
-wget -qO - https://github.com/openwrt/openwrt/commit/cac17e1e.patch | patch -p1
+rm -rf package/network/services/dnsmasq
+cp -rf ../openwrt_main/package/network/services/dnsmasq package/network/services/dnsmasq
 # rpcd
 sed -i 's/option timeout 30/option timeout 60/g' package/system/rpcd/files/rpcd.config
 sed -i 's#20) \* 1000#60) \* 1000#g' feeds/luci/modules/luci-base/htdocs/luci-static/resources/rpc.js
