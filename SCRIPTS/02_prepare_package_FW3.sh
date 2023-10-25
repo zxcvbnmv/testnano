@@ -17,13 +17,13 @@ cp -rf ../immortalwrt/target/linux/generic/hack-5.15/312-arm64-cpuinfo-Add-model
 # mbedtls
 rm -rf ./package/libs/mbedtls
 cp -rf ../immortalwrt/package/libs/mbedtls ./package/libs/mbedtls
-### DOH3 ###
+# ## DOH3 ##
 rm -rf package/libs/openssl
 git clone -b dev https://github.com/sbwml/package_libs_openssl package/libs/openssl
 rm -rf feeds/packages/net/curl
-git clone https://github.com/sbwml/feeds_packages_net_curl feeds/packages/net/curl
-git clone https://github.com/sbwml/package_libs_nghttp3 package/libs/nghttp3
-git clone https://github.com/sbwml/package_libs_ngtcp2 package/libs/ngtcp2
+cp -rf ../stangri/curl feeds/packages/net/curl
+cp -rf ../stangri/nghttp3 package/libs/nghttp3
+cp -rf ../stangri/ngtcp2 package/libs/ngtcp2
 # fstool
 wget -qO - https://github.com/coolsnowwolf/lede/commit/8a4db76.patch | patch -p1
 # patch BBRv3
@@ -127,6 +127,10 @@ patch -p1 <../PATCH/1002-odhcp6c-support-dhcpv6-hotplug.patch
 # ppp update
 rm -rf package/network/services/ppp
 git clone https://github.com/sbwml/package_network_services_ppp package/network/services/ppp
+# dnsmasq update
+rm -rf package/network/services/dnsmasq
+cp -rf ../openwrt_main/package/network/services/dnsmasq package/network/services/dnsmasq
+wget -qO - https://github.com/openwrt/openwrt/commit/cac17e1e.patch | patch -p1
 # rpcd
 sed -i 's/option timeout 30/option timeout 60/g' package/system/rpcd/files/rpcd.config
 sed -i 's#20) \* 1000#60) \* 1000#g' feeds/luci/modules/luci-base/htdocs/luci-static/resources/rpc.js
