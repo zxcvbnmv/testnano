@@ -9,15 +9,15 @@ clone_repo() {
 
 #
 latest_release="$(curl -s https://github.com/openwrt/openwrt/tags | grep -Eo "v[0-9\.]+\-*r*c*[0-9]*.tar.gz" | sed -n '/[2-9][3-9]/p' | sed -n 1p | sed 's/.tar.gz//g')"
+openwrt_repo="https://github.com/openwrt/openwrt.git"
+openwrt_pkg_repo="https://github.com/openwrt/packages.git"
+openwrt_luci_repo="https://github.com/openwrt/luci.git"
 immortalwrt_repo="https://github.com/immortalwrt/immortalwrt.git"
 immortalwrt_pkg_repo="https://github.com/immortalwrt/packages.git"
 immortalwrt_luci_repo="https://github.com/immortalwrt/luci.git"
 lede_repo="https://github.com/coolsnowwolf/lede.git"
 lede_luci_repo="https://github.com/coolsnowwolf/luci.git"
 lede_pkg_repo="https://github.com/coolsnowwolf/packages.git"
-openwrt_repo="https://github.com/openwrt/openwrt.git"
-openwrt_pkg_repo="https://github.com/openwrt/packages.git"
-openwrt_luci_repo="https://github.com/openwrt/luci.git"
 stangri_repo="https://github.com/stangri/source.openwrt.melmac.net.git"
 
 # clone
@@ -45,7 +45,6 @@ rm -rf ./openwrt_snap/include/version.mk ./openwrt_snap/package/base-files/image
 cp -rf ./openwrt_snap/package/* ./openwrt/package/
 cp -rf ./openwrt_snap/target/linux/* ./openwrt/target/linux/
 cp -rf ./openwrt_snap/include/* ./openwrt/include/
-cp -rf ./openwrt_snap/toolchain/* ./openwrt/toolchain/
 cp -rf ./openwrt_snap/feeds.conf.default ./openwrt/feeds.conf.default
 
 exit 0
