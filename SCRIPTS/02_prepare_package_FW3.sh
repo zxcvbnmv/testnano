@@ -20,8 +20,7 @@ cp -rf ../immortalwrt/package/libs/mbedtls ./package/libs/mbedtls
 # ## DOH3 ##
 rm -rf package/libs/openssl
 git clone -b dev https://github.com/sbwml/package_libs_openssl package/libs/openssl
-rm -rf feeds/packages/net/curl
-git clone https://github.com/sbwml/feeds_packages_net_curl feeds/packages/net/curl
+rm -rf feeds/packages/net/curl && cp -rf ../stangri/curl feeds/packages/net/curl
 cp -rf ../stangri/nghttp3 package/libs/nghttp3
 cp -rf ../stangri/ngtcp2 package/libs/ngtcp2
 # fstool
@@ -127,10 +126,9 @@ patch -p1 <../PATCH/1002-odhcp6c-support-dhcpv6-hotplug.patch
 # ppp update
 rm -rf package/network/services/ppp
 git clone https://github.com/sbwml/package_network_services_ppp package/network/services/ppp
-# dnsmasq update
-wget -qO - https://github.com/openwrt/openwrt/commit/6b23836.patch | patch -p1
-rm -rf package/network/services/dnsmasq
-cp -rf ../openwrt_main/package/network/services/dnsmasq package/network/services/dnsmasq
+# Nodejs update
+rm -rf feeds/packages/lang/node
+git clone https://github.com/sbwml/feeds_packages_lang_node-prebuilt feeds/packages/lang/node
 # rpcd
 sed -i 's/option timeout 30/option timeout 60/g' package/system/rpcd/files/rpcd.config
 sed -i 's#20) \* 1000#60) \* 1000#g' feeds/luci/modules/luci-base/htdocs/luci-static/resources/rpc.js
