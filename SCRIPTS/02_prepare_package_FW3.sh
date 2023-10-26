@@ -134,6 +134,7 @@ git clone https://github.com/sbwml/feeds_packages_lang_node-prebuilt feeds/packa
 wget -qO - https://github.com/openwrt/openwrt/commit/6b23836.patch | patch -p1
 rm -rf package/network/services/dnsmasq
 cp -rf ../openwrt_main/package/network/services/dnsmasq package/network/services/dnsmasq
+wget -qO - https://github.com/openwrt/openwrt/commit/053570a.patch | patch -p1
 # rpcd
 sed -i 's/option timeout 30/option timeout 60/g' package/system/rpcd/files/rpcd.config
 sed -i 's#20) \* 1000#60) \* 1000#g' feeds/luci/modules/luci-base/htdocs/luci-static/resources/rpc.js
