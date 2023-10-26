@@ -19,7 +19,7 @@ rm -rf ./package/libs/mbedtls
 cp -rf ../immortalwrt/package/libs/mbedtls ./package/libs/mbedtls
 # ## DOH3 ##
 rm -rf package/libs/openssl
-git clone -b dev https://github.com/sbwml/package_libs_openssl package/libs/openssl
+cp -rf ../stangri/quictls package/libs/openssl
 rm -rf feeds/packages/net/curl
 cp -rf ../openwrt_pkg_ma/net/curl feeds/packages/net/curl
 cp -rf ../openwrt_pkg_ma/libs/nghttp3 package/libs/nghttp3
