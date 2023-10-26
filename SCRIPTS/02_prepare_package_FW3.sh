@@ -21,8 +21,8 @@ cp -rf ../immortalwrt/package/libs/mbedtls ./package/libs/mbedtls
 rm -rf package/libs/openssl
 git clone -b dev https://github.com/sbwml/package_libs_openssl package/libs/openssl
 rm -rf feeds/packages/net/curl && cp -rf ../stangri/curl feeds/packages/net/curl
-cp -rf ../stangri/nghttp3 package/libs/nghttp3
-cp -rf ../stangri/ngtcp2 package/libs/ngtcp2
+#cp -rf ../stangri/nghttp3 package/libs/nghttp3
+#cp -rf ../stangri/ngtcp2 package/libs/ngtcp2
 # fstool
 wget -qO - https://github.com/coolsnowwolf/lede/commit/8a4db76.patch | patch -p1
 # patch BBRv3
