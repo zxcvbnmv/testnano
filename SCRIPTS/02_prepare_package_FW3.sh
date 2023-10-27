@@ -19,11 +19,11 @@ rm -rf ./package/libs/mbedtls
 cp -rf ../immortalwrt/package/libs/mbedtls ./package/libs/mbedtls
 # ## DOH3 ##
 rm -rf package/libs/openssl
-cp -rf ../stangri/quictls package/libs/openssl
+git clone -b dev https://github.com/sbwml/package_libs_openssl package/libs/openssl
 rm -rf feeds/packages/net/curl
-cp -rf ../openwrt_pkg_ma/net/curl feeds/packages/net/curl
-cp -rf ../openwrt_pkg_ma/libs/nghttp3 package/libs/nghttp3
-cp -rf ../openwrt_pkg_ma/libs/ngtcp2 package/libs/ngtcp2
+git clone https://github.com/sbwml/feeds_packages_net_curl feeds/packages/net/curl
+git clone https://github.com/zxcvbnmv/nghttp3-package package/libs/nghttp3
+git clone https://github.com/zxcvbnmv/ngtcp2-package package/libs/ngtcp2
 # fstool
 wget -qO - https://github.com/coolsnowwolf/lede/commit/8a4db76.patch | patch -p1
 # patch BBRv3
@@ -130,11 +130,8 @@ git clone https://github.com/sbwml/package_network_services_ppp package/network/
 # Nodejs update
 rm -rf feeds/packages/lang/node
 git clone https://github.com/sbwml/feeds_packages_lang_node-prebuilt feeds/packages/lang/node
-# dnsmasq update
-wget -qO - https://github.com/openwrt/openwrt/commit/6b23836.patch | patch -p1
-rm -rf package/network/services/dnsmasq
-cp -rf ../openwrt_main/package/network/services/dnsmasq package/network/services/dnsmasq
-wget -qO - https://github.com/openwrt/openwrt/commit/053570a.patch | patch -p1
+# ucode update
+cp -rf ../openwrt_main/package/utils/ucode package/utils/ucode
 # rpcd
 sed -i 's/option timeout 30/option timeout 60/g' package/system/rpcd/files/rpcd.config
 sed -i 's#20) \* 1000#60) \* 1000#g' feeds/luci/modules/luci-base/htdocs/luci-static/resources/rpc.js
