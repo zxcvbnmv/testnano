@@ -21,6 +21,7 @@ cp -rf ../immortalwrt/package/libs/mbedtls ./package/libs/mbedtls
 rm -rf package/libs/openssl
 git clone -b dev https://github.com/sbwml/package_libs_openssl package/libs/openssl
 rm -rf feeds/packages/net/curl
+git clone https://github.com/sbwml/feeds_packages_net_curl feeds/packages/net/curl
 rm -rf feeds/packages/libs/nghttp3
 git clone https://github.com/zxcvbnmv/nghttp3-package feeds/packages/libs/nghttp3
 rm -rf feeds/packages/libs/ngtcp2
