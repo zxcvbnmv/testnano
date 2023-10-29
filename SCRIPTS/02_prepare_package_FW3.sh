@@ -135,6 +135,9 @@ git clone https://github.com/sbwml/feeds_packages_lang_node-prebuilt feeds/packa
 # ucode update
 rm -rf package/utils/ucode
 cp -rf ../openwrt_main/package/utils/ucode package/utils/ucode
+# odhcpd update
+rm -rf package/network/services/odhcpd
+cp -rf ../openwrt_main/package/network/services/odhcpd package/network/services/odhcpd
 # dnsmasq update
 wget -qO - https://github.com/openwrt/openwrt/commit/6b23836.patch | patch -p1
 rm -rf package/network/services/dnsmasq
