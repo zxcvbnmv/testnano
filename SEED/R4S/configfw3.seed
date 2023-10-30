@@ -59,6 +59,7 @@ CONFIG_PACKAGE_kmod-nft-offload=n
 CONFIG_PACKAGE_kmod-ipt-offload=y
 CONFIG_PACKAGE_dnsmasq_full_nftset=n
 CONFIG_PACKAGE_iptables-mod-fullconenat=y
+CONFIG_PACKAGE_ip6tables-mod-fullconenat=y
 
 ### LUCI ###
 CONFIG_LUCI_LANG_zh_Hans=y
