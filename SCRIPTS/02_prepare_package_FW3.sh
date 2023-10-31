@@ -19,13 +19,11 @@ rm -rf ./package/libs/mbedtls
 cp -rf ../immortalwrt/package/libs/mbedtls ./package/libs/mbedtls
 # ## DOH3 ##
 rm -rf package/libs/openssl
-git clone -b dev https://github.com/sbwml/package_libs_openssl package/libs/openssl
-rm -rf feeds/packages/net/curl
-git clone https://github.com/sbwml/feeds_packages_net_curl feeds/packages/net/curl
+cp -rf ../stangri/quictls package/libs/openssl
 rm -rf feeds/packages/libs/nghttp3
-git clone https://github.com/zxcvbnmv/nghttp3-package feeds/packages/libs/nghttp3
+cp -rf ../stangri/nghttp3 packages/libs/nghttp3
 rm -rf feeds/packages/libs/ngtcp2
-git clone https://github.com/zxcvbnmv/ngtcp2-package feeds/packages/libs/ngtcp2
+cp -rf ../stangri/ngtcp2 feeds/packages/libs/ngtcp2
 # fstool
 wget -qO - https://github.com/coolsnowwolf/lede/commit/8a4db76.patch | patch -p1
 # patch BBRv3
@@ -58,7 +56,7 @@ cp -rf ../lede/package/network/utils/iptables/patches/900-bcm-fullconenat.patch 
 cp -rf ../PATCH/fullconenat ./package/new/fullconenat
 # Patch LuCI FullCone switch
 pushd feeds/luci
-patch -p1 <../../../PATCH/firewall/luci_fullcone_fw34.patch
+patch -p1 <../../../PATCH/firewall/luci-app-firewall_add_fullcone_fw3.patch
 popd
 ### basic package ###
 # Make target for support NanoPi R4S
