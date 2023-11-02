@@ -130,9 +130,6 @@ git clone https://github.com/sbwml/package_network_services_ppp package/network/
 # Nodejs update
 rm -rf feeds/packages/lang/node
 git clone https://github.com/sbwml/feeds_packages_lang_node-prebuilt feeds/packages/lang/node
-# ucode update
-rm -rf package/utils/ucode
-cp -rf ../openwrt_main/package/utils/ucode package/utils/ucode
 # odhcpd update
 rm -rf package/network/services/odhcpd
 cp -rf ../openwrt_main/package/network/services/odhcpd package/network/services/odhcpd
