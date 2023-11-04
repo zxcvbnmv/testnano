@@ -20,6 +20,8 @@ cp -rf ../immortalwrt/package/libs/mbedtls ./package/libs/mbedtls
 # ## DOH3 ##
 rm -rf package/libs/openssl
 cp -rf ../stangri/quictls package/libs/openssl
+cp -rf feeds/packages/libs/nghttp3 package/libs/nghttp3
+cp -rf feeds/packages/libs/ngtcp2 package/libs/ngtcp2
 # fstool
 wget -qO - https://github.com/coolsnowwolf/lede/commit/8a4db76.patch | patch -p1
 # patch BBRv3
