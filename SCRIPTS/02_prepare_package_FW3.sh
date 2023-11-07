@@ -132,8 +132,12 @@ rm -rf feeds/packages/lang/node
 git clone https://github.com/sbwml/feeds_packages_lang_node-prebuilt feeds/packages/lang/node
 # dnsmasq update
 wget -qO - https://github.com/openwrt/openwrt/commit/6b23836.patch | patch -p1
+wget -qO - https://github.com/openwrt/openwrt/commit/1998027d7cbb9d8f3986964bbdae070296bdce56.patch | patch -p1
 rm -rf package/network/services/dnsmasq
 cp -rf ../openwrt_main/package/network/services/dnsmasq package/network/services/dnsmasq
+# iptables-1.89 patch
+cp -rf ../PATCH/firewall/Fix-bad-IP-address-error-reporting.patch package/network/utils/iptables/patches
+cp -rf ../PATCH/firewall/review-parse-string-function.patch package/network/utils/iptables/patches
 # rpcd
 sed -i 's/option timeout 30/option timeout 60/g' package/system/rpcd/files/rpcd.config
 sed -i 's#20) \* 1000#60) \* 1000#g' feeds/luci/modules/luci-base/htdocs/luci-static/resources/rpc.js
