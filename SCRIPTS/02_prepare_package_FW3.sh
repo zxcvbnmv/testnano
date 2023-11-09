@@ -138,6 +138,8 @@ wget -qO - https://github.com/openwrt/openwrt/commit/6b23836.patch | patch -p1
 wget -qO - https://github.com/openwrt/openwrt/commit/1998027d7cbb9d8f3986964bbdae070296bdce56.patch | patch -p1
 rm -rf package/network/services/dnsmasq
 cp -rf ../openwrt_main/package/network/services/dnsmasq package/network/services/dnsmasq
+rm -rf package/base-files/files/bin/ipcalc.sh
+cp -rf ../openwrt_main/package/base-files/files/bin/ipcalc.sh package/base-files/files/bin
 # rpcd
 sed -i 's/option timeout 30/option timeout 60/g' package/system/rpcd/files/rpcd.config
 sed -i 's#20) \* 1000#60) \* 1000#g' feeds/luci/modules/luci-base/htdocs/luci-static/resources/rpc.js
