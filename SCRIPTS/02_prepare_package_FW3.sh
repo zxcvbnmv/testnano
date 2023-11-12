@@ -178,5 +178,7 @@ rm -rf package/network/services/dnsmasq
 cp -rf ../openwrt_main/package/network/services/dnsmasq package/network/services/dnsmasq
 rm -rf package/base-files/files/bin/ipcalc.sh
 cp -rf ../openwrt_main/package/base-files/files/bin/ipcalc.sh package/base-files/files/bin
+# netifd update
+wget -qO - https://github.com/openwrt/openwrt/commit/a693679.patch | patch -p1
 
 #exit
