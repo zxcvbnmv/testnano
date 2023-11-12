@@ -124,7 +124,8 @@ cp -rf ../openwrt_pkg_ma/lang/golang ./feeds/packages/lang/golang
 # Arpbind
 cp -rf ../immortalwrt_luci/applications/luci-app-arpbind ./feeds/luci/applications/luci-app-arpbind
 ln -sf ../../../feeds/luci/applications/luci-app-arpbind ./package/feeds/luci/luci-app-arpbind
-# dhcpv6-hotplug
+# ipv6-helper
+cp -rf ../lede/package/lean/ipv6-helper ./package/new/ipv6-helper
 patch -p1 <../PATCH/1002-odhcp6c-support-dhcpv6-hotplug.patch
 # Nodejs update
 rm -rf feeds/packages/lang/node
