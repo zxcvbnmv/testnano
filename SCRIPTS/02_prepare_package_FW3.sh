@@ -124,22 +124,11 @@ cp -rf ../openwrt_pkg_ma/lang/golang ./feeds/packages/lang/golang
 # Arpbind
 cp -rf ../immortalwrt_luci/applications/luci-app-arpbind ./feeds/luci/applications/luci-app-arpbind
 ln -sf ../../../feeds/luci/applications/luci-app-arpbind ./package/feeds/luci/luci-app-arpbind
-# ipv6-helper
-cp -rf ../lede/package/lean/ipv6-helper ./package/new/ipv6-helper
+# dhcpv6-hotplug
 patch -p1 <../PATCH/1002-odhcp6c-support-dhcpv6-hotplug.patch
-# ppp update
-rm -rf package/network/services/ppp
-git clone https://github.com/sbwml/package_network_services_ppp package/network/services/ppp
 # Nodejs update
 rm -rf feeds/packages/lang/node
 git clone https://github.com/sbwml/feeds_packages_lang_node-prebuilt feeds/packages/lang/node
-# dnsmasq update
-wget -qO - https://github.com/openwrt/openwrt/commit/6b23836.patch | patch -p1
-wget -qO - https://github.com/openwrt/openwrt/commit/1998027d7cbb9d8f3986964bbdae070296bdce56.patch | patch -p1
-rm -rf package/network/services/dnsmasq
-cp -rf ../openwrt_main/package/network/services/dnsmasq package/network/services/dnsmasq
-rm -rf package/base-files/files/bin/ipcalc.sh
-cp -rf ../openwrt_main/package/base-files/files/bin/ipcalc.sh package/base-files/files/bin
 # rpcd
 sed -i 's/option timeout 30/option timeout 60/g' package/system/rpcd/files/rpcd.config
 sed -i 's#20) \* 1000#60) \* 1000#g' feeds/luci/modules/luci-base/htdocs/luci-static/resources/rpc.js
@@ -177,5 +166,17 @@ sed -i 's,no-lto,no-lto no-gc-sections,g' package/boot/grub2/Makefile
 sed -i 's,no-mips16 gc-sections,no-mips16 gc-sections no-lto,g' package/libs/openssl/Makefile
 # libsodium
 sed -i 's,no-mips16,no-mips16 no-lto,g' feeds/packages/libs/libsodium/Makefile
+
+# ################### temporary settings ###################
+# ppp update
+rm -rf package/network/services/ppp
+git clone https://github.com/sbwml/package_network_services_ppp package/network/services/ppp
+# dnsmasq update
+wget -qO - https://github.com/openwrt/openwrt/commit/6b23836.patch | patch -p1
+wget -qO - https://github.com/openwrt/openwrt/commit/1998027d7cbb9d8f3986964bbdae070296bdce56.patch | patch -p1
+rm -rf package/network/services/dnsmasq
+cp -rf ../openwrt_main/package/network/services/dnsmasq package/network/services/dnsmasq
+rm -rf package/base-files/files/bin/ipcalc.sh
+cp -rf ../openwrt_main/package/base-files/files/bin/ipcalc.sh package/base-files/files/bin
 
 #exit
