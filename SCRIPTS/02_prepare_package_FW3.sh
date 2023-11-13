@@ -154,7 +154,7 @@ wget -qO - https://github.com/coolsnowwolf/lede/commit/ec795c9.patch | patch -p1
 wget -qO - https://github.com/coolsnowwolf/lede/commit/789f805.patch | patch -p1
 wget -qO - https://github.com/coolsnowwolf/lede/commit/6398168.patch | patch -p1
 cp -rf ../lede/package/lean/shortcut-fe/shortcut-fe ./package/lean/shortcut-fe/shortcut-fe
-wget -qO - https://github.com/coolsnowwolf/lede/commit/413cd91.patch | patch -p1
+wget -qO - https://github.com/coolsnowwolf/lede/commit/0e29809a.patch | patch -p1
 wget -qO - https://github.com/coolsnowwolf/lede/commit/eb70dad.patch | patch -p1
 wget -qO - https://github.com/coolsnowwolf/lede/commit/7ba3ec0.patch | patch -p1
 cp -rf ../lede/package/lean/shortcut-fe/simulated-driver ./package/lean/shortcut-fe/simulated-driver
@@ -172,7 +172,7 @@ rm -rf package/network/services/ppp
 git clone https://github.com/sbwml/package_network_services_ppp package/network/services/ppp
 # dnsmasq update
 wget -qO - https://github.com/openwrt/openwrt/commit/6b23836.patch | patch -p1
-wget -qO - https://github.com/openwrt/openwrt/commit/1998027d7cbb9d8f3986964bbdae070296bdce56.patch | patch -p1
+wget -qO - https://github.com/openwrt/openwrt/commit/1998027d.patch | patch -p1
 rm -rf package/network/services/dnsmasq
 cp -rf ../openwrt_main/package/network/services/dnsmasq package/network/services/dnsmasq
 rm -rf package/base-files/files/bin/ipcalc.sh
