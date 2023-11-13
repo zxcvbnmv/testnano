@@ -8,8 +8,6 @@ sed -i 's/Os/O2/g' include/target.mk
 sed -i 's/192.168.1.1/192.168.2.10/g' package/base-files/files/bin/config_generate
 # sysctl
 echo "net.netfilter.nf_conntrack_helper = 1" >>./package/kernel/linux/files/sysctl-nf-conntrack.conf
-# TCP optimizations
-cp -rf ../PATCH/backport/TCP/* ./target/linux/generic/backport-5.15/
 # x86_csum
 cp -rf ../PATCH/backport/x86_csum/* ./target/linux/generic/backport-5.15/
 # Patch arm64 name
