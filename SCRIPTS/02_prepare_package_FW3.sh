@@ -8,6 +8,8 @@ sed -i 's/Os/O2/g' include/target.mk
 sed -i 's/192.168.1.1/192.168.2.10/g' package/base-files/files/bin/config_generate
 # sysctl
 echo "net.netfilter.nf_conntrack_helper = 1" >>./package/kernel/linux/files/sysctl-nf-conntrack.conf
+# TCP optimizations
+cp -rf ../PATCH/backport/TCP/* ./target/linux/generic/backport-5.15/
 # x86_csum
 cp -rf ../PATCH/backport/x86_csum/* ./target/linux/generic/backport-5.15/
 # Patch arm64 name
@@ -28,9 +30,6 @@ wget -qO - https://github.com/coolsnowwolf/lede/commit/8a4db76.patch | patch -p1
 cp -rf ../PATCH/BBRv3/* ./target/linux/generic/backport-5.15/
 # patch nf_conntrack_expect_max
 wget -qO - https://github.com/openwrt/openwrt/commit/bbf39d07.patch | patch -p1
-# Use iptables v1.8.7
-rm -rf ./package/network/utils/iptables
-cp -rf ../PATCH/iptables ./package/network/utils/iptables
 ### Fullcone-NAT ###
 # Patch Kernel FullCone
 cp -rf ../lede/target/linux/generic/hack-5.15/952-add-net-conntrack-events-support-multiple-registrant.patch ./target/linux/generic/hack-5.15/952-add-net-conntrack-events-support-multiple-registrant.patch
@@ -167,16 +166,10 @@ sed -i 's,no-mips16 gc-sections,no-mips16 gc-sections no-lto,g' package/libs/ope
 sed -i 's,no-mips16,no-mips16 no-lto,g' feeds/packages/libs/libsodium/Makefile
 
 # ################### temporary settings ###################
+
 # ppp update
 rm -rf package/network/services/ppp
 git clone https://github.com/sbwml/package_network_services_ppp package/network/services/ppp
-# dnsmasq update
-wget -qO - https://github.com/openwrt/openwrt/commit/6b23836.patch | patch -p1
-wget -qO - https://github.com/openwrt/openwrt/commit/1998027d.patch | patch -p1
-rm -rf package/network/services/dnsmasq
-cp -rf ../openwrt_main/package/network/services/dnsmasq package/network/services/dnsmasq
-rm -rf package/base-files/files/bin/ipcalc.sh
-cp -rf ../openwrt_main/package/base-files/files/bin/ipcalc.sh package/base-files/files/bin
 # netifd update
 wget -qO - https://github.com/openwrt/openwrt/commit/a693679.patch | patch -p1
 
