@@ -163,7 +163,6 @@ sed -i 's,no-lto,no-lto no-gc-sections,g' package/boot/grub2/Makefile
 sed -i 's,no-mips16 gc-sections,no-mips16 gc-sections no-lto,g' package/libs/openssl/Makefile
 # libsodium
 sed -i 's,no-mips16,no-mips16 no-lto,g' feeds/packages/libs/libsodium/Makefile
-
 # ################### temporary settings ###################
 # iptables-1.8.9 patch
 cp -rf ../PATCH/firewall/Fix-bad-IP-address-error-reporting.patch package/network/utils/iptables/patches
@@ -171,6 +170,7 @@ cp -rf ../PATCH/firewall/Fix-bad-IP-address-error-reporting.patch package/networ
 rm -rf package/network/services/ppp
 git clone https://github.com/sbwml/package_network_services_ppp package/network/services/ppp
 # netifd update
-wget -qO - https://github.com/openwrt/openwrt/commit/a693679.patch | patch -p1
+rm -rf package/network/config/netifd
+cp -rf ../openwrt_main/package/network/config/netifd package/network/config/netifd
 
 #exit
