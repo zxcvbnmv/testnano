@@ -45,6 +45,7 @@ CONFIG_PACKAGE_iptables-mod-tproxy=y
 CONFIG_PACKAGE_kmod-ipt-tproxy=y
 CONFIG_PACKAGE_resolveip=y
 CONFIG_PACKAGE_ipset=y
+CONFIG_PACKAGE_iptables-mod-filter=y
 
 ### FW3 ###
 CONFIG_PACKAGE_firewall=y
