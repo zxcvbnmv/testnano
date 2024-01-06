@@ -21,9 +21,9 @@ cp -rf ../immortalwrt/package/libs/mbedtls ./package/libs/mbedtls
 rm -rf package/libs/openssl
 cp -rf ../stangri/quictls package/libs/openssl
 rm -rf feeds/packages/libs/nghttp3
-git clone https://github.com/zxcvbnmv/nghttp3-package package/libs/nghttp3
+cp -rf ../stangri/nghttp3 package/libs/nghttp3
 rm -rf feeds/packages/libs/ngtcp2
-git clone https://github.com/zxcvbnmv/ngtcp2-package package/libs/ngtcp2
+cp -rf ../stangri/ngtcp2 package/libs/ngtcp2
 # fstool
 wget -qO - https://github.com/coolsnowwolf/lede/commit/8a4db76.patch | patch -p1
 # patch BBRv3
@@ -111,7 +111,8 @@ cp -rf ../immortalwrt_pkg/utils/coremark ./feeds/packages/utils/coremark
 sed -i "s,-O3,-Ofast -funroll-loops -fpeel-loops -fgcse-sm -fgcse-las,g" feeds/packages/utils/coremark/Makefile
 cp -rf ../immortalwrt_23/package/utils/mhz ./package/utils/mhz
 # Add R8168 driver
-cp -rf ../immortalwrt/package/kernel/r8168 package/new/r8168
+git clone -b master --depth 1 https://github.com/BROBIRD/openwrt-r8168.git package/new/r8168
+patch -p1 <../PATCH/r8168/r8168-fix_LAN_led-for_r4s-from_TL.patch
 # igc-fix
 cp -rf ../lede/target/linux/x86/patches-5.15/996-intel-igc-i225-i226-disable-eee.patch ./target/linux/x86/patches-5.15/996-intel-igc-i225-i226-disable-eee.patch
 # Golang
@@ -169,8 +170,5 @@ cp -rf ../PATCH/firewall/Fix-bad-IP-address-error-reporting.patch package/networ
 # ppp update
 rm -rf package/network/services/ppp
 git clone https://github.com/sbwml/package_network_services_ppp package/network/services/ppp
-# netifd update
-rm -rf package/network/config/netifd
-cp -rf ../openwrt_main/package/network/config/netifd package/network/config/netifd
 
 #exit
