@@ -31,9 +31,9 @@ cp -rf ../immortalwrt/package/libs/mbedtls ./package/libs/mbedtls
 rm -rf package/libs/openssl
 cp -rf ../stangri/quictls package/libs/openssl
 rm -rf feeds/packages/libs/nghttp3
-git clone https://github.com/zxcvbnmv/nghttp3-package package/libs/nghttp3
+cp -rf ../stangri/nghttp3 package/libs/nghttp3
 rm -rf feeds/packages/libs/ngtcp2
-git clone https://github.com/zxcvbnmv/ngtcp2-package package/libs/ngtcp2
+cp -rf ../stangri/ngtcp2 package/libs/ngtcp2
 # fstool
 wget -qO - https://github.com/coolsnowwolf/lede/commit/8a4db76.patch | patch -p1
 # patch BBRv3
@@ -83,6 +83,7 @@ cp -f ../PATCH/249-rk3399dtsi.patch ./target/linux/rockchip/patches-5.15/
 sed -i 's,DEFAULT_GOV_SCHEDUTIL,DEFAULT_GOV_PERFORMANCE,g' target/linux/rockchip/armv8/config-5.15
 sed -i 's,# CONFIG_CPU_FREQ_DEFAULT_GOV_PERFORMANCE,# CONFIG_CPU_FREQ_DEFAULT_GOV_SCHEDUTIL,g' target/linux/rockchip/armv8/config-5.15
 sed -i '/CONFIG_SLUB_DEBUG/d' target/linux/rockchip/armv8/config-5.15
+wget -qO - https://github.com/immortalwrt/immortalwrt/commit/7817745a.patch | patch -p1
 # intel-firmware
 wget -qO - https://github.com/openwrt/openwrt/commit/9c58add.patch | patch -p1
 wget -qO - https://github.com/openwrt/openwrt/commit/64f1a65.patch | patch -p1
