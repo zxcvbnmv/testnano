@@ -83,7 +83,7 @@ cp -f ../PATCH/249-rk3399dtsi.patch ./target/linux/rockchip/patches-5.15/
 sed -i 's,DEFAULT_GOV_SCHEDUTIL,DEFAULT_GOV_PERFORMANCE,g' target/linux/rockchip/armv8/config-5.15
 sed -i 's,# CONFIG_CPU_FREQ_DEFAULT_GOV_PERFORMANCE,# CONFIG_CPU_FREQ_DEFAULT_GOV_SCHEDUTIL,g' target/linux/rockchip/armv8/config-5.15
 sed -i '/CONFIG_SLUB_DEBUG/d' target/linux/rockchip/armv8/config-5.15
-wget -qO - https://github.com/immortalwrt/immortalwrt/commit/7817745a.patch | patch -p1
+wget -qO - https://github.com/immortalwrt/immortalwrt/commit/4e7e1e85.patch | patch -p1
 # intel-firmware
 wget -qO - https://github.com/openwrt/openwrt/commit/9c58add.patch | patch -p1
 wget -qO - https://github.com/openwrt/openwrt/commit/64f1a65.patch | patch -p1
