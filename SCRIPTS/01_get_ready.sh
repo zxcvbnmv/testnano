@@ -8,7 +8,8 @@ clone_repo() {
 }
 
 #
-latest_release="$(curl -s https://github.com/openwrt/openwrt/tags | grep -Eo "v[0-9\.]+\-*r*c*[0-9]*.tar.gz" | sed -n '/[2-9][3-9]/p' | sed -n 1p | sed 's/.tar.gz//g')"
+#latest_release="$(curl -s https://github.com/openwrt/openwrt/tags | grep -Eo "v[0-9\.]+\-*r*c*[0-9]*.tar.gz" | sed -n '/[2-9][3-9]/p' | sed -n 1p | sed 's/.tar.gz//g')"
+latest_release="v23.05.0"
 openwrt_repo="https://github.com/openwrt/openwrt.git"
 openwrt_pkg_repo="https://github.com/openwrt/packages.git"
 openwrt_luci_repo="https://github.com/openwrt/luci.git"
@@ -41,12 +42,8 @@ wait
 
 #
 find openwrt/package/* -maxdepth 0 ! -name 'firmware' ! -name 'kernel' ! -name 'base-files' ! -name 'Makefile' -exec rm -rf {} +
-rm -rf ./openwrt_snap/include/version.mk ./openwrt_snap/package/base-files/image-config.in ./openwrt_snap/package/Makefile
+rm -rf ./openwrt_snap/package/base-files/image-config.in ./openwrt_snap/package/Makefile
 cp -rf ./openwrt_snap/package/* ./openwrt/package/
-rm -rf ./openwrt/target/linux/ ./openwrt/toolchain/
-cp -rf ./openwrt_snap/target/linux ./openwrt/target
-cp -rf ./openwrt_snap/include ./openwrt/include
-cp -rf ./openwrt_snap/toolchain ./openwrt
 cp -rf ./openwrt_snap/feeds.conf.default ./openwrt/feeds.conf.default
 
 exit 0
