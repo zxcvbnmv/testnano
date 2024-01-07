@@ -18,7 +18,7 @@ cp -rf ../immortalwrt/target/linux/generic/hack-5.15/312-arm64-cpuinfo-Add-model
 rm -rf ./package/libs/mbedtls
 cp -rf ../immortalwrt/package/libs/mbedtls ./package/libs/mbedtls
 # ## DOH3 ##
-cp -rf ../PATCH/openssl/quic package/libs/openssl/patches
+cp -rf ../PATCH/openssl/quic/* package/libs/openssl/patches
 rm -rf feeds/packages/libs/nghttp3
 git clone https://github.com/zxcvbnmv/nghttp3-package package/libs/nghttp3
 rm -rf feeds/packages/libs/ngtcp2
