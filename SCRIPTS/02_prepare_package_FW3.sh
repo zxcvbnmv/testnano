@@ -14,6 +14,16 @@ cp -rf ../PATCH/backport/TCP/* ./target/linux/generic/backport-5.15/
 cp -rf ../PATCH/backport/x86_csum/* ./target/linux/generic/backport-5.15/
 # Patch arm64 name
 cp -rf ../immortalwrt/target/linux/generic/hack-5.15/312-arm64-cpuinfo-Add-model-name-in-proc-cpuinfo-for-64bit-ta.patch ./target/linux/generic/hack-5.15/312-arm64-cpuinfo-Add-model-name-in-proc-cpuinfo-for-64bit-ta.patch
+# LRNG
+cp -rf ../PATCH/LRNG/* ./target/linux/generic/hack-5.15/
+echo '
+# CONFIG_RANDOM_DEFAULT_IMPL is not set
+CONFIG_LRNG=y
+# CONFIG_LRNG_IRQ is not set
+CONFIG_LRNG_JENT=y
+CONFIG_LRNG_CPU=y
+# CONFIG_LRNG_SCHED is not set
+' >>./target/linux/generic/config-5.15
 # mbedtls
 rm -rf ./package/libs/mbedtls
 cp -rf ../immortalwrt/package/libs/mbedtls ./package/libs/mbedtls
@@ -24,7 +34,7 @@ git clone https://github.com/zxcvbnmv/nghttp3-package package/libs/nghttp3
 rm -rf feeds/packages/libs/ngtcp2
 git clone https://github.com/zxcvbnmv/ngtcp2-package package/libs/ngtcp2
 # fstool
-wget -qO - https://github.com/coolsnowwolf/lede/commit/8a4db76.patch | patch -p1
+wget -qO - https://github.com/coolsnowwolf/lede/commit/8a4db762.patch | patch -p1
 # patch BBRv3
 cp -rf ../PATCH/BBRv3/* ./target/linux/generic/backport-5.15/
 # patch nf_conntrack_expect_max
@@ -72,11 +82,10 @@ cp -f ../PATCH/249-rk3399dtsi.patch ./target/linux/rockchip/patches-5.15/
 sed -i 's,DEFAULT_GOV_SCHEDUTIL,DEFAULT_GOV_PERFORMANCE,g' target/linux/rockchip/armv8/config-5.15
 sed -i 's,# CONFIG_CPU_FREQ_DEFAULT_GOV_PERFORMANCE,# CONFIG_CPU_FREQ_DEFAULT_GOV_SCHEDUTIL,g' target/linux/rockchip/armv8/config-5.15
 sed -i '/CONFIG_SLUB_DEBUG/d' target/linux/rockchip/armv8/config-5.15
-wget -qO - https://github.com/immortalwrt/immortalwrt/commit/4e7e1e85.patch | patch -Rp1
 # intel-firmware
-wget -qO - https://github.com/openwrt/openwrt/commit/9c58add.patch | patch -p1
-wget -qO - https://github.com/openwrt/openwrt/commit/64f1a65.patch | patch -p1
-wget -qO - https://github.com/openwrt/openwrt/commit/c21a357.patch | patch -p1
+wget -qO - https://github.com/openwrt/openwrt/commit/9c58addc.patch | patch -p1
+wget -qO - https://github.com/openwrt/openwrt/commit/64f1a657.patch | patch -p1
+wget -qO - https://github.com/openwrt/openwrt/commit/c21a3570.patch | patch -p1
 sed -i '/I915/d' target/linux/x86/64/config-5.15
 # Disable Mitigations
 sed -i 's,rootwait,rootwait mitigations=off,g' target/linux/rockchip/image/mmc.bootscript
@@ -85,7 +94,7 @@ sed -i 's,noinitrd,noinitrd mitigations=off,g' target/linux/x86/image/grub-iso.c
 sed -i 's,noinitrd,noinitrd mitigations=off,g' target/linux/x86/image/grub-pc.cfg
 ### luci app ###
 # btf
-wget -qO - https://github.com/immortalwrt/immortalwrt/commit/73e5679.patch | patch -p1
+wget -qO - https://github.com/immortalwrt/immortalwrt/commit/73e56799.patch | patch -p1
 wget https://github.com/immortalwrt/immortalwrt/raw/openwrt-23.05/target/linux/generic/backport-5.15/051-v5.18-bpf-Add-config-to-allow-loading-modules-with-BTF-mismatch.patch -O target/linux/generic/backport-5.15/051-v5.18-bpf-Add-config-to-allow-loading-modules-with-BTF-mismatch.patch
 # mount cgroupv2
 pushd feeds/packages
@@ -147,15 +156,15 @@ patch -p1 < ../PATCH/firewall/luci-app-firewall_add_sfe_switch.patch
 mkdir ./package/lean
 mkdir ./package/lean/shortcut-fe
 cp -rf ../lede/package/lean/shortcut-fe/fast-classifier ./package/lean/shortcut-fe/fast-classifier
-wget -qO - https://github.com/coolsnowwolf/lede/commit/331f04f.patch | patch -p1
-wget -qO - https://github.com/coolsnowwolf/lede/commit/232b8b4.patch | patch -p1
-wget -qO - https://github.com/coolsnowwolf/lede/commit/ec795c9.patch | patch -p1
-wget -qO - https://github.com/coolsnowwolf/lede/commit/789f805.patch | patch -p1
-wget -qO - https://github.com/coolsnowwolf/lede/commit/6398168.patch | patch -p1
+wget -qO - https://github.com/coolsnowwolf/lede/commit/331f04fb.patch | patch -p1
+wget -qO - https://github.com/coolsnowwolf/lede/commit/232b8b43.patch | patch -p1
+wget -qO - https://github.com/coolsnowwolf/lede/commit/ec795c96.patch | patch -p1
+wget -qO - https://github.com/coolsnowwolf/lede/commit/789f805c.patch | patch -p1
+wget -qO - https://github.com/coolsnowwolf/lede/commit/63981680.patch | patch -p1
 cp -rf ../lede/package/lean/shortcut-fe/shortcut-fe ./package/lean/shortcut-fe/shortcut-fe
 wget -qO - https://github.com/coolsnowwolf/lede/commit/0e29809a.patch | patch -p1
-wget -qO - https://github.com/coolsnowwolf/lede/commit/eb70dad.patch | patch -p1
-wget -qO - https://github.com/coolsnowwolf/lede/commit/7ba3ec0.patch | patch -p1
+wget -qO - https://github.com/coolsnowwolf/lede/commit/eb70dada.patch | patch -p1
+wget -qO - https://github.com/coolsnowwolf/lede/commit/7ba3ec09.patch | patch -p1
 cp -rf ../lede/package/lean/shortcut-fe/simulated-driver ./package/lean/shortcut-fe/simulated-driver
 #LTO/GC
 # Grub 2
@@ -170,15 +179,5 @@ cp -rf ../PATCH/firewall/Fix-bad-IP-address-error-reporting.patch package/networ
 # ppp update
 rm -rf package/network/services/ppp
 git clone https://github.com/sbwml/package_network_services_ppp package/network/services/ppp
-# LRNG
-cp -rf ../PATCH/LRNG/* ./target/linux/generic/hack-5.15/
-echo '
-# CONFIG_RANDOM_DEFAULT_IMPL is not set
-CONFIG_LRNG=y
-# CONFIG_LRNG_IRQ is not set
-CONFIG_LRNG_JENT=y
-CONFIG_LRNG_CPU=y
-# CONFIG_LRNG_SCHED is not set
-' >>./target/linux/generic/config-5.15
 
 #exit
