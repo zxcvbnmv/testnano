@@ -17,13 +17,9 @@ cp -rf ../immortalwrt/target/linux/generic/hack-5.15/312-arm64-cpuinfo-Add-model
 # LRNG
 cp -rf ../PATCH/LRNG/* ./target/linux/generic/hack-5.15/
 echo '
-# CONFIG_RANDOM_DEFAULT_IMPL is not set
 CONFIG_LRNG=y
+CONFIG_LRNG_AUTO_SELECTED=y
 # CONFIG_LRNG_IRQ is not set
-CONFIG_LRNG_AIS2031_NTG1_SEEDING_STRATEGY=y
-CONFIG_LRNG_KCAPI_IF=m
-CONFIG_LRNG_HWRAND_IF=m
-CONFIG_LRNG_DEV_IF=y
 CONFIG_LRNG_JENT=y
 CONFIG_LRNG_CPU=y
 # CONFIG_LRNG_SCHED is not set
