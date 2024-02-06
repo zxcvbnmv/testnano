@@ -8,4 +8,4 @@ This is the buildsystem for the OpenWrt Linux distribution.
 
 https://github.com/openwrt/openwrt
 
-![image] (https://oldwiki.archive.openwrt.org/lib/tpl/openwrt/images/logo.png)
+![image](https://oldwiki.archive.openwrt.org/lib/tpl/openwrt/images/logo.png)
