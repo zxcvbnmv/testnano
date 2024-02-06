@@ -155,17 +155,17 @@ patch -p1 < ../PATCH/firewall/luci-app-firewall_add_sfe_switch.patch
 # Shortcut-FE module
 mkdir ./package/lean
 mkdir ./package/lean/shortcut-fe
-cp -rf ../lede/package/lean/shortcut-fe/fast-classifier ./package/lean/shortcut-fe/fast-classifier
+cp -rf ../lede/package/qca/shortcut-fe/fast-classifier ./package/lean/shortcut-fe/fast-classifier
 wget -qO - https://github.com/coolsnowwolf/lede/commit/331f04fb.patch | patch -p1
 wget -qO - https://github.com/coolsnowwolf/lede/commit/232b8b43.patch | patch -p1
 wget -qO - https://github.com/coolsnowwolf/lede/commit/ec795c96.patch | patch -p1
 wget -qO - https://github.com/coolsnowwolf/lede/commit/789f805c.patch | patch -p1
 wget -qO - https://github.com/coolsnowwolf/lede/commit/63981680.patch | patch -p1
-cp -rf ../lede/package/lean/shortcut-fe/shortcut-fe ./package/lean/shortcut-fe/shortcut-fe
+cp -rf ../lede/package/qca/shortcut-fe/shortcut-fe ./package/lean/shortcut-fe/shortcut-fe
 wget -qO - https://github.com/coolsnowwolf/lede/commit/0e29809a.patch | patch -p1
 wget -qO - https://github.com/coolsnowwolf/lede/commit/eb70dada.patch | patch -p1
 wget -qO - https://github.com/coolsnowwolf/lede/commit/7ba3ec09.patch | patch -p1
-cp -rf ../lede/package/lean/shortcut-fe/simulated-driver ./package/lean/shortcut-fe/simulated-driver
+cp -rf ../lede/package/qca/shortcut-fe/simulated-driver ./package/lean/shortcut-fe/simulated-driver
 #LTO/GC
 # Grub 2
 sed -i 's,no-lto,no-lto no-gc-sections,g' package/boot/grub2/Makefile
