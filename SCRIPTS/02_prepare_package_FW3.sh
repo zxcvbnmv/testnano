@@ -42,7 +42,8 @@ wget -qO - https://github.com/openwrt/openwrt/commit/bbf39d07.patch | patch -p1
 ### Fullcone-NAT ###
 # Patch Kernel FullCone
 cp -rf ../lede/target/linux/generic/hack-5.15/952-add-net-conntrack-events-support-multiple-registrant.patch ./target/linux/generic/hack-5.15/952-add-net-conntrack-events-support-multiple-registrant.patch
-cp -rf ../lede/target/linux/generic/hack-5.15/982-add-bcm-fullconenat-support.patch ./target/linux/generic/hack-5.15/982-add-bcm-fullconenat-support.patch
+cp -rf ../PATCH/rockchip-5.15/982-add-bcm-fullcone-support.patch ./target/linux/generic/hack-5.15/
+cp -rf ../PATCH/rockchip-5.15/983-add-bcm-fullcone-nft_masq-support.patch ./target/linux/generic/hack-5.15/
 # ##FW4
 mkdir -p package/network/config/firewall4/patches
 cp -f ../PATCH/firewall/001-fix-fw4-flow-offload.patch ./package/network/config/firewall4/patches/001-fix-fw4-flow-offload.patch
@@ -150,6 +151,7 @@ sed -i 's,CONFIG_WERROR=y,# CONFIG_WERROR is not set,g' target/linux/generic/con
 # Patch Kernel Shortcut-FE
 cp -rf ../lede/target/linux/generic/hack-5.15/953-net-patch-linux-kernel-to-support-shortcut-fe.patch ./target/linux/generic/hack-5.15/953-net-patch-linux-kernel-to-support-shortcut-fe.patch
 cp -rf ../lede/target/linux/generic/pending-5.15/613-netfilter_optional_tcp_window_check.patch ./target/linux/generic/pending-5.15/613-netfilter_optional_tcp_window_check.patch
+cp -rf ../PATCH/601-netfilter-export-udp_get_timeouts-function.patch ./target/linux/generic/hack-5.15/
 # SFE-switch
 patch -p1 < ../PATCH/firewall/luci-app-firewall_add_sfe_switch.patch
 # Shortcut-FE module
