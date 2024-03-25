@@ -9,7 +9,6 @@ clone_repo() {
 
 #
 latest_release="$(curl -s https://github.com/openwrt/openwrt/tags | grep -Eo "v[0-9\.]+\-*r*c*[0-9]*.tar.gz" | sed -n '/[2-9][3-9]/p' | sed -n 1p | sed 's/.tar.gz//g')"
-#latest_release="v23.05.0"
 openwrt_repo="https://github.com/openwrt/openwrt.git"
 openwrt_pkg_repo="https://github.com/openwrt/packages.git"
 openwrt_luci_repo="https://github.com/openwrt/luci.git"
@@ -22,7 +21,7 @@ lede_pkg_repo="https://github.com/coolsnowwolf/packages.git"
 
 # clone
 clone_repo $openwrt_repo $latest_release openwrt &
-#clone_repo $openwrt_repo openwrt-23.05 openwrt_snap &
+clone_repo $openwrt_repo openwrt-23.05 openwrt_snap &
 clone_repo $openwrt_repo main openwrt_main &
 clone_repo $openwrt_pkg_repo master openwrt_pkg_ma &
 clone_repo $openwrt_luci_repo master openwrt_luci_ma &
@@ -37,9 +36,9 @@ clone_repo $lede_pkg_repo master lede_pkg &
 
 wait
 
-git clone --single-branch -b openwrt-23.05 https://github.com/openwrt/openwrt openwrt_snap && cd openwrt_snap
-git reset --hard 67d998e2 && git checkout -b 5.15.145 67d998e2
-cd ../
+#git clone --single-branch -b openwrt-23.05 https://github.com/openwrt/openwrt openwrt_snap && cd openwrt_snap
+#git reset --hard 67d998e2 && git checkout -b 5.15.145 67d998e2
+#cd ../
 
 #
 find openwrt/package/* -maxdepth 0 ! -name 'firmware' ! -name 'kernel' ! -name 'base-files' ! -name 'Makefile' -exec rm -rf {} +
