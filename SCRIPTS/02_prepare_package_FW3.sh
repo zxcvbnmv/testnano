@@ -52,12 +52,12 @@ cp -f ../PATCH/firewall/999-02-firewall4-add-bcm-fullconenat-support.patch ./pac
 mkdir -p package/libs/libnftnl/patches
 cp -f ../PATCH/firewall/001-libnftnl-add-fullcone-expression-support.patch ./package/libs/libnftnl/patches
 cp -f ../PATCH/firewall/002-libnftnl-add-brcm-fullcone-support.patch ./package/libs/libnftnl/patches
-sed -i '/PKG_INSTALL:=/iPKG_FIXUP:=autoreconf' package/libs/libnftnl/Makefile
+sed -i '/PKG_INSTALL:=/iPKG_FIXUP:=autoreconf' ./package/libs/libnftnl/Makefile
 mkdir -p package/network/utils/nftables/patches
 cp -f ../PATCH/firewall/002-nftables-add-fullcone-expression-support.patch ./package/network/utils/nftables/patches
 cp -f ../PATCH/firewall/003-nftables-add-brcm-fullconenat-support.patch ./package/network/utils/nftables/patches
 # Nftables fullcone expression kernel module
-git clone --depth 1 https://github.com/fullcone-nat-nftables/nft-fullcone package/new/nft-fullcone
+git clone --depth 1 https://github.com/fullcone-nat-nftables/nft-fullcone ./package/new/nft-fullcone
 # ##FW3
 mkdir -p package/network/config/firewall/patches
 # #lean's high connection fullconenat .fw3
@@ -99,7 +99,7 @@ sed -i 's,noinitrd,noinitrd mitigations=off,g' target/linux/x86/image/grub-pc.cf
 ### luci app ###
 # btf
 wget -qO - https://github.com/immortalwrt/immortalwrt/commit/73e56799.patch | patch -p1
-cp -rf ../PATCH/051-v5.18-bpf-Add-config-to-allow-loading-modules-with-BTF-mismatch.patch target/linux/generic/backport-5.15/
+cp -rf ../PATCH/051-v5.18-bpf-Add-config-to-allow-loading-modules-with-BTF-mismatch.patch ./target/linux/generic/backport-5.15/
 # mount cgroupv2
 pushd feeds/packages
 patch -p1 <../../../PATCH/cgroupfs-mount/0001-fix-cgroupfs-mount.patch
@@ -110,18 +110,18 @@ cp -rf ../PATCH/cgroupfs-mount/901-fix-cgroupfs-umount.patch ./feeds/packages/ut
 cp -rf ../PATCH/cgroupfs-mount/902-mount-sys-fs-cgroup-systemd-for-docker-systemd-suppo.patch ./feeds/packages/utils/cgroupfs-mount/patches/
 # AutoCore & coremark
 cp -rf ../immortalwrt_23/package/emortal/autocore ./package/new/autocore
-sed -i 's/"getTempInfo" /"getTempInfo", "getCPUBench", "getCPUUsage" /g' package/new/autocore/files/luci-mod-status-autocore.json
+sed -i 's/"getTempInfo" /"getTempInfo", "getCPUBench", "getCPUUsage" /g' ./package/new/autocore/files/luci-mod-status-autocore.json
 cp -rf ../PATCH/autocore ./package/new/autocore/files/autocore
 sed -i '/i386 i686 x86_64/{n;n;n;d;}' package/new/autocore/Makefile
 sed -i '/i386 i686 x86_64/d' package/new/autocore/Makefile
 rm -rf ./feeds/luci/modules/luci-base
 cp -rf ../immortalwrt_luci_23/modules/luci-base ./feeds/luci/modules/luci-base
-sed -i "s,(br-lan),,g" feeds/luci/modules/luci-base/root/usr/share/rpcd/ucode/luci
+sed -i "s,(br-lan),,g" ./feeds/luci/modules/luci-base/root/usr/share/rpcd/ucode/luci
 rm -rf ./feeds/luci/modules/luci-mod-status
 cp -rf ../immortalwrt_luci_23/modules/luci-mod-status ./feeds/luci/modules/luci-mod-status
 rm -rf ./feeds/packages/utils/coremark
 cp -rf ../immortalwrt_pkg/utils/coremark ./feeds/packages/utils/coremark
-sed -i "s,-O3,-Ofast -funroll-loops -fpeel-loops -fgcse-sm -fgcse-las,g" feeds/packages/utils/coremark/Makefile
+sed -i "s,-O3,-Ofast -funroll-loops -fpeel-loops -fgcse-sm -fgcse-las,g" ./feeds/packages/utils/coremark/Makefile
 cp -rf ../immortalwrt_23/package/utils/mhz ./package/utils/mhz
 # Add R8168 driver
 git clone -b master --depth 1 https://github.com/BROBIRD/openwrt-r8168.git package/new/r8168
@@ -139,7 +139,7 @@ cp -rf ../lede/package/lean/ipv6-helper ./package/new/ipv6-helper
 patch -p1 <../PATCH/1002-odhcp6c-support-dhcpv6-hotplug.patch
 # Nodejs update
 rm -rf feeds/packages/lang/node
-git clone https://github.com/sbwml/feeds_packages_lang_node-prebuilt feeds/packages/lang/node
+git clone https://github.com/sbwml/feeds_packages_lang_node-prebuilt ./feeds/packages/lang/node
 # rpcd
 sed -i 's/option timeout 30/option timeout 60/g' package/system/rpcd/files/rpcd.config
 sed -i 's#20) \* 1000#60) \* 1000#g' feeds/luci/modules/luci-base/htdocs/luci-static/resources/rpc.js
@@ -149,7 +149,7 @@ cp -rf ../PATCH/addition-trans-zh/ ./package/new/addition-trans-zh
 mkdir -p ./files/etc && cp -rf ../PATCH/files/etc ./files
 # Config
 rm -rf .config
-sed -i 's,CONFIG_WERROR=y,# CONFIG_WERROR is not set,g' target/linux/generic/config-5.15
+sed -i 's,CONFIG_WERROR=y,# CONFIG_WERROR is not set,g' ./target/linux/generic/config-5.15
 ### Shortcut-FE ###
 # Patch Kernel Shortcut-FE
 cp -rf ../lede/target/linux/generic/hack-5.15/953-net-patch-linux-kernel-to-support-shortcut-fe.patch ./target/linux/generic/hack-5.15/
