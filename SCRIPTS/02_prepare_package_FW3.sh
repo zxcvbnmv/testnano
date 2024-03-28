@@ -184,5 +184,10 @@ cp -rf ../PATCH/firewall/Fix-bad-IP-address-error-reporting.patch package/networ
 # ppp update
 rm -rf package/network/services/ppp
 git clone https://github.com/sbwml/package_network_services_ppp package/network/services/ppp
+# rollback luci
+rm -rf ./feeds/luci/modules/luci-mod-network
+cp -rf ../op-luci/modules/luci-mod-network ./feeds/luci/modules/luci-mod-network
+rm -rf ./feeds/luci/modules/luci-mod-status
+cp -rf ../op-luci/modules/luci-mod-status ./feeds/luci/modules/luci-mod-status
 
 #exit
