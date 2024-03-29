@@ -22,7 +22,7 @@ lede_pkg_repo="https://github.com/coolsnowwolf/packages.git"
 
 # clone
 clone_repo $openwrt_repo $latest_release openwrt &
-clone_repo $openwrt_repo openwrt-23.05 openwrt_snap &
+#clone_repo $openwrt_repo openwrt-23.05 openwrt_snap &
 clone_repo $openwrt_repo main openwrt_main &
 clone_repo $openwrt_pkg_repo master openwrt_pkg_ma &
 clone_repo $openwrt_luci_repo master openwrt_luci_ma &
@@ -38,9 +38,9 @@ clone_repo $lede_pkg_repo master lede_pkg &
 
 wait
 
-#git clone --single-branch -b openwrt-23.05 https://github.com/openwrt/openwrt openwrt_snap && cd openwrt_snap
-#git reset --hard 67d998e2 && git checkout -b 5.15.145 67d998e2
-#cd ../
+git clone --single-branch -b openwrt-23.05 https://github.com/openwrt/openwrt openwrt_snap && cd openwrt_snap
+git reset --hard 0a2047cf && git checkout -b 5.15.150 0a2047cf
+cd ../
 
 #
 find openwrt/package/* -maxdepth 0 ! -name 'firmware' ! -name 'kernel' ! -name 'base-files' ! -name 'Makefile' -exec rm -rf {} +
