@@ -184,5 +184,8 @@ cp -rf ../PATCH/firewall/Fix-bad-IP-address-error-reporting.patch package/networ
 # ppp update
 rm -rf package/network/services/ppp
 git clone https://github.com/sbwml/package_network_services_ppp package/network/services/ppp
+# Enable ext4 journaling by default
+rm -rf ./config/Config-images.in
+cp -f ../PATCH/Config-images.in ./config/
 
 #exit
