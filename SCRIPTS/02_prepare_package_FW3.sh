@@ -181,9 +181,16 @@ sed -i 's,no-mips16,no-mips16 no-lto,g' feeds/packages/libs/libsodium/Makefile
 # ################### temporary settings ###################
 # iptables-1.8.9 patch
 cp -rf ../PATCH/firewall/Fix-bad-IP-address-error-reporting.patch package/network/utils/iptables/patches
+# PPPOE offloadfix
+cp -rf ../openwrt_ma/target/linux/generic/backport-5.15/741-v6.9-01-netfilter-flowtable-validate-pppoe-header.patch ./target/linux/generic/backport-5.15/
+cp -rf ../openwrt_ma/target/linux/generic/backport-5.15/741-v6.9-02-netfilter-flowtable-incorrect-pppoe-tuple.patch ./target/linux/generic/backport-5.15/
+cp -rf ../openwrt_ma/target/linux/generic/hack-5.15/650-netfilter-add-xt_FLOWOFFLOAD-target.patch ./target/linux/generic/hack-5.15/
 # ppp update
 rm -rf package/network/services/ppp
 git clone https://github.com/sbwml/package_network_services_ppp package/network/services/ppp
+# curl update
+rm -rf ./feeds/packages/net/curl
+cp -rf ../openwrt_pkg_ma/net/curl ./feeds/packages/net/curl
 # Enable ext4 journaling by default
 rm -rf ./config/Config-images.in
 cp -f ../PATCH/Config-images.in ./config/
