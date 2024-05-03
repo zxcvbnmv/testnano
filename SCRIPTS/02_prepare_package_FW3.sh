@@ -25,7 +25,7 @@ CONFIG_LRNG_CPU=y
 ' >>./target/linux/generic/config-5.15
 # mbedtls
 rm -rf ./package/libs/mbedtls
-cp -rf ../immortalwrt/package/libs/mbedtls ./package/libs/mbedtls
+cp -rf ../immortalwrt_23/package/libs/mbedtls ./package/libs/mbedtls
 # ## DOH3 ##
 cp -rf ../PATCH/openssl/quic/* package/libs/openssl/patches
 rm -rf feeds/packages/libs/nghttp3
