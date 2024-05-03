@@ -39,7 +39,7 @@ clone_repo $lede_pkg_repo master lede_pkg &
 wait
 
 git clone --single-branch -b openwrt-23.05 https://github.com/openwrt/openwrt openwrt_snap && cd openwrt_snap
-git reset --hard 0a2047cf && git checkout -b 5.15.150 0a2047cf
+git reset --hard 451b51f && git checkout -b 5.15.155 451b51f
 cd ../
 
 #
