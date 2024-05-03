@@ -31,7 +31,6 @@ clone_repo $immortalwrt_repo openwrt-23.05 immortalwrt_23 &
 clone_repo $immortalwrt_pkg_repo master immortalwrt_pkg &
 clone_repo $immortalwrt_luci_repo master immortalwrt_luci &
 clone_repo $immortalwrt_luci_repo openwrt-23.05 immortalwrt_luci_23 &
-clone_repo $zxcvbnmv_luci_repo main op-luci &
 clone_repo $lede_repo master lede &
 clone_repo $lede_luci_repo master lede_luci &
 clone_repo $lede_pkg_repo master lede_pkg &
