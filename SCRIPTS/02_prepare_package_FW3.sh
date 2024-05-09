@@ -195,7 +195,7 @@ git clone https://github.com/sbwml/package_network_services_ppp package/network/
 rm -rf ./feeds/packages/net/curl
 cp -rf ../openwrt_pkg_ma/net/curl ./feeds/packages/net/curl
 # odhcpd: update to Git HEAD (2024-05-08)
-wget -qO - https://github.com/openwrt/openwrt/commit/21ddd116.patch | patch -p1
+curl -s https://raw.githubusercontent.com/openwrt/openwrt/main/package/network/services/odhcpd/Makefile > package/network/services/odhcpd/Makefile
 # Enable ext4 journaling by default
 rm -rf ./config/Config-images.in
 cp -f ../PATCH/Config-images.in ./config/
