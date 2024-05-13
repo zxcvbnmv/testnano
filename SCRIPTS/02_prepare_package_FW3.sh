@@ -183,9 +183,9 @@ sed -i 's,no-mips16,no-mips16 no-lto,g' feeds/packages/libs/libsodium/Makefile
 cp -rf ../PATCH/firewall/Fix-bad-IP-address-error-reporting.patch package/network/utils/iptables/patches
 # luci dhcp.js rollback
 curl -s https://raw.githubusercontent.com/zxcvbnmv/testnano/main/PATCH/dhcp.js > feeds/luci/modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js
-# PPPOE offloadfix
-cp -rf ../openwrt_main/target/linux/generic/backport-5.15/741-v6.9-01-netfilter-flowtable-validate-pppoe-header.patch ./target/linux/generic/backport-5.15/
-cp -rf ../openwrt_main/target/linux/generic/backport-5.15/741-v6.9-02-netfilter-flowtable-incorrect-pppoe-tuple.patch ./target/linux/generic/backport-5.15/
+# PPPOE offloadfix <Starting with kernel:5.15.157 patches v6.9-01, v6.9-02 already exist upstream>
+cp -rf ../PATCH/741-v6.9-01-netfilter-flowtable-validate-pppoe-header.patch ./target/linux/generic/backport-5.15/
+cp -rf ../PATCH/741-v6.9-02-netfilter-flowtable-incorrect-pppoe-tuple.patch ./target/linux/generic/backport-5.15/
 cp -rf ../openwrt_main/target/linux/generic/hack-5.15/650-netfilter-add-xt_FLOWOFFLOAD-target.patch ./target/linux/generic/hack-5.15/
 # ppp update
 rm -rf package/network/services/ppp
@@ -194,7 +194,7 @@ git clone https://github.com/sbwml/package_network_services_ppp package/network/
 rm -rf ./feeds/packages/net/curl
 cp -rf ../openwrt_pkg_ma/net/curl ./feeds/packages/net/curl
 # odhcpd: update to Git HEAD (2024-05-08)
-curl -s https://raw.githubusercontent.com/openwrt/openwrt/main/package/network/services/odhcpd/Makefile > package/network/services/odhcpd/Makefile
+curl -s https://raw.githubusercontent.com/openwrt/openwrt/main/package/network/services/odhcpd/Makefile > ./package/network/services/odhcpd/Makefile
 # Enable ext4 journaling by default
 rm -rf ./config/Config-images.in
 cp -f ../PATCH/Config-images.in ./config/
