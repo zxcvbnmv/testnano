@@ -10,9 +10,9 @@ index 58cd2a7c1e9..3d476e198fb 100644
 +		o.value("0", _('Disabled'));
 +		o.value("1", _('Compatible Mode'));
 +		o.value("2", _('High Performing Mode'));
-+	 o.default = "0";
++		o.default = "0";
 +
-+  o = s.option(form.Flag, 'fullcone6', _('Enable FullCone NAT6'));
++		o = s.option(form.Flag, 'fullcone6', _('Enable FullCone NAT6'));
 
  		var p = [
  			s.option(form.ListValue, 'input', _('Input')),
