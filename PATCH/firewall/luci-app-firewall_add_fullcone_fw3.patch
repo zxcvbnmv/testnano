@@ -13,7 +13,7 @@ index 58cd2a7c1e9..3d476e198fb 100644
 +		o.default = "0";
 +
 +		o = s.option(form.Flag, 'fullcone6', _('Enable FullCone NAT6'));
-
++
  		var p = [
  			s.option(form.ListValue, 'input', _('Input')),
  			s.option(form.ListValue, 'output', _('Output')),
