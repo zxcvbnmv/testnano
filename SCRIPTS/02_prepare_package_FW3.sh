@@ -61,8 +61,8 @@ git clone --depth 1 https://github.com/fullcone-nat-nftables/nft-fullcone ./pack
 # ##FW3
 mkdir -p package/network/config/firewall/patches
 # #lean's high connection fullconenat .fw3
-cp -rf ../lede/package/network/config/firewall/patches/100-fullconenat.patch ./package/network/config/firewall/patches/100-fullconenat.patch
-cp -rf ../lede/package/network/config/firewall/patches/101-bcm-fullconenat.patch ./package/network/config/firewall/patches/101-bcm-fullconenat.patch
+#cp -rf ../lede/package/network/config/firewall/patches/100-fullconenat.patch ./package/network/config/firewall/patches/100-fullconenat.patch
+#cp -rf ../lede/package/network/config/firewall/patches/101-bcm-fullconenat.patch ./package/network/config/firewall/patches/101-bcm-fullconenat.patch
 cp -rf ../lede/package/network/utils/iptables/patches/900-bcm-fullconenat.patch ./package/network/utils/iptables/patches/900-bcm-fullconenat.patch
 # iptables fullcone module
 git clone https://github.com/sbwml/fullconenat ./package/new/fullconenat
