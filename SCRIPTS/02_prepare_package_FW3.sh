@@ -29,9 +29,9 @@ cp -rf ../immortalwrt_23/package/libs/mbedtls ./package/libs/mbedtls
 # ## DOH3 ##
 cp -rf ../PATCH/openssl/quic/* package/libs/openssl/patches
 rm -rf feeds/packages/libs/nghttp3
-git clone https://github.com/zxcvbnmv/nghttp3-package package/libs/nghttp3
+git clone https://github.com/zxcvbnmv/nghttp3-package ./package/libs/nghttp3
 rm -rf feeds/packages/libs/ngtcp2
-git clone https://github.com/zxcvbnmv/ngtcp2-package package/libs/ngtcp2
+git clone https://github.com/zxcvbnmv/ngtcp2-package ./package/libs/ngtcp2
 # fstool
 wget -qO - https://github.com/coolsnowwolf/lede/commit/8a4db762.patch | patch -p1
 # patch BBRv3
@@ -65,7 +65,7 @@ cp -rf ../lede/package/network/config/firewall/patches/100-fullconenat.patch ./p
 cp -rf ../lede/package/network/config/firewall/patches/101-bcm-fullconenat.patch ./package/network/config/firewall/patches/101-bcm-fullconenat.patch
 cp -rf ../lede/package/network/utils/iptables/patches/900-bcm-fullconenat.patch ./package/network/utils/iptables/patches/900-bcm-fullconenat.patch
 # iptables fullcone module
-cp -rf ../PATCH/fullconenat ./package/new/fullconenat
+git clone https://github.com/sbwml/fullconenat ./package/new/fullconenat
 # Patch LuCI FullCone switch
 pushd feeds/luci
 patch -p1 <../../../PATCH/firewall/luci-app-firewall_add_fullcone_fw3.patch
