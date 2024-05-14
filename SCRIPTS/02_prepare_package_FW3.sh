@@ -41,7 +41,7 @@ wget -qO - https://github.com/openwrt/openwrt/commit/bbf39d07.patch | patch -p1
 ### Fullcone-NAT ###
 # Patch Kernel FullCone
 cp -rf ../lede/target/linux/generic/hack-5.15/952-add-net-conntrack-events-support-multiple-registrant.patch ./target/linux/generic/hack-5.15/
-cp -rf ../lede/target/linux/generic/hack-5.15/982-add-bcm-fullconenat-support.patch ./target/linux/generic/hack-5.15/
+#cp -rf ../lede/target/linux/generic/hack-5.15/982-add-bcm-fullconenat-support.patch ./target/linux/generic/hack-5.15/
 cp -rf ../PATCH/983-add-bcm-fullcone-nft_masq-support.patch ./target/linux/generic/hack-5.15/
 # ##FW4
 mkdir -p package/network/config/firewall4/patches
@@ -63,7 +63,7 @@ mkdir -p package/network/config/firewall/patches
 # #lean's high connection fullconenat .fw3
 #cp -rf ../lede/package/network/config/firewall/patches/100-fullconenat.patch ./package/network/config/firewall/patches/100-fullconenat.patch
 #cp -rf ../lede/package/network/config/firewall/patches/101-bcm-fullconenat.patch ./package/network/config/firewall/patches/101-bcm-fullconenat.patch
-cp -rf ../lede/package/network/utils/iptables/patches/900-bcm-fullconenat.patch ./package/network/utils/iptables/patches/900-bcm-fullconenat.patch
+#cp -rf ../lede/package/network/utils/iptables/patches/900-bcm-fullconenat.patch ./package/network/utils/iptables/patches/900-bcm-fullconenat.patch
 # iptables fullcone module
 git clone https://github.com/sbwml/fullconenat ./package/new/fullconenat
 # Patch LuCI FullCone switch
