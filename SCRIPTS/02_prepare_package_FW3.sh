@@ -40,7 +40,7 @@ cp -rf ../PATCH/BBRv3/* ./target/linux/generic/backport-5.15/
 wget -qO - https://github.com/openwrt/openwrt/commit/bbf39d07.patch | patch -p1
 ### Fullcone-NAT ###
 # Patch Kernel FullCone
-cp -rf ../lede/target/linux/generic/hack-5.15/952-add-net-conntrack-events-support-multiple-registrant.patch ./target/linux/generic/hack-5.15/
+#cp -rf ../lede/target/linux/generic/hack-5.15/952-add-net-conntrack-events-support-multiple-registrant.patch ./target/linux/generic/hack-5.15/
 #cp -rf ../lede/target/linux/generic/hack-5.15/982-add-bcm-fullconenat-support.patch ./target/linux/generic/hack-5.15/
 cp -rf ../PATCH/983-add-bcm-fullcone-nft_masq-support.patch ./target/linux/generic/hack-5.15/
 # ##FW4
