@@ -43,7 +43,7 @@ wget -qO - https://github.com/openwrt/openwrt/commit/bbf39d07.patch | patch -p1
 cp -rf ../lede/target/linux/generic/hack-5.15/952-add-net-conntrack-events-support-multiple-registrant.patch ./target/linux/generic/hack-5.15/
 cp -rf ../lede/target/linux/generic/hack-5.15/982-add-bcm-fullconenat-support.patch ./target/linux/generic/hack-5.15/
 cp -rf ../PATCH/983-add-bcm-fullcone-nft_masq-support.patch ./target/linux/generic/hack-5.15/
-# ##FW4
+# ## fw4 fullcone
 mkdir -p package/network/config/firewall4/patches
 cp -f ../PATCH/firewall/001-fix-fw4-flow-offload.patch ./package/network/config/firewall4/patches
 cp -f ../PATCH/firewall/990-unconditionally-allow-ct-status-dnat.patch ./package/network/config/firewall4/patches
@@ -56,11 +56,9 @@ sed -i '/PKG_INSTALL:=/iPKG_FIXUP:=autoreconf' ./package/libs/libnftnl/Makefile
 mkdir -p package/network/utils/nftables/patches
 cp -f ../PATCH/firewall/002-nftables-add-fullcone-expression-support.patch ./package/network/utils/nftables/patches
 cp -f ../PATCH/firewall/003-nftables-add-brcm-fullconenat-support.patch ./package/network/utils/nftables/patches
-# Nftables fullcone expression kernel module
 git clone --depth 1 https://github.com/fullcone-nat-nftables/nft-fullcone ./package/new/nft-fullcone
-# ##FW3
+# ## fw3 fullcone
 mkdir -p package/network/config/firewall/patches
-#
 cp -rf ../lede/package/network/config/firewall/patches/100-fullconenat.patch ./package/network/config/firewall/patches/100-fullconenat.patch
 cp -rf ../lede/package/network/config/firewall/patches/101-bcm-fullconenat.patch ./package/network/config/firewall/patches/101-bcm-fullconenat.patch
 cp -rf ../lede/package/network/utils/iptables/patches/900-bcm-fullconenat.patch ./package/network/utils/iptables/patches/900-bcm-fullconenat.patch
@@ -183,7 +181,7 @@ sed -i 's,no-mips16,no-mips16 no-lto,g' feeds/packages/libs/libsodium/Makefile
 cp -rf ../PATCH/firewall/Fix-bad-IP-address-error-reporting.patch package/network/utils/iptables/patches
 # luci dhcp.js rollback
 curl -s https://raw.githubusercontent.com/zxcvbnmv/testnano/main/PATCH/dhcp.js > feeds/luci/modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js
-# PPPOE offloadfix <Starting with kernel:5.15.157 patches v6.9-01, v6.9-02 already exist upstream>
+# PPPOE offloadfix <patches v6.9-01, v6.9-02 already exist upstream starting with kernel:5.15.157>
 cp -rf ../PATCH/741-v6.9-01-netfilter-flowtable-validate-pppoe-header.patch ./target/linux/generic/backport-5.15/
 cp -rf ../PATCH/741-v6.9-02-netfilter-flowtable-incorrect-pppoe-tuple.patch ./target/linux/generic/backport-5.15/
 cp -rf ../openwrt_main/target/linux/generic/hack-5.15/650-netfilter-add-xt_FLOWOFFLOAD-target.patch ./target/linux/generic/hack-5.15/
