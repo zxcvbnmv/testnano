@@ -191,6 +191,9 @@ git clone https://github.com/sbwml/package_network_services_ppp package/network/
 # curl update
 rm -rf ./feeds/packages/net/curl
 git clone https://github.com/sbwml/feeds_packages_net_curl ./feeds/packages/net/curl
+# nghttp2 update
+rm -rf ./feeds/packages/libs/nghttp2
+cp -rf ../openwrt_pkg_ma/libs/nghttp2 ./feeds/packages/libs/nghttp2
 # odhcpd: update to Git HEAD (2024-05-08)
 curl -s https://raw.githubusercontent.com/openwrt/openwrt/main/package/network/services/odhcpd/Makefile > ./package/network/services/odhcpd/Makefile
 # Enable ext4 journaling by default
