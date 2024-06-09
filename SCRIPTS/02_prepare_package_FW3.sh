@@ -27,6 +27,7 @@ CONFIG_LRNG_CPU=y
 rm -rf ./package/libs/mbedtls
 cp -rf ../immortalwrt_23/package/libs/mbedtls ./package/libs/mbedtls
 # ## DOH3 ##
+rm -rf ./package/libs/openssl && cp -rf ../openwrt_main/package/libs/openssl ./package/libs/openssl
 cp -rf ../PATCH/openssl/quic/* package/libs/openssl/patches
 rm -rf feeds/packages/libs/nghttp3
 git clone https://github.com/zxcvbnmv/nghttp3-package ./package/libs/nghttp3
@@ -127,7 +128,7 @@ cp -rf ../immortalwrt/package/kernel/r8168 ./package/new/r8168
 cp -rf ../lede/target/linux/x86/patches-5.15/996-intel-igc-i225-i226-disable-eee.patch ./target/linux/x86/patches-5.15/
 # Golang
 rm -rf ./feeds/packages/lang/golang
-cp -rf ../openwrt_pkg_ma/lang/golang ./feeds/packages/lang/golang
+cp -rf ../openwrt_pkg_main/lang/golang ./feeds/packages/lang/golang
 # Arpbind
 cp -rf ../immortalwrt_luci/applications/luci-app-arpbind ./feeds/luci/applications/luci-app-arpbind
 ln -sf ../../../feeds/luci/applications/luci-app-arpbind ./package/feeds/luci/luci-app-arpbind
@@ -193,7 +194,7 @@ rm -rf ./feeds/packages/net/curl
 git clone https://github.com/sbwml/feeds_packages_net_curl ./feeds/packages/net/curl
 # nghttp2 update
 rm -rf ./feeds/packages/libs/nghttp2
-cp -rf ../openwrt_pkg_ma/libs/nghttp2 ./feeds/packages/libs/nghttp2
+cp -rf ../openwrt_pkg_main/libs/nghttp2 ./feeds/packages/libs/nghttp2
 # odhcpd: update to Git HEAD (2024-05-08)
 curl -s https://raw.githubusercontent.com/openwrt/openwrt/main/package/network/services/odhcpd/Makefile > ./package/network/services/odhcpd/Makefile
 # Enable ext4 journaling by default
