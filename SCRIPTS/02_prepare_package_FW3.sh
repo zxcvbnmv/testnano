@@ -29,7 +29,6 @@ cp -rf ../immortalwrt_23/package/libs/mbedtls ./package/libs/mbedtls
 # ## DOH3 ##
 rm -rf ./package/libs/openssl && cp -rf ../openwrt_main/package/libs/openssl ./package/libs/openssl
 cp -f ../PATCH/temp/Makefile ./package/libs/openssl
-wget -qO - https://github.com/quictls/openssl/commit/653cc6be.patch | patch -p1
 #cp -rf ../PATCH/openssl/quic/* package/libs/openssl/patches
 rm -rf feeds/packages/libs/nghttp3
 git clone https://github.com/zxcvbnmv/nghttp3-package ./package/libs/nghttp3
