@@ -16,8 +16,8 @@ PKG_BUILD_PARALLEL:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_PROTO:=git
-PKG_SOURCE_URL:=https://github.com/quictls/openssl.git
-PKG_SOURCE_VERSION:=d889da8312bbe9ef56959a36a99db7bc005b5c7d
+PKG_SOURCE_URL:=https://github.com/zxcvbnmv/quictlsopenssl.git
+PKG_SOURCE_VERSION:=aeed11a1204e51fe2d5d215a9027de9afc7cc3fc
 PKG_MIRROR_HASH:=
 
 PKG_LICENSE:=Apache-2.0
