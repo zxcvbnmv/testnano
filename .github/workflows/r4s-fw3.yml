@@ -69,6 +69,11 @@ jobs:
       run: |
         cd openwrt
         /bin/bash 05_create_acl_for_luci.sh -a
+    - name: Fix Permissions
+      run: |
+        cd openwrt
+        sudo -E chmod -R 755 ./07_fix_permissions.sh
+        /bin/bash 07_fix_permissions.sh
     - name: Make Config
       run: |
         cd openwrt
