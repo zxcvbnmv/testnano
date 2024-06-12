@@ -30,7 +30,7 @@ cp -rf ../immortalwrt_23/package/libs/mbedtls ./package/libs/mbedtls
 rm -rf ./package/libs/openssl
 cp -rf ../openwrt_main/package/libs/openssl ./package/libs/openssl
 rm -rf ./package/libs/openssl/Makefile
-curl -s https://raw.githubusercontent.com/zxcvbnmv/testnano/main/PATCH/temp/Makefile ./package/libs/openssl/Makefile
+curl -s https://raw.githubusercontent.com/zxcvbnmv/testnano/main/PATCH/temp/Makefile > ./package/libs/openssl/Makefile
 #cp -rf ../PATCH/openssl/quic/* package/libs/openssl/patches
 rm -rf feeds/packages/libs/nghttp3
 git clone https://github.com/zxcvbnmv/nghttp3-package ./package/libs/nghttp3
