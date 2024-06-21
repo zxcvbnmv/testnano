@@ -191,16 +191,17 @@ cp -rf ../PATCH/temp/741-v6.9-01-netfilter-flowtable-validate-pppoe-header.patch
 cp -rf ../PATCH/temp/741-v6.9-02-netfilter-flowtable-incorrect-pppoe-tuple.patch ./target/linux/generic/backport-5.15/
 cp -rf ../openwrt_main/target/linux/generic/hack-5.15/650-netfilter-add-xt_FLOWOFFLOAD-target.patch ./target/linux/generic/hack-5.15/
 # ppp update
-rm -rf package/network/services/ppp
-git clone https://github.com/sbwml/package_network_services_ppp package/network/services/ppp
+rm -rf ./package/network/services/ppp
+git clone https://github.com/sbwml/package_network_services_ppp ./package/network/services/ppp
 # curl update
 rm -rf ./feeds/packages/net/curl
 git clone https://github.com/sbwml/feeds_packages_net_curl ./feeds/packages/net/curl
 # nghttp2 update
-rm -rf ./feeds/packages/libs/nghttp2
+rm -rf ./packages/libs/nghttp2
 cp -rf ../openwrt_pkg_main/libs/nghttp2 ./feeds/packages/libs/nghttp2
-# odhcpd: update to Git HEAD (2024-05-08)
-curl -s https://raw.githubusercontent.com/openwrt/openwrt/main/package/network/services/odhcpd/Makefile > ./package/network/services/odhcpd/Makefile
+# odhcpd update
+rm -rf ./package/network/services/odhcpd
+cp -rf ../immortalwrt/package/network/services/odhcpd ./package/network/services/odhcpd
 # Enable ext4 journaling by default
 rm -rf ./config/Config-images.in
 cp -f ../PATCH/Config-images.in ./config/
