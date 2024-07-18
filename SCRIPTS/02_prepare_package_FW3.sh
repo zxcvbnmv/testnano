@@ -27,12 +27,7 @@ CONFIG_LRNG_CPU=y
 rm -rf ./package/libs/mbedtls
 cp -rf ../immortalwrt_23/package/libs/mbedtls ./package/libs/mbedtls
 # ## DOH3 ##
-rm -rf ./package/libs/openssl
-cp -rf ../openwrt_main/package/libs/openssl ./package/libs/openssl
-rm -rf ./package/libs/openssl/Makefile
-curl -s https://raw.githubusercontent.com/zxcvbnmv/testnano/main/PATCH/temp/Makefile > ./package/libs/openssl/Makefile
-cp -rf ../PATCH/temp/999-hack-version.patch ./package/libs/openssl/patches
-#cp -rf ../PATCH/openssl/quic/* ./package/libs/openssl/patches
+cp -rf ../PATCH/openssl/quic/* ./package/libs/openssl/patches
 rm -rf feeds/packages/libs/nghttp3
 git clone https://github.com/zxcvbnmv/nghttp3-package ./package/libs/nghttp3
 rm -rf feeds/packages/libs/ngtcp2
