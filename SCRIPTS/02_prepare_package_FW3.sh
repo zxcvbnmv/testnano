@@ -98,6 +98,8 @@ sed -i 's,noinitrd,noinitrd mitigations=off,g' target/linux/x86/image/grub-pc.cf
 # btf
 wget -qO - https://github.com/immortalwrt/immortalwrt/commit/73e56799.patch | patch -p1
 cp -rf ../PATCH/051-v5.18-bpf-Add-config-to-allow-loading-modules-with-BTF-mismatch.patch ./target/linux/generic/backport-5.15/
+# bpf_loop
+cp -f ../PATCH/bpf_loop/*.patch ./target/linux/generic/backport-5.15/
 # mount cgroupv2
 pushd feeds/packages
 patch -p1 <../../../PATCH/cgroupfs-mount/0001-fix-cgroupfs-mount.patch
