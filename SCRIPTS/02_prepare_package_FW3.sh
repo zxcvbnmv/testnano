@@ -194,7 +194,7 @@ git clone https://github.com/sbwml/package_network_services_ppp ./package/networ
 rm -rf ./feeds/packages/net/curl
 git clone https://github.com/sbwml/feeds_packages_net_curl ./feeds/packages/net/curl
 # nghttp2 update
-rm -rf ./packages/libs/nghttp2
+rm -rf ./feeds/packages/libs/nghttp2
 cp -rf ../openwrt_pkg_main/libs/nghttp2 ./feeds/packages/libs/nghttp2
 # odhcpd update
 rm -rf ./package/network/services/odhcpd
