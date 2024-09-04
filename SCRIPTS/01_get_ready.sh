@@ -18,6 +18,7 @@ immortalwrt_luci_repo="https://github.com/immortalwrt/luci.git"
 lede_repo="https://github.com/coolsnowwolf/lede.git"
 lede_luci_repo="https://github.com/coolsnowwolf/luci.git"
 lede_pkg_repo="https://github.com/coolsnowwolf/packages.git"
+natflow_repo="https://github.com/QiuSimons/openwrt-natflow"
 
 # clone
 clone_repo $openwrt_repo $latest_release openwrt &
@@ -33,6 +34,7 @@ clone_repo $immortalwrt_luci_repo openwrt-23.05 immortalwrt_luci_23 &
 clone_repo $lede_repo master lede &
 clone_repo $lede_luci_repo master lede_luci &
 clone_repo $lede_pkg_repo master lede_pkg &
+clone_repo $natflow_repo master natflow &
 
 wait
 
