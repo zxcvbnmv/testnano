@@ -162,3 +162,9 @@ msgstr "Shortcut-FE flow offloading"
 
 msgid "Shortcut-FE based offloading for routing/NAT"
 msgstr "Shortcut-FE routing/NAT"
+
+msgid "NATflow flow offloading"
+msgstr "NATflow flow offloading"
+
+msgid "NATflow based offloading for routing/NAT"
+msgstr "NATflow routing/NAT"
