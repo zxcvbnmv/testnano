@@ -42,8 +42,9 @@ sed -i '/offloading/ a\                shortcutfe: access('\''/etc/init.d/shortc
 
 #firewall
 [ -f '/sbin/fw4' ] && uci set firewall.@defaults[0].fullcone='1'
+uci set firewall.@defaults[0].natflow='1'
 uci set firewall.@defaults[0].flow_offloading='0'
-uci set firewall.@defaults[0].shortcut_fe='1'
+uci set firewall.@defaults[0].shortcut_fe='0'
 uci set firewall.@defaults[0].input='ACCEPT'
 uci commit firewall
 service firewall restart
