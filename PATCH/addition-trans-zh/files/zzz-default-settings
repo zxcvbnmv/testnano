@@ -20,7 +20,7 @@ uci commit luci
 #Disable BBR
 sed -i 's/net.ipv4.tcp_congestion_control=bbr/#net.ipv4.tcp_congestion_control=bbr/g' /etc/sysctl.d/12-tcp-bbr.conf
 #sys conf
-echo -e "\net.ipv4.tcp_max_syn_backlog=1024" >> /etc/sysctl.d/10-default.conf
+echo -e "\nnet.ipv4.tcp_max_syn_backlog=1024" >> /etc/sysctl.d/10-default.conf
 echo "net.core.somaxconn=8192" >> /etc/sysctl.d/10-default.conf
 echo "net.core.rmem_max=2621440" >> /etc/sysctl.d/10-default.conf
 echo "net.core.wmem_max=2621440" >> /etc/sysctl.d/10-default.conf
