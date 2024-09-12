@@ -19,7 +19,8 @@ uci commit luci
 
 #Disable BBR
 sed -i 's/net.ipv4.tcp_congestion_control=bbr/#net.ipv4.tcp_congestion_control=bbr/g' /etc/sysctl.d/12-tcp-bbr.conf
-#sys conf
+
+#sysctl conf
 echo -e "\nnet.ipv4.tcp_max_syn_backlog=1024" >> /etc/sysctl.d/10-default.conf
 echo "net.core.somaxconn=8192" >> /etc/sysctl.d/10-default.conf
 echo "net.core.rmem_max=2621440" >> /etc/sysctl.d/10-default.conf
@@ -41,7 +42,6 @@ sed -i '/shortcutfe/d' /usr/share/rpcd/ucode/luci
 sed -i '/offloading/ a\                shortcutfe: access('\''/etc/init.d/shortcut-fe'\'') == true,' /usr/share/rpcd/ucode/luci
 
 #firewall
-[ -f '/sbin/fw4' ] && uci set firewall.@defaults[0].fullcone='1'
 uci set firewall.@defaults[0].natflow='1'
 uci set firewall.@defaults[0].flow_offloading='0'
 uci set firewall.@defaults[0].shortcut_fe='0'
@@ -49,12 +49,16 @@ uci set firewall.@defaults[0].input='ACCEPT'
 uci commit firewall
 service firewall restart
 /etc/init.d/shortcut-fe enable 2>/dev/null
-/etc/init.d/shortcut-fe start
+#/etc/init.d/shortcut-fe start
 
 #dnsmasq&ipv6
 uci set dhcp.@dnsmasq[0].quietdhcp='1'
 uci set dhcp.@dnsmasq[0].rebind_protection='0'
 uci set dhcp.@dnsmasq[0].sequential_ip='1'
+uci set dhcp.@dnsmasq[0].cachesize='3000'
+uci set dhcp.lan.start='101'
+uci set dhcp.lan.limit='100'
+uci set dhcp.lan.leasetime='24h'
 uci del dhcp.lan.dhcpv6
 uci del dhcp.lan.ndp
 uci set dhcp.lan.ra='server'
