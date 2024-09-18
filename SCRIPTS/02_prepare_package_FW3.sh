@@ -187,8 +187,8 @@ cp -rf ../PATCH/firewall/Fix-bad-IP-address-error-reporting.patch package/networ
 # luci dhcp.js rollback
 curl -s https://raw.githubusercontent.com/zxcvbnmv/testnano/main/PATCH/dhcp.js > feeds/luci/modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js
 # PPPOE offloadfix <patches v6.9-01, v6.9-02 already exist upstream starting with kernel:5.15.157>
-cp -rf ../PATCH/temp/741-v6.9-01-netfilter-flowtable-validate-pppoe-header.patch ./target/linux/generic/backport-5.15/
-cp -rf ../PATCH/temp/741-v6.9-02-netfilter-flowtable-incorrect-pppoe-tuple.patch ./target/linux/generic/backport-5.15/
+#cp -rf ../PATCH/temp/741-v6.9-01-netfilter-flowtable-validate-pppoe-header.patch ./target/linux/generic/backport-5.15/
+#cp -rf ../PATCH/temp/741-v6.9-02-netfilter-flowtable-incorrect-pppoe-tuple.patch ./target/linux/generic/backport-5.15/
 cp -rf ../openwrt_main/target/linux/generic/hack-5.15/650-netfilter-add-xt_FLOWOFFLOAD-target.patch ./target/linux/generic/hack-5.15/
 # ppp update
 rm -rf ./package/network/services/ppp
