@@ -1,7 +1,7 @@
 #!/bin/bash
 clear
 # Enable O2 & optimize
-sed -i 's/Os/O2/g' include/target.mk
+sed -i 's/Os/O2/g' ./include/target.mk
 # Update feeds
 ./scripts/feeds update -a && ./scripts/feeds install -a
 # LAN port IP
