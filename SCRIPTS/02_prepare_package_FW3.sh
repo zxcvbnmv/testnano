@@ -171,7 +171,7 @@ wget -qO - https://github.com/coolsnowwolf/lede/commit/eb70dada.patch | patch -p
 wget -qO - https://github.com/coolsnowwolf/lede/commit/7ba3ec09.patch | patch -p1
 cp -rf ../lede/package/qca/shortcut-fe/simulated-driver ./package/lean/shortcut-fe/simulated-driver
 # natflow
-git clone https://github.com/zxcvbnmv/natflow-package ./package/new/natflow
+git clone https://github.com/zxcvbnmv/natflow-package.git ./package/new/natflow
 patch -p1 < ../PATCH/firewall/luci-app-firewall_add_natflow_switch.patch
 #LTO/GC
 # Grub 2
