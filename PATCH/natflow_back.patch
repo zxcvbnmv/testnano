@@ -1,0 +1,21 @@
+From 98c9fbc7d25978d26489992703856c84b427409e Mon Sep 17 00:00:00 2001
+From: zxcvbnmv <40834572+zxcvbnmv@users.noreply.github.com>
+Date: Sat, 5 Oct 2024 02:45:38 +0800
+Subject: [PATCH] Update natflow_urllogger.c
+
+---
+ PATCH/natflow_urllogger.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/natflow_urllogger.c b/natflow_urllogger.c
+index 5d676f9..8d756ad 100644
+--- a/natflow_urllogger.c
++++ b/natflow_urllogger.c
+@@ -1705,6 +1705,7 @@ static struct ctl_table urllogger_table[] = {
+ 		.mode           = S_IRUGO|S_IWUSR,
+ 		.proc_handler   = proc_douintvec,
+ 	},
++	{ }
+ };
+ 
+ #if LINUX_VERSION_CODE < KERNEL_VERSION(6, 5, 0)
