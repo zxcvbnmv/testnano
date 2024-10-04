@@ -135,7 +135,7 @@ cp -rf ../immortalwrt_luci/applications/luci-app-arpbind ./feeds/luci/applicatio
 ln -sf ../../../feeds/luci/applications/luci-app-arpbind ./package/feeds/luci/luci-app-arpbind
 # ipv6-helper
 cp -rf ../lede/package/lean/ipv6-helper ./package/new/ipv6-helper
-patch -p1 <../PATCH/1002-odhcp6c-support-dhcpv6-hotplug.patch
+patch -p1 < ../PATCH/1002-odhcp6c-support-dhcpv6-hotplug.patch
 # Nodejs update
 rm -rf feeds/packages/lang/node
 git clone https://github.com/sbwml/feeds_packages_lang_node-prebuilt ./feeds/packages/lang/node
@@ -155,7 +155,7 @@ cp -rf ../lede/target/linux/generic/hack-5.15/953-net-patch-linux-kernel-to-supp
 cp -rf ../lede/target/linux/generic/pending-5.15/613-netfilter_optional_tcp_window_check.patch ./target/linux/generic/pending-5.15/
 cp -rf ../PATCH/601-netfilter-export-udp_get_timeouts-function.patch ./target/linux/generic/hack-5.15/
 # SFE-switch
-patch -p1 < ../PATCH/firewall/luci-app-firewall_add_sfe_switch.patch
+patch -p1 <../PATCH/firewall/luci-app-firewall_add_sfe_switch.patch
 # Shortcut-FE module
 mkdir ./package/lean
 mkdir ./package/lean/shortcut-fe
@@ -172,7 +172,7 @@ wget -qO - https://github.com/coolsnowwolf/lede/commit/7ba3ec09.patch | patch -p
 cp -rf ../lede/package/qca/shortcut-fe/simulated-driver ./package/lean/shortcut-fe/simulated-driver
 # natflow
 git clone https://github.com/zxcvbnmv/natflow-package.git ./package/new/natflow
-wget -qO - https://github.com/zxcvbnmv/testnano/commit/98c9fbc7d.patch | patch -p1
+patch -p1 < ../PATCH/natflow_back.patch
 patch -p1 < ../PATCH/firewall/luci-app-firewall_add_natflow_switch.patch
 #LTO/GC
 # Grub 2
