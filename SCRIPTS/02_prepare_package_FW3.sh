@@ -172,8 +172,6 @@ wget -qO - https://github.com/coolsnowwolf/lede/commit/7ba3ec09.patch | patch -p
 cp -rf ../lede/package/qca/shortcut-fe/simulated-driver ./package/lean/shortcut-fe/simulated-driver
 # natflow
 git clone https://github.com/zxcvbnmv/natflow-package.git ./package/new/natflow
-mkdir ./package/new/natflow/patches
-cp -rf ../PATCH/natflow_Revert_commit_5bf7267.patch ./package/new/natflow/patches
 patch -p1 < ../PATCH/firewall/luci-app-firewall_add_natflow_switch.patch
 #LTO/GC
 # Grub 2
@@ -184,8 +182,8 @@ sed -i 's,no-mips16 gc-sections,no-mips16 gc-sections no-lto,g' package/libs/ope
 sed -i 's,no-mips16,no-mips16 no-lto,g' feeds/packages/libs/libsodium/Makefile
 
 # ################### temporary settings ###################
-# iptables-1.8.9 patch
-cp -rf ../PATCH/firewall/Fix-bad-IP-address-error-reporting.patch package/network/utils/iptables/patches
+# iptables-1.8.10 patch
+wget -qO - https://github.com/openwrt/openwrt/commit/c9ee45e1.patch | patch -p1
 # luci dhcp.js rollback
 curl -s https://raw.githubusercontent.com/zxcvbnmv/testnano/main/PATCH/dhcp.js > feeds/luci/modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js
 # ppp update
