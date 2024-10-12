@@ -179,7 +179,7 @@ sed -i 's,no-mips16,no-mips16 no-lto,g' feeds/packages/libs/libsodium/Makefile
 
 # ################### temporary settings ###################
 # iptables-1.8.10 patch
-wget -qO - https://github.com/openwrt/openwrt/commit/c9ee45e1.patch | patch -p1
+wget -qO - https://github.com/openwrt/openwrt/commit/d06955d2.patch | patch -p1
 # luci dhcp.js rollback
 curl -s https://raw.githubusercontent.com/zxcvbnmv/testnano/main/PATCH/dhcp.js > feeds/luci/modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js
 # ppp update
