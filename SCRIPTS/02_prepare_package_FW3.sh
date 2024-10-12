@@ -40,9 +40,7 @@ cp -rf ../PATCH/BBRv3/* ./target/linux/generic/backport-5.15/
 wget -qO - https://github.com/openwrt/openwrt/commit/bbf39d07.patch | patch -p1
 ### Fullcone-NAT ###
 # Patch Kernel FullCone
-cp -rf ../lede/target/linux/generic/hack-5.15/952-add-net-conntrack-events-support-multiple-registrant.patch ./target/linux/generic/hack-5.15/
-cp -rf ../lede/target/linux/generic/hack-5.15/982-add-bcm-fullconenat-support.patch ./target/linux/generic/hack-5.15/
-cp -rf ../PATCH/983-add-bcm-fullcone-nft_masq-support.patch ./target/linux/generic/hack-5.15/
+cp -rf ../PATCH/firewall/952-add-net-conntrack-events-support-multiple-registrant.patch ./target/linux/generic/hack-5.15/
 # ## fw4 fullcone
 mkdir -p package/network/config/firewall4/patches
 cp -f ../PATCH/firewall/001-fix-fw4-flow-offload.patch ./package/network/config/firewall4/patches
@@ -59,9 +57,7 @@ cp -f ../PATCH/firewall/003-nftables-add-brcm-fullconenat-support.patch ./packag
 git clone --depth 1 https://github.com/fullcone-nat-nftables/nft-fullcone ./package/new/nft-fullcone
 # ## fw3 fullcone
 mkdir -p package/network/config/firewall/patches
-cp -rf ../lede/package/network/config/firewall/patches/100-fullconenat.patch ./package/network/config/firewall/patches/100-fullconenat.patch
-cp -rf ../lede/package/network/config/firewall/patches/101-bcm-fullconenat.patch ./package/network/config/firewall/patches/101-bcm-fullconenat.patch
-cp -rf ../lede/package/network/utils/iptables/patches/900-bcm-fullconenat.patch ./package/network/utils/iptables/patches/900-bcm-fullconenat.patch
+cp -rf ../PATCH/firewall/fullconenat.patch ./package/network/config/firewall/patches/fullconenat.patch
 # iptables fullcone module
 cp -rf ../PATCH/fullconenat ./package/new/fullconenat
 # Patch LuCI FullCone switch
