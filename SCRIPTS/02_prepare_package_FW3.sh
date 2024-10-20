@@ -32,12 +32,13 @@ rm -rf feeds/packages/libs/nghttp3
 git clone https://github.com/zxcvbnmv/nghttp3-package ./package/libs/nghttp3
 rm -rf feeds/packages/libs/ngtcp2
 git clone https://github.com/zxcvbnmv/ngtcp2-package ./package/libs/ngtcp2
-# fstool
-wget -qO - https://github.com/coolsnowwolf/lede/commit/8a4db762.patch | patch -p1
 # patch BBRv3
 cp -rf ../PATCH/BBRv3/* ./target/linux/generic/backport-5.15/
 # patch nf_conntrack_expect_max
 wget -qO - https://github.com/openwrt/openwrt/commit/bbf39d07.patch | patch -p1
+# firewall update to Git HEAD (2024-10-18)
+rm -rf ./package/network/config/firewall
+cp -rf ../openwrt_main/package/network/config/firewall ./package/network/config/firewall
 ### Fullcone-NAT ###
 # Patch Kernel FullCone
 cp -rf ../PATCH/firewall/952-add-net-conntrack-events-support-multiple-registrant.patch ./target/linux/generic/hack-5.15/
@@ -83,8 +84,12 @@ sed -i '/REQUIRE_IMAGE_METADATA/d' target/linux/rockchip/armv8/base-files/lib/up
 # intel-firmware
 wget -qO - https://github.com/openwrt/openwrt/commit/9c58addc.patch | patch -p1
 wget -qO - https://github.com/openwrt/openwrt/commit/64f1a657.patch | patch -p1
-wget -qO - https://github.com/openwrt/openwrt/commit/c21a3570.patch | patch -p1
 sed -i '/I915/d' target/linux/x86/64/config-5.15
+# SMP
+echo '
+CONFIG_X86_INTEL_PSTATE=y
+CONFIG_SMP=y
+' >>./target/linux/x86/config-5.15
 # Disable Mitigations
 sed -i 's,rootwait,rootwait mitigations=off,g' target/linux/rockchip/image/default.bootscript
 sed -i 's,@CMDLINE@ noinitrd,noinitrd mitigations=off,g' target/linux/x86/image/grub-efi.cfg
@@ -120,7 +125,7 @@ cp -rf ../immortalwrt_pkg/utils/coremark ./feeds/packages/utils/coremark
 sed -i "s,-O3,-Ofast -funroll-loops -fpeel-loops -fgcse-sm -fgcse-las,g" ./feeds/packages/utils/coremark/Makefile
 cp -rf ../immortalwrt_23/package/utils/mhz ./package/utils/mhz
 # Add R8168 driver
-cp -rf ../immortalwrt/package/kernel/r8168 ./package/new/r8168
+git clone https://github.com/sbwml/package_kernel_r8168 ./package/new/r8168
 # igc-fix
 cp -rf ../lede/target/linux/x86/patches-5.15/996-intel-igc-i225-i226-disable-eee.patch ./target/linux/x86/patches-5.15/
 # Golang
@@ -182,6 +187,9 @@ sed -i 's,no-mips16,no-mips16 no-lto,g' feeds/packages/libs/libsodium/Makefile
 wget -qO - https://github.com/openwrt/openwrt/commit/d06955d2.patch | patch -p1
 # luci dhcp.js rollback
 curl -s https://raw.githubusercontent.com/zxcvbnmv/testnano/main/PATCH/dhcp.js > feeds/luci/modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js
+# fstools update
+rm -rf ./package/system/fstools
+git clone https://github.com/sbwml/package_system_fstools ./package/system/fstools
 # ppp update
 rm -rf ./package/network/services/ppp
 git clone https://github.com/sbwml/package_network_services_ppp ./package/network/services/ppp
