@@ -37,20 +37,27 @@ clone_repo $lede_pkg_repo master lede_pkg &
 
 wait
 
+# mix
+find openwrt/package/* -maxdepth 0 ! -name 'firmware' ! -name 'kernel' ! -name 'base-files' ! -name 'Makefile' -exec rm -rf {} +
+rm -rf ./openwrt_snap/package/base-files/image-config.in ./openwrt_snap/package/Makefile
+cp -rf ./openwrt_snap/package/* ./openwrt/package/
+cp -rf ./openwrt_snap/feeds.conf.default ./openwrt/feeds.conf.default
+
+# -------------------------------------------------------------------------------------------------------------------------------
 # Switch
-git clone --single-branch -b openwrt-23.05 https://github.com/openwrt/openwrt openwrt_snap166 && cd openwrt_snap166
-git reset --hard fd6e077 && git checkout -b 5.15.166 fd6e077
-cd ../
+#git clone --single-branch -b openwrt-23.05 https://github.com/openwrt/openwrt openwrt_snap166 && cd openwrt_snap166
+#git reset --hard fd6e077 && git checkout -b 5.15.166 fd6e077
+#cd ../
 
 # Mix
-find openwrt/package/* -maxdepth 0 ! -name 'firmware' ! -name 'kernel' ! -name 'base-files' ! -name 'Makefile' -exec rm -rf {} +
-rm -rf ./openwrt_snap166/include/version.mk ./openwrt_snap/package/base-files/image-config.in ./openwrt_snap/package/Makefile
-cp -rf ./openwrt_snap/package/* ./openwrt/package/
-cp -rf ./openwrt_snap166/include/* ./openwrt/include
-rm -rf ./openwrt/target/linux/ ./openwrt/toolchain/ ./openwrt/tools/
-cp -rf ./openwrt_snap166/target/linux ./openwrt/target
-cp -rf ./openwrt_snap166/toolchain ./openwrt
-cp -rf ./openwrt_snap166/tools ./openwrt
-cp -rf ./openwrt_snap/feeds.conf.default ./openwrt/feeds.conf.default
+#find openwrt/package/* -maxdepth 0 ! -name 'firmware' ! -name 'kernel' ! -name 'base-files' ! -name 'Makefile' -exec rm -rf {} +
+#rm -rf ./openwrt_snap166/include/version.mk ./openwrt_snap/package/base-files/image-config.in ./openwrt_snap/package/Makefile
+#cp -rf ./openwrt_snap/package/* ./openwrt/package/
+#cp -rf ./openwrt_snap166/include/* ./openwrt/include
+#rm -rf ./openwrt/target/linux/ ./openwrt/toolchain/ ./openwrt/tools/
+#cp -rf ./openwrt_snap166/target/linux ./openwrt/target
+#cp -rf ./openwrt_snap166/toolchain ./openwrt
+#cp -rf ./openwrt_snap166/tools ./openwrt
+#cp -rf ./openwrt_snap/feeds.conf.default ./openwrt/feeds.conf.default
 
 exit 0
