@@ -126,7 +126,7 @@ cp -rf ../immortalwrt_pkg/utils/coremark ./feeds/packages/utils/coremark
 sed -i "s,-O3,-Ofast -funroll-loops -fpeel-loops -fgcse-sm -fgcse-las,g" ./feeds/packages/utils/coremark/Makefile
 cp -rf ../immortalwrt_23/package/utils/mhz ./package/utils/mhz
 # Add R8168 driver
-cp -rf ../immortalwrt/package/kernel/r8168 ./package/new/r8168
+cp -rf ../openwrt_main/package/kernel/r8168 ./package/new/r8168
 # igc-fix
 cp -rf ../lede/target/linux/x86/patches-5.15/996-intel-igc-i225-i226-disable-eee.patch ./target/linux/x86/patches-5.15/
 # Golang
