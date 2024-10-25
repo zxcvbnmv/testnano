@@ -187,6 +187,8 @@ sed -i 's,no-mips16,no-mips16 no-lto,g' feeds/packages/libs/libsodium/Makefile
 
 # ################### temporary settings ###################
 # iptables-1.8.10 patch
+curl -s https://raw.githubusercontent.com/openwrt/openwrt/16601bbd/package/network/utils/iptables/Makefile > package/network/utils/iptables/Makefile
+rm ./package/network/utils/iptables/patches/104-nft-track-each-register-individually.patch
 wget -qO - https://github.com/openwrt/openwrt/commit/d06955d2.patch | patch -p1
 # luci dhcp.js rollback
 curl -s https://raw.githubusercontent.com/zxcvbnmv/testnano/main/PATCH/dhcp.js > feeds/luci/modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js
