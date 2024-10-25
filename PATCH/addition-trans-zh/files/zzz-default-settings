@@ -17,6 +17,10 @@ uci commit system
 uci set luci.main.mediaurlbase='/luci-static/bootstrap'	
 uci commit luci
 
+#Anonymous Mount
+uci set fstab.@global[0].anon_mount=1
+uci commit fstab
+
 #Disable BBR
 sed -i 's/net.ipv4.tcp_congestion_control=bbr/#net.ipv4.tcp_congestion_control=bbr/g' /etc/sysctl.d/12-tcp-bbr.conf
 
@@ -55,6 +59,7 @@ service firewall restart
 uci set dhcp.@dnsmasq[0].quietdhcp='1'
 uci set dhcp.@dnsmasq[0].rebind_protection='0'
 uci set dhcp.@dnsmasq[0].sequential_ip='1'
+uci set dhcp.@dnsmasq[0].nonegcache='1'
 uci set dhcp.@dnsmasq[0].cachesize='3000'
 uci set dhcp.lan.start='101'
 uci set dhcp.lan.limit='100'
@@ -62,7 +67,12 @@ uci set dhcp.lan.leasetime='24h'
 uci del dhcp.lan.dhcpv6
 uci del dhcp.lan.ndp
 uci set dhcp.lan.ra='server'
+uci set dhcp.lan.dns_service='1'
+uci add_list dhcp.lan.ra_flags='managed-config'
+uci add_list dhcp.lan.ra_flags='other-config'
 uci commit dhcp
+uci delete network.globals.ula_prefix
+uci commit network
 /etc/init.d/odhcpd restart
 sed -i '/log-facility/d' /etc/dnsmasq.conf
 echo "log-facility=/dev/null" >> /etc/dnsmasq.conf
