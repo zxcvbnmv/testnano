@@ -78,6 +78,10 @@ sed -i '/log-facility/d' /etc/dnsmasq.conf
 echo "log-facility=/dev/null" >> /etc/dnsmasq.conf
 /etc/init.d/dnsmasq restart
 
+#Net-smp-affinity
+sed -i '/set_interface_core 20 "eth1"/d' /etc/hotplug.d/net/40-net-smp-affinity
+sed -i 's,set_interface_core 10 "eth0",set_interface_core 8 "eth0",g' /etc/hotplug.d/net/40-net-smp-affinity
+
 #Symbolic links
 [ ! -f '/usr/bin/ip' ] && [ -f '/sbin/ip' ] && ln -sf /sbin/ip /usr/bin/ip
 [ ! -f '/usr/bin/wget-ssl' ] && [ -f '/usr/bin/wget' ] && ln -sf /usr/bin/wget /usr/bin/wget-ssl
