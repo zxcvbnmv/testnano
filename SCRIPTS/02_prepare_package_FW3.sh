@@ -211,8 +211,3 @@ cp -rf ../immortalwrt/package/network/services/odhcpd ./package/network/services
 # Enable ext4 journaling by default
 rm -rf ./config/Config-images.in
 cp -f ../PATCH/Config-images.in ./config/
-# kernel: enable Multi-Path TCP
-rm -rf ./config/Config-kernel.in
-cp -f ../PATCH/Config-kernel.in ./config/
-rm -rf ./package/kernel/linux/modules/netsupport.mk
-cp -f ../PATCH/netsupport.mk ./package/kernel/linux/modules/
