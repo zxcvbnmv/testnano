@@ -52,6 +52,9 @@ msgstr "用于压缩内存数据的CPU并发线程数"
 msgid "Buffer/Cache"
 msgstr "缓冲/缓存"
 
+msgid "/dev/mmcblk1p1 (/mnt/mmcblk1p1)"
+msgstr "内核引导分区"
+
 msgid "Swap"
 msgstr "虚拟内存"
 
