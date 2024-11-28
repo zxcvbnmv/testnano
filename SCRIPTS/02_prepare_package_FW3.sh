@@ -176,7 +176,7 @@ cp -rf ../lede/package/qca/shortcut-fe/simulated-driver ./package/lean/shortcut-
 # natflow
 git clone https://github.com/zxcvbnmv/natflow-package.git ./package/new/natflow
 mkdir ./package/new/natflow/patches
-cp -rf ../PATCH/natflow_Revert.patch ./package/new/natflow/patches
+#cp -rf ../PATCH/natflow_Revert.patch ./package/new/natflow/patches
 patch -p1 < ../PATCH/firewall/luci-app-firewall_add_natflow_switch.patch
 #LTO/GC
 # Grub 2
