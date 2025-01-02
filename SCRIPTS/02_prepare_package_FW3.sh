@@ -14,16 +14,6 @@ cp -rf ../PATCH/backport/TCP/* ./target/linux/generic/backport-5.15/
 cp -rf ../PATCH/backport/x86_csum/* ./target/linux/generic/backport-5.15/
 # Patch arm64 name
 cp -rf ../immortalwrt_23/target/linux/generic/hack-5.15/312-arm64-cpuinfo-Add-model-name-in-proc-cpuinfo-for-64bit-ta.patch ./target/linux/generic/hack-5.15/
-# Linux Random Number Generator
-cp -rf ../PATCH/LRNG/* ./target/linux/generic/hack-5.15/
-echo '
-# CONFIG_RANDOM_DEFAULT_IMPL is not set
-CONFIG_LRNG=y
-# CONFIG_LRNG_IRQ is not set
-CONFIG_LRNG_JENT=y
-CONFIG_LRNG_CPU=y
-# CONFIG_LRNG_SCHED is not set
-' >>./target/linux/generic/config-5.15
 # mbedtls
 rm -rf ./package/libs/mbedtls
 cp -rf ../immortalwrt_23/package/libs/mbedtls ./package/libs/mbedtls
@@ -176,7 +166,7 @@ cp -rf ../lede/package/qca/shortcut-fe/simulated-driver ./package/lean/shortcut-
 # natflow
 git clone https://github.com/zxcvbnmv/natflow-package.git ./package/new/natflow
 mkdir ./package/new/natflow/patches
-#cp -rf ../PATCH/natflow_Revert.patch ./package/new/natflow/patches
+cp -rf ../PATCH/natflow_Revert.patch ./package/new/natflow/patches
 patch -p1 < ../PATCH/firewall/luci-app-firewall_add_natflow_switch.patch
 #LTO/GC
 # Grub 2
