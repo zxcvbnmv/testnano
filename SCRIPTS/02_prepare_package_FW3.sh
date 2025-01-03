@@ -198,6 +198,3 @@ cp -rf ../openwrt_pkg_main/libs/nghttp2 ./feeds/packages/libs/nghttp2
 # odhcpd update
 rm -rf ./package/network/services/odhcpd
 cp -rf ../immortalwrt/package/network/services/odhcpd ./package/network/services/odhcpd
-# Enable ext4 journaling by default
-rm -rf ./config/Config-images.in
-cp -f ../PATCH/Config-images.in ./config/
