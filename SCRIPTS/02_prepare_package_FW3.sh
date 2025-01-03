@@ -125,7 +125,7 @@ rm -rf ./feeds/packages/lang/golang
 cp -rf ../openwrt_pkg_main/lang/golang ./feeds/packages/lang/golang
 # https-dns-proxy
 rm -rf ./feeds/packages/net/https-dns-proxy
-git clone https://github.com/zxcvbnmv/https-dns-proxy ./packages/net/https-dns-proxy
+git clone https://github.com/zxcvbnmv/https-dns-proxy ./feeds/packages/net/https-dns-proxy
 # Arpbind
 cp -rf ../immortalwrt_luci/applications/luci-app-arpbind ./feeds/luci/applications/luci-app-arpbind
 ln -sf ../../../feeds/luci/applications/luci-app-arpbind ./package/feeds/luci/luci-app-arpbind
