@@ -66,8 +66,8 @@ cp -rf ../immortalwrt_23/package/boot/uboot-rockchip ./package/boot/uboot-rockch
 rm -rf ./package/boot/arm-trusted-firmware-rockchip
 cp -rf ../immortalwrt_23/package/boot/arm-trusted-firmware-rockchip ./package/boot/arm-trusted-firmware-rockchip
 rm ./target/linux/rockchip/patches-5.15/992-rockchip-rk3399-overclock-to-2.2-1.8-GHz.patch
-cp -f ../PATCH/766-rk3399-overclock.patch ./target/linux/rockchip/patches-5.15/
-cp -f ../PATCH/249-rk3399dtsi.patch ./target/linux/rockchip/patches-5.15/
+cp -f ../PATCH/9999-rk3399-overclock.patch ./target/linux/rockchip/patches-5.15/
+cp -f ../PATCH/9999-rk3399dtsi.patch ./target/linux/rockchip/patches-5.15/
 sed -i 's,DEFAULT_GOV_SCHEDUTIL,DEFAULT_GOV_PERFORMANCE,g' target/linux/rockchip/armv8/config-5.15
 sed -i 's,# CONFIG_CPU_FREQ_DEFAULT_GOV_PERFORMANCE,# CONFIG_CPU_FREQ_DEFAULT_GOV_SCHEDUTIL,g' target/linux/rockchip/armv8/config-5.15
 sed -i '/CONFIG_SLUB_DEBUG/d' target/linux/rockchip/armv8/config-5.15
