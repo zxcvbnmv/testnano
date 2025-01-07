@@ -10,12 +10,13 @@ diff --git a/feeds/luci/applications/luci-app-firewall/htdocs/luci-static/resour
  
  			o = s.option(form.Flag, 'flow_offloading_hw',
  				_('Hardware flow offloading'),
-@@ -94,7 +94,14 @@ return view.extend({
+@@ -94,7 +94,15 @@ return view.extend({
  			o.optional = true;
  			o.depends('flow_offloading', '1');
  		}
--
-+		/* NATflow flow offloading support */
+
++		/* NATflow flow offload support */
++
 +		/* if (L.hasSystemFeature('natflow')) { */
 +			o = s.option(form.Flag, 'natflow',
 +			_('NATflow flow offloading'),
