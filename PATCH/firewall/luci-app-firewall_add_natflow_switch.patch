@@ -12,8 +12,8 @@ diff --git a/feeds/luci/applications/luci-app-firewall/htdocs/luci-static/resour
 --- a/feeds/luci/applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js
 +++ b/feeds/luci/applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js
 @@ -113,6 +113,14 @@ return view.extend({
- 			o.optional = false;
- 			o.depends('flow_offloading', '0');
+ 			o.default = 'shortcut-fe-cm';
+ 			o.depends({ 'flow_offloading': '0', 'natflow': '0' });
  		/* 	} */
 +		/* NATflow flow offload support */
 +		/* if (L.hasSystemFeature('natflow')) { */
@@ -21,7 +21,7 @@ diff --git a/feeds/luci/applications/luci-app-firewall/htdocs/luci-static/resour
 +			_('NATflow flow offloading'),
 +			_('NATflow based offloading for routing/NAT'));
 +			o.optional = false;
-+			o.depends({ 'flow_offloading': '0', 'shortcut_fe': '0' });
++			o.depends({ 'flow_offloading': '0' });
 +		/* 	} */
  
  		s = m.section(form.GridSection, 'zone', _('Zones'));
