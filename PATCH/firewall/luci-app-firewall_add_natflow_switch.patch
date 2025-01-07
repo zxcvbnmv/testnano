@@ -10,11 +10,11 @@ diff --git a/feeds/luci/applications/luci-app-firewall/htdocs/luci-static/resour
  
  			o = s.option(form.Flag, 'flow_offloading_hw',
  				_('Hardware flow offloading'),
-@@ -94,7 +94,15 @@ return view.extend({
- 			o.optional = true;
+@@ -94,7 +94,16 @@ return view.extend({
  			o.depends('flow_offloading', '1');
  		}
-
+ 
+-
 +		/* NATflow flow offload support */
 +
 +		/* if (L.hasSystemFeature('natflow')) { */
@@ -24,6 +24,7 @@ diff --git a/feeds/luci/applications/luci-app-firewall/htdocs/luci-static/resour
 +			o.optional = false;
 +			o.depends('flow_offloading', '0');
 +		/* 	} */
- 
++		
  		s = m.section(form.GridSection, 'zone', _('Zones'));
  		s.addremove = true;
+ 		s.anonymous = true;
