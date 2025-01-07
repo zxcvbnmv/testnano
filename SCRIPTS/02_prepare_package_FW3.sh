@@ -145,7 +145,6 @@ mkdir -p ./files/etc && cp -rf ../PATCH/files/etc ./files
 # Config
 rm -rf .config
 sed -i 's,CONFIG_WERROR=y,# CONFIG_WERROR is not set,g' ./target/linux/generic/config-5.15
-### Shortcut-FE ###
 # Patch Kernel Shortcut-FE
 cp -rf ../lede/target/linux/generic/hack-5.15/953-net-patch-linux-kernel-to-support-shortcut-fe.patch ./target/linux/generic/hack-5.15/
 cp -rf ../lede/target/linux/generic/pending-5.15/613-netfilter_optional_tcp_window_check.patch ./target/linux/generic/pending-5.15/
