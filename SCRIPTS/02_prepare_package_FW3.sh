@@ -150,14 +150,6 @@ sed -i 's,CONFIG_WERROR=y,# CONFIG_WERROR is not set,g' ./target/linux/generic/c
 cp -rf ../lede/target/linux/generic/hack-5.15/953-net-patch-linux-kernel-to-support-shortcut-fe.patch ./target/linux/generic/hack-5.15/
 cp -rf ../lede/target/linux/generic/pending-5.15/613-netfilter_optional_tcp_window_check.patch ./target/linux/generic/pending-5.15/
 cp -rf ../PATCH/601-netfilter-export-udp_get_timeouts-function.patch ./target/linux/generic/hack-5.15/
-# SFE-switch
-patch -p1 <../PATCH/firewall/luci-app-firewall_add_sfe_switch.patch
-# Shortcut-FE module
-mkdir ./package/lean
-mkdir ./package/lean/shortcut-fe
-cp -rf ../lede/package/qca/shortcut-fe/fast-classifier ./package/lean/shortcut-fe/fast-classifier
-cp -rf ../lede/package/qca/shortcut-fe/shortcut-fe ./package/lean/shortcut-fe/shortcut-fe
-cp -rf ../lede/package/qca/shortcut-fe/simulated-driver ./package/lean/shortcut-fe/simulated-driver
 # natflow
 git clone https://github.com/zxcvbnmv/natflow-package.git ./package/new/natflow
 mkdir ./package/new/natflow/patches
