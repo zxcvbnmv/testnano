@@ -20,18 +20,20 @@ diff --git a/feeds/luci/applications/luci-app-firewall/htdocs/luci-static/resour
  
  			o = s.option(form.Flag, 'flow_offloading_hw',
  				_('Hardware flow offloading'),
-@@ -94,7 +94,14 @@ return view.extend({
+@@ -94,7 +94,16 @@ return view.extend({
  			o.optional = true;
  			o.depends('flow_offloading', '1');
  		}
 -
 +		/* Shortcut-FE flow offload support */
 +		/* if (L.hasSystemFeature('shortcutfe')) { */
-+			o = s.option(form.Flag, 'shortcut_fe',
-+			_('Shortcut-FE flow offloading'),
-+			_('Shortcut-FE based offloading for routing/NAT'));
-+			o.optional = false;
-+			o.depends('flow_offloading', '0');
++			o = s.option(form.ListValue, 'shortcut_fe_module',
++			_('SFE flow offload manager'),
++			_('Set up the Shortcut-FE engine connection manager'));
++			o.value('shortcut-fe-cm', _('shortcut-fe-cm'));
++			o.value('fast-classifier', _('fast-classifier'));
++			o.default = 'shortcut-fe-cm';
++			o.depends({ 'flow_offloading': '0', 'natflow': '0' });
 +		/* 	} */
  
  		s = m.section(form.GridSection, 'zone', _('Zones'));
