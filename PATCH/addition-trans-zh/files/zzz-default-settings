@@ -41,22 +41,15 @@ uci del uhttpd.main.listen_https
 uci commit uhttpd
 /etc/init.d/uhttpd restart
 
-#SFE
-sed -i '/shortcutfe/d' /usr/share/rpcd/ucode/luci
-sed -i '/offloading/ a\                shortcutfe: access('\''/etc/init.d/shortcut-fe'\'') == true,' /usr/share/rpcd/ucode/luci
-
 #firewall
 uci set firewall.@rule[1].enabled='0'
 uci set firewall.@defaults[0].natflow='1'
 uci set firewall.@defaults[0].flow_offloading='0'
-uci set firewall.@defaults[0].shortcut_fe='0'
 uci set firewall.@defaults[0].input='ACCEPT'
 uci commit firewall
 /etc/init.d/firewall restart
-/etc/init.d/shortcut-fe enable 2>/dev/null
-#/etc/init.d/shortcut-fe start
 
-#dnsmasq&ipv6
+#dnsmasq & ipv6
 uci set dhcp.@dnsmasq[0].quietdhcp='1'
 uci set dhcp.@dnsmasq[0].rebind_protection='0'
 uci set dhcp.@dnsmasq[0].sequential_ip='1'
