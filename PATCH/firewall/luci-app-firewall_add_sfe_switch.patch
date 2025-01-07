@@ -30,8 +30,8 @@ diff --git a/feeds/luci/applications/luci-app-firewall/htdocs/luci-static/resour
 +			o = s.option(form.ListValue, 'shortcut_fe_module',
 +			_('SFE flow offload manager'),
 +			_('Set up the Shortcut-FE engine connection manager'));
-+			o.value('shortcut-fe-cm', _('shortcut-fe-cm'));
-+			o.value('fast-classifier', _('fast-classifier'));
++			o.value('shortcut-fe-cm', _('shortcut_fe_cm'));
++			o.value('fast-classifier', _('fast_classifier'));
 +			o.default = 'shortcut-fe-cm';
 +			o.depends({ 'flow_offloading': '0', 'natflow': '0' });
 +		/* 	} */
