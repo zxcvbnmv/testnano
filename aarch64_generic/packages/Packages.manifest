@@ -1,0 +1,250 @@
+Package: cgi-io
+Version: 2022-08-10-901b0f04-21
+Depends: libc, libubox20230523, libubus20230605
+Source: feeds/packages/net/cgi-io
+SourceName: cgi-io
+License: GPL-2.0-or-later
+Section: net
+SourceDateEpoch: 1738831872
+Maintainer: John Crispin <blogic@openwrt.org>
+Architecture: aarch64_generic
+Installed-Size: 9255
+Filename: cgi-io_2022-08-10-901b0f04-21_aarch64_generic.ipk
+Size: 9899
+SHA256sum: 85f87ebc4a3230475bdc39905080b96d78a713046dd42537c3ee432102ec96b9
+Description:  This package contains an cgi utility that is useful for up/downloading files
+
+Package: coremark
+Version: 2023-01-25-d5fad6bd-1
+Depends: libc
+Source: feeds/packages/utils/coremark
+SourceName: coremark
+License: Apache-2.0
+LicenseFiles: LICENSE.md
+Section: utils
+SourceDateEpoch: 1738831872
+Maintainer: Lim Guo Wei <limguowei@gmail.com>
+Architecture: aarch64_generic
+Installed-Size: 17316
+Filename: coremark_2023-01-25-d5fad6bd-1_aarch64_generic.ipk
+Size: 18014
+SHA256sum: c71c7177b1b07d74c59dbde514ca8855e19a03963a42780afad67a09633d4491
+Description:  Embedded Microprocessor Benchmark
+
+Package: curl
+Version: 8.12.0-1
+Depends: libc, libcurl4
+Source: feeds/packages/net/curl
+SourceName: curl
+License: MIT
+LicenseFiles: COPYING
+Section: net
+SourceDateEpoch: 1738746007
+CPE-ID: cpe:/a:haxx:libcurl
+Maintainer: Stan Grishin <stangri@melmac.ca>
+Architecture: aarch64_generic
+Installed-Size: 75278
+Filename: curl_8.12.0-1_aarch64_generic.ipk
+Size: 75943
+SHA256sum: 1fee66a775a113008366921529fff5af39033a3e4a6a2caab5c6abe30fdb0a17
+Description:  A client-side URL transfer utility
+
+Package: htop
+Version: 3.3.0-1
+Depends: libc, libncurses6
+Source: feeds/packages/admin/htop
+SourceName: htop
+License: GPL-2.0-or-later
+LicenseFiles: COPYING
+Section: admin
+SourceDateEpoch: 1738831872
+CPE-ID: cpe:/a:htop:htop
+Maintainer: Etienne CHAMPETIER <champetier.etienne@gmail.com>
+Architecture: aarch64_generic
+Installed-Size: 141611
+Filename: htop_3.3.0-1_aarch64_generic.ipk
+Size: 142346
+SHA256sum: 89c12b3b47d01d8d9f72e7482f526dfedc5243347aa3b415eb2510858b0e37dc
+Description:  Htop is an ncursed-based process viewer similar to top, but
+ it allows to scroll the list vertically and horizontally to
+ see all processes and their full command lines.
+
+Package: https-dns-proxy
+Version: 2023.12.27-8afbba7
+Depends: libc, libcares, libcurl4, libev, ca-bundle, jsonfilter, resolveip
+Conflicts: https_dns_proxy
+Source: feeds/packages/net/https-dns-proxy
+SourceName: https-dns-proxy
+License: MIT
+LicenseFiles: LICENSE
+Section: net
+SourceDateEpoch: 1738775445
+Maintainer: Stan Grishin <stangri@melmac.ca>
+Architecture: aarch64_generic
+Installed-Size: 21427
+Filename: https-dns-proxy_2023.12.27-8afbba7_aarch64_generic.ipk
+Size: 22298
+SHA256sum: 3f8c49e8ba7d2abd506b782884e5f85a09402bb1339a4f5f0daeaa7669076260
+Description:  Light-weight DNS-over-HTTPS, non-caching translation proxy for the RFC 8484 DoH standard.
+ It receives regular, unencrypted (UDP) DNS requests and resolves them via DoH resolver.
+ Please see https://docs.openwrt.melmac.net/https-dns-proxy/ for more information.
+
+Package: iperf3
+Version: 3.17.1-4
+Depends: libc, libiperf3
+Source: feeds/packages/net/iperf3
+SourceName: iperf3
+License: BSD-3-Clause
+Section: net
+SourceDateEpoch: 1738831872
+CPE-ID: cpe:/a:es:iperf3
+Maintainer: Felix Fietkau <nbd@nbd.name>
+Architecture: aarch64_generic
+Installed-Size: 2431
+Filename: iperf3_3.17.1-4_aarch64_generic.ipk
+Size: 3112
+SHA256sum: fa52f3cf30631799644626d30cc05d2df8b68a022118018373c82318a5e5b36d
+Description:  Iperf is a modern alternative for measuring TCP and UDP bandwidth
+ performance, allowing the tuning of various parameters and
+ characteristics.
+
+Package: libcares
+Version: 1.27.0-1
+Depends: libc
+Source: feeds/packages/libs/c-ares
+SourceName: libcares
+License: MIT
+LicenseFiles: LICENSE.md
+Section: libs
+SourceDateEpoch: 1738831872
+CPE-ID: cpe:/a:c-ares_project:c-ares
+Maintainer: Karl Palsson <karlp@etactica.com>
+Architecture: aarch64_generic
+Installed-Size: 83718
+Filename: libcares_1.27.0-1_aarch64_generic.ipk
+Size: 84550
+SHA256sum: 61c583928e860acf15f630e4f6ccec770b6cdad569fc150d29211a1d7aa1481c
+Description:  c-ares is a C library for asynchronous DNS requests (including name resolves)
+ 
+ C89 compatibility, MIT licensed, builds for and runs on POSIX, Windows,
+ Netware, Android and many more operating systems.
+ 
+
+Package: libcurl4
+Version: 8.12.0-1
+Depends: libc, libopenssl3, libnghttp2-14, libnghttp3, libngtcp2, ca-bundle
+Provides: libcurl
+Source: feeds/packages/net/curl
+SourceName: libcurl
+License: MIT
+LicenseFiles: COPYING
+Section: libs
+SourceDateEpoch: 1738746007
+ABIVersion: 4
+CPE-ID: cpe:/a:haxx:libcurl
+Maintainer: Stan Grishin <stangri@melmac.ca>
+Architecture: aarch64_generic
+Installed-Size: 281249
+Filename: libcurl4_8.12.0-1_aarch64_generic.ipk
+Size: 281727
+SHA256sum: ad62a885faa1b1d6279c66903ec1ae12e94e50b52a6e09bdf534235baf402865
+Description:  A client-side URL transfer library
+
+Package: libev
+Version: 4.33-2
+Depends: libc
+Source: feeds/packages/libs/libev
+SourceName: libev
+License: BSD-2-Clause or GPL-2.0-or-later
+LicenseFiles: LICENSE
+Section: libs
+SourceDateEpoch: 1738831872
+Maintainer: Karl Palsson <karlp@tweak.net.au>
+Architecture: aarch64_generic
+Installed-Size: 27917
+Filename: libev_4.33-2_aarch64_generic.ipk
+Size: 28702
+SHA256sum: 08bca4edf6d4598b981a356db81e7cb2ed7169f4fe0a5017a12f6794dbba9bfa
+Description:  A full-featured and high-performance event loop that is loosely modelled after
+ libevent, but without its limitations and bugs.
+
+Package: libiperf3
+Version: 3.17.1-4
+Depends: libc, libatomic1
+Source: feeds/packages/net/iperf3
+SourceName: libiperf3
+License: BSD-3-Clause
+Section: libs
+SourceDateEpoch: 1738831872
+CPE-ID: cpe:/a:es:iperf3
+Maintainer: Felix Fietkau <nbd@nbd.name>
+Architecture: aarch64_generic
+Installed-Size: 74483
+Filename: libiperf3_3.17.1-4_aarch64_generic.ipk
+Size: 75252
+SHA256sum: 8304329c17584cb5b3375dcb952ab1a689fff9a3980681f6e2418b66e77c4319
+Description:  Libiperf is a library providing an API for iperf3 functionality.
+
+Package: libnghttp2-14
+Version: 1.63.0-1
+Depends: libc
+Provides: libnghttp2
+Source: feeds/packages/libs/nghttp2
+SourceName: libnghttp2
+License: MIT
+LicenseFiles: COPYING
+Section: libs
+SourceDateEpoch: 1738831872
+ABIVersion: -14
+CPE-ID: cpe:/a:nghttp2:nghttp2
+Maintainer: Hans Dedecker <dedeckeh@gmail.com>
+Architecture: aarch64_generic
+Installed-Size: 72940
+Filename: libnghttp2-14_1.63.0-1_aarch64_generic.ipk
+Size: 71824
+SHA256sum: 0fa9139e35871427b325e821cb055616514222eb48430ecb436f220de2d90e60
+Description:  C library implementing the framing layer of the HTTP/2 protocol. It can be used to build a HTTP/2-capable HTTP client or server
+
+Package: libpam
+Version: 1.5.2-1
+Depends: libc
+Source: feeds/packages/libs/libpam
+SourceName: libpam
+License: BSD-3c GPL
+LicenseFiles: COPYING Copyright
+Section: libs
+SourceDateEpoch: 1738831872
+CPE-ID: cpe:/a:linux-pam:linux-pam
+Maintainer: Nikos Mavrogiannopoulos <n.mavrogiannopoulos@gmail.com>
+Architecture: aarch64_generic
+Installed-Size: 248539
+Filename: libpam_1.5.2-1_aarch64_generic.ipk
+Size: 241573
+SHA256sum: 2cc5960b1b48c3890db800a5f9d9f83f825bee1aa7519176150dc76e87db9d83
+Description:  The Linux-PAM Pluggable Authentication Modules.
+
+Package: wget-ssl
+Version: 1.21.4-1
+Depends: libc, libpcre2, zlib, libopenssl3, librt
+Provides: gnu-wget, wget
+Alternatives: 300:/usr/bin/wget:/usr/libexec/wget-ssl
+Source: feeds/packages/net/wget
+SourceName: wget-ssl
+License: GPL-3.0-or-later
+LicenseFiles: COPYING
+Section: net
+SourceDateEpoch: 1738831872
+CPE-ID: cpe:/a:gnu:wget
+Architecture: aarch64_generic
+Installed-Size: 241105
+Filename: wget-ssl_1.21.4-1_aarch64_generic.ipk
+Size: 241713
+SHA256sum: 264a896551d1a050836ec3f63e579e1986b32deda2019cc024637a6d17723c1c
+Description:  Wget is a network utility to retrieve files from the Web using http
+ and ftp, the two most widely used Internet protocols. It works
+ non-interactively, so it will work in the background, after having
+ logged off. The program supports recursive retrieval of web-authoring
+ pages as well as ftp sites -- you can use wget to make mirrors of
+ archives and home pages or to travel the Web like a WWW robot.
+ This package is built with SSL support.
+
