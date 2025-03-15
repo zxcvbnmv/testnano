@@ -174,7 +174,7 @@ rm -rf ./package/system/fstools
 git clone https://github.com/sbwml/package_system_fstools ./package/system/fstools
 # ppp update
 rm -rf ./package/network/services/ppp
-git clone https://github.com/sbwml/package_network_services_ppp ./package/network/services/ppp
+cp -rf ../openwrt_main/package/network/services/ppp ./package/network/services/ppp
 # curl update
 rm -rf ./feeds/packages/net/curl
 git clone https://github.com/sbwml/feeds_packages_net_curl ./feeds/packages/net/curl
