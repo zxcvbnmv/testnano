@@ -145,6 +145,7 @@ mkdir -p ./files/etc && cp -rf ../PATCH/files/etc ./files
 # Config
 rm -rf .config
 sed -i 's,CONFIG_WERROR=y,# CONFIG_WERROR is not set,g' ./target/linux/generic/config-5.15
+sed -i 's,# CONFIG_PCPU_DEV_REFCNT is not set,CONFIG_PCPU_DEV_REFCNT=y,g' ./target/linux/generic/config-5.15
 # Patch Kernel Shortcut-FE
 cp -rf ../lede/target/linux/generic/hack-5.15/953-net-patch-linux-kernel-to-support-shortcut-fe.patch ./target/linux/generic/hack-5.15/
 cp -rf ../lede/target/linux/generic/pending-5.15/613-netfilter_optional_tcp_window_check.patch ./target/linux/generic/pending-5.15/
@@ -184,5 +185,3 @@ cp -rf ../openwrt_pkg_main/libs/nghttp2 ./feeds/packages/libs/nghttp2
 # odhcpd update
 rm -rf ./package/network/services/odhcpd
 cp -rf ../immortalwrt/package/network/services/odhcpd ./package/network/services/odhcpd
-# generic: globally enable CONFIG_PCPU_DEV_REFCNT
-sed -i 's,# CONFIG_PCPU_DEV_REFCNT is not set,CONFIG_PCPU_DEV_REFCNT=y,g' target/linux/generic/config-5.15
