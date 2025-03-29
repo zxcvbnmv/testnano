@@ -1,0 +1,1 @@
+{"architecture": "aarch64_generic", "packages":{"cgi-io": "2022-08-10-901b0f04-21", "coremark": "2023-01-25-d5fad6bd-1", "curl": "8.12.1-1", "htop": "3.3.0-1", "https-dns-proxy": "2025.03.13-0e074b4", "iperf3": "3.17.1-4", "libcares": "1.27.0-1", "libcurl4": "8.12.1-1", "libev": "4.33-2", "libiperf3": "3.17.1-4", "libnghttp2-14": "1.63.0-1", "wget-ssl": "1.21.4-1"}}
