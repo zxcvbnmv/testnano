@@ -144,7 +144,6 @@ cp -rf ../PATCH/addition-trans-zh/ ./package/new/addition-trans-zh
 mkdir -p ./files/etc && cp -rf ../PATCH/files/etc ./files
 # Config
 rm -rf .config
-sed -i 's,CONFIG_WERROR=y,# CONFIG_WERROR is not set,g' ./target/linux/generic/config-5.15
 sed -i 's,# CONFIG_PCPU_DEV_REFCNT is not set,CONFIG_PCPU_DEV_REFCNT=y,g' ./target/linux/generic/config-5.15
 # Patch Kernel Shortcut-FE
 cp -rf ../lede/target/linux/generic/hack-5.15/953-net-patch-linux-kernel-to-support-shortcut-fe.patch ./target/linux/generic/hack-5.15/
