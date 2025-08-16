@@ -1,0 +1,190 @@
+Package: cgi-io
+Version: 2022-08-10-901b0f04-21
+Depends: libc, libubox20230523, libubus20230605
+License: GPL-2.0-or-later
+Section: net
+Architecture: aarch64_generic
+Installed-Size: 9255
+Filename: cgi-io_2022-08-10-901b0f04-21_aarch64_generic.ipk
+Size: 9905
+SHA256sum: 316b69fc41f7834ea1b1ebc729d5acfcefef11144bc0afcc5fb6c018c46706a2
+Description:  This package contains an cgi utility that is useful for up/downloading files
+
+Package: coremark
+Version: 2025-05-01-1f483d5b-1
+Depends: libc
+License: Apache-2.0
+Section: utils
+Architecture: aarch64_generic
+Installed-Size: 17320
+Filename: coremark_2025-05-01-1f483d5b-1_aarch64_generic.ipk
+Size: 18015
+SHA256sum: 61f7de71590f2acde8b9679982020c6209d8d1f402ef5bb41f7111682157a99a
+Description:  Embedded Microprocessor Benchmark
+
+Package: curl
+Version: 8.15.0-1
+Depends: libc, libcurl4
+License: MIT
+Section: net
+CPE-ID: cpe:/a:haxx:libcurl
+Architecture: aarch64_generic
+Installed-Size: 77399
+Filename: curl_8.15.0-1_aarch64_generic.ipk
+Size: 78074
+SHA256sum: 0da05b68ab15e85d02653b5a14652de06f15b949433a1e42563f7210a9257b18
+Description:  A client-side URL transfer utility
+
+Package: dnsproxy
+Version: 0.76.1-1
+Depends: libc, ca-bundle
+License: Apache-2.0
+Section: net
+Architecture: aarch64_generic
+Installed-Size: 4144564
+Filename: dnsproxy_0.76.1-1_aarch64_generic.ipk
+Size: 4133954
+SHA256sum: a365d4265818a5319262919e5bd11535fdd722fd2333145da15635e7ab17d031
+Description:  A simple DNS proxy server that supports all existing DNS protocols including
+ DNS-over-TLS, DNS-over-HTTPS, DNSCrypt, and DNS-over-QUIC.Moreover, it can
+ work as a DNS-over-HTTPS, DNS-over-TLS or DNS-over-QUIC server.
+
+Package: htop
+Version: 3.3.0-1
+Depends: libc, libncurses6
+License: GPL-2.0-or-later
+Section: admin
+CPE-ID: cpe:/a:htop:htop
+Architecture: aarch64_generic
+Installed-Size: 141614
+Filename: htop_3.3.0-1_aarch64_generic.ipk
+Size: 142302
+SHA256sum: aea509d03449c4e3bfc86f0b681c6381cc80d311e7b400f4c5a4b2d0cc5b396c
+Description:  Htop is an ncursed-based process viewer similar to top, but
+ it allows to scroll the list vertically and horizontally to
+ see all processes and their full command lines.
+
+Package: https-dns-proxy
+Version: 2025.06.08-2963960
+Depends: libc, libcares, libcurl4, libev, ca-bundle, jsonfilter, resolveip
+Conflicts: https_dns_proxy
+License: MIT
+Section: net
+Architecture: aarch64_generic
+Installed-Size: 23572
+Filename: https-dns-proxy_2025.06.08-2963960_aarch64_generic.ipk
+Size: 24434
+SHA256sum: fb547c3204f6bf962912eb14aa8d0d04590570626fea942b3bf7548769c4b2d1
+Description:  Light-weight DNS-over-HTTPS, non-caching translation proxy for the RFC 8484 DoH standard.
+ It receives regular, unencrypted (UDP) DNS requests and resolves them via DoH resolver.
+ Please see https://docs.openwrt.melmac.net/https-dns-proxy/ for more information.
+
+Package: iperf3
+Version: 3.17.1-4
+Depends: libc, libiperf3
+License: BSD-3-Clause
+Section: net
+CPE-ID: cpe:/a:es:iperf3
+Architecture: aarch64_generic
+Installed-Size: 2433
+Filename: iperf3_3.17.1-4_aarch64_generic.ipk
+Size: 3127
+SHA256sum: 27feb5bd540bd2181aff7131c80723a85d678dbcc271776a0c21750275d0c78f
+Description:  Iperf is a modern alternative for measuring TCP and UDP bandwidth
+ performance, allowing the tuning of various parameters and
+ characteristics.
+
+Package: libcares
+Version: 1.27.0-1
+Depends: libc
+License: MIT
+Section: libs
+CPE-ID: cpe:/a:c-ares_project:c-ares
+Architecture: aarch64_generic
+Installed-Size: 83719
+Filename: libcares_1.27.0-1_aarch64_generic.ipk
+Size: 84546
+SHA256sum: 2ed53861b7c4f93c7326509bce5d7f6d0278660a9986d4dfa185a32cfcfff140
+Description:  c-ares is a C library for asynchronous DNS requests (including name resolves)
+ 
+ C89 compatibility, MIT licensed, builds for and runs on POSIX, Windows,
+ Netware, Android and many more operating systems.
+ 
+
+Package: libcurl4
+Version: 8.15.0-1
+Depends: libc, libopenssl3, libnghttp2-14, libnghttp3, libngtcp2, ca-bundle
+Provides: libcurl
+License: MIT
+Section: libs
+ABIVersion: 4
+CPE-ID: cpe:/a:haxx:libcurl
+Architecture: aarch64_generic
+Installed-Size: 295513
+Filename: libcurl4_8.15.0-1_aarch64_generic.ipk
+Size: 295927
+SHA256sum: d79f95b48ad2f014ec8f810bb1eab8322613ecc0f94b8ac0b72e08ce16743a15
+Description:  A client-side URL transfer library
+
+Package: libev
+Version: 4.33-2
+Depends: libc
+License: BSD-2-Clause or GPL-2.0-or-later
+Section: libs
+Architecture: aarch64_generic
+Installed-Size: 27919
+Filename: libev_4.33-2_aarch64_generic.ipk
+Size: 28704
+SHA256sum: 1bd8f2d60f99986ea6d1901f1d1432ed7c55833358837160a00a7f0114555a9b
+Description:  A full-featured and high-performance event loop that is loosely modelled after
+ libevent, but without its limitations and bugs.
+
+Package: libiperf3
+Version: 3.17.1-4
+Depends: libc, libatomic1
+License: BSD-3-Clause
+Section: libs
+CPE-ID: cpe:/a:es:iperf3
+Architecture: aarch64_generic
+Installed-Size: 74485
+Filename: libiperf3_3.17.1-4_aarch64_generic.ipk
+Size: 75254
+SHA256sum: 9551ebd474782ceed3dea065e8de7e15d53cc929dad8355a519c630d23a851be
+Description:  Libiperf is a library providing an API for iperf3 functionality.
+
+Package: libnghttp2-14
+Version: 1.63.0-1
+Depends: libc
+Provides: libnghttp2
+License: MIT
+Section: libs
+ABIVersion: -14
+CPE-ID: cpe:/a:nghttp2:nghttp2
+Architecture: aarch64_generic
+Installed-Size: 72946
+Filename: libnghttp2-14_1.63.0-1_aarch64_generic.ipk
+Size: 71811
+SHA256sum: 1f8520b230039e368e746a11f6c759e3a9d917b9eb3709c653343610177ca389
+Description:  C library implementing the framing layer of the HTTP/2 protocol. It can be used to build a HTTP/2-capable HTTP client or server
+
+Package: wget-ssl
+Version: 1.21.4-1
+Depends: libc, libpcre2, zlib, libopenssl3, librt
+Provides: gnu-wget, wget
+Alternatives: 300:/usr/bin/wget:/usr/libexec/wget-ssl
+License: GPL-3.0-or-later
+Section: net
+CPE-ID: cpe:/a:gnu:wget
+Architecture: aarch64_generic
+Installed-Size: 241107
+Filename: wget-ssl_1.21.4-1_aarch64_generic.ipk
+Size: 241736
+SHA256sum: b1fdf6983f14a6ec86e8e6948c546439be2cbc5a3c569114363058b68d4abd8e
+Description:  Wget is a network utility to retrieve files from the Web using http
+ and ftp, the two most widely used Internet protocols. It works
+ non-interactively, so it will work in the background, after having
+ logged off. The program supports recursive retrieval of web-authoring
+ pages as well as ftp sites -- you can use wget to make mirrors of
+ archives and home pages or to travel the Web like a WWW robot.
+ This package is built with SSL support.
+
