@@ -23,6 +23,7 @@ lede_pkg_repo="https://github.com/coolsnowwolf/packages.git"
 # clone
 clone_repo $openwrt_repo $latest_release openwrt &
 clone_repo $openwrt_repo openwrt-23.05 openwrt_snap &
+clone_repo $openwrt_repo openwrt-24.10 openwrt_24 &
 clone_repo $openwrt_repo main openwrt_main &
 clone_repo $openwrt_pkg_repo master openwrt_pkg_main &
 clone_repo $openwrt_luci_repo master openwrt_luci_main &
