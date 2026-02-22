@@ -137,9 +137,6 @@ ln -sf ../../../feeds/luci/applications/luci-app-arpbind ./package/feeds/luci/lu
 # ipv6-helper
 cp -rf ../lede/package/lean/ipv6-helper ./package/new/ipv6-helper
 patch -p1 < ../PATCH/1002-odhcp6c-support-dhcpv6-hotplug.patch
-# Nodejs update
-rm -rf feeds/packages/lang/node
-git clone https://github.com/sbwml/feeds_packages_lang_node-prebuilt ./feeds/packages/lang/node
 # rpcd
 sed -i 's/option timeout 30/option timeout 60/g' package/system/rpcd/files/rpcd.config
 sed -i 's#20) \* 1000#60) \* 1000#g' feeds/luci/modules/luci-base/htdocs/luci-static/resources/rpc.js
