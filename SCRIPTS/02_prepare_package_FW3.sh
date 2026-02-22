@@ -17,14 +17,6 @@ cp -rf ../immortalwrt_23/target/linux/generic/hack-5.15/312-arm64-cpuinfo-Add-mo
 # mbedtls
 rm -rf ./package/libs/mbedtls
 cp -rf ../immortalwrt_23/package/libs/mbedtls ./package/libs/mbedtls
-# ## DOH3 ##
-rm -rf ./package/libs/openssl
-cp -rf ../openwrt_24/package/libs/openssl ./package/libs/openssl
-cp -rf ../PATCH/openssl/quic/* ./package/libs/openssl/patches
-rm -rf feeds/packages/libs/nghttp3
-git clone https://github.com/zxcvbnmv/nghttp3-package ./package/libs/nghttp3
-rm -rf feeds/packages/libs/ngtcp2
-git clone https://github.com/zxcvbnmv/ngtcp2-package ./package/libs/ngtcp2
 # patch BBRv3
 cp -rf ../PATCH/BBRv3/* ./target/linux/generic/backport-5.15/
 # patch nf_conntrack_expect_max
@@ -130,7 +122,7 @@ rm -rf ./feeds/packages/net/https-dns-proxy
 git clone https://github.com/zxcvbnmv/https-dns-proxy ./feeds/packages/net/https-dns-proxy
 # dnsproxy
 rm -rf ./feeds/packages/net/dnsproxy
-cp -rf ../openwrt_pkg_main/net/dnsproxy ./feeds/packages/net/dnsproxy
+git clone https://github.com/zxcvbnmv/dnsproxy-openwrt ./feeds/packages/net/dnsproxy
 # Arpbind
 cp -rf ../immortalwrt_luci/applications/luci-app-arpbind ./feeds/luci/applications/luci-app-arpbind
 ln -sf ../../../feeds/luci/applications/luci-app-arpbind ./package/feeds/luci/luci-app-arpbind
