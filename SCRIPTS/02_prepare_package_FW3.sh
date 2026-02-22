@@ -116,7 +116,7 @@ cp -rf ../immortalwrt/package/kernel/r8168 ./package/new/r8168
 cp -rf ../lede/target/linux/x86/patches-5.15/996-intel-igc-i225-i226-disable-eee.patch ./target/linux/x86/patches-5.15/
 # Golang
 rm -rf ./feeds/packages/lang/golang
-cp -rf ../openwrt_pkg_main/lang/golang ./feeds/packages/lang/golang
+git clone https://github.com/sbwml/packages_lang_golang -b 26.x ./feeds/packages/lang/golang
 # https-dns-proxy
 rm -rf ./feeds/packages/net/https-dns-proxy
 git clone https://github.com/zxcvbnmv/https-dns-proxy ./feeds/packages/net/https-dns-proxy
@@ -166,12 +166,14 @@ rm ./package/network/utils/iptables/patches/104-nft-track-each-register-individu
 wget -qO - https://github.com/openwrt/openwrt/commit/d06955d2.patch | patch -p1
 # luci dhcp.js rollback
 curl -s https://raw.githubusercontent.com/zxcvbnmv/testnano/main/PATCH/dhcp.js > feeds/luci/modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js
+# patch rollback
+curl -s https://raw.githubusercontent.com/immortalwrt/immortalwrt/76d97589/target/linux/rockchip/patches-5.15/025-01-v6.0-mmc-sdhci-of-dwcmshc-add-support-for-rk3588.patch > ./target/linux/rockchip/patches-5.15/025-01-v6.0-mmc-sdhci-of-dwcmshc-add-support-for-rk3588.patch
 # fstools update
 rm -rf ./package/system/fstools
 git clone https://github.com/sbwml/package_system_fstools ./package/system/fstools
 # ppp update
 rm -rf ./package/network/services/ppp
-cp -rf ../openwrt_main/package/network/services/ppp ./package/network/services/ppp
+cp -rf ../openwrt_24/package/network/services/ppp ./package/network/services/ppp
 # curl update
 rm -rf ./feeds/packages/net/curl
 git clone https://github.com/sbwml/feeds_packages_net_curl ./feeds/packages/net/curl
