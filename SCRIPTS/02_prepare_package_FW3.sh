@@ -61,7 +61,7 @@ popd
 ### basic package ###
 # Make target for support NanoPi R4S
 rm -rf ./target/linux/rockchip
-cp -rf ../immortalwrt_23/target/linux/rockchip ./target/linux/rockchip
+cp -rf ../zxcvbnmv_23/target/linux/rockchip ./target/linux/rockchip
 cp -rf ../PATCH/rockchip-5.15/* ./target/linux/rockchip/patches-5.15/
 rm -rf ./package/boot/uboot-rockchip
 cp -rf ../immortalwrt_23/package/boot/uboot-rockchip ./package/boot/uboot-rockchip
@@ -171,8 +171,6 @@ rm ./package/network/utils/iptables/patches/104-nft-track-each-register-individu
 wget -qO - https://github.com/openwrt/openwrt/commit/d06955d2.patch | patch -p1
 # luci dhcp.js rollback
 curl -s https://raw.githubusercontent.com/zxcvbnmv/testnano/main/PATCH/dhcp.js > feeds/luci/modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js
-# patch rollback
-curl -s https://raw.githubusercontent.com/immortalwrt/immortalwrt/76d97589/target/linux/rockchip/patches-5.15/025-01-v6.0-mmc-sdhci-of-dwcmshc-add-support-for-rk3588.patch > ./target/linux/rockchip/patches-5.15/025-01-v6.0-mmc-sdhci-of-dwcmshc-add-support-for-rk3588.patch
 # fstools update
 rm -rf ./package/system/fstools
 git clone https://github.com/sbwml/package_system_fstools ./package/system/fstools
