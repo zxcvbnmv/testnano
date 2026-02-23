@@ -14,6 +14,7 @@ openwrt_repo="https://github.com/openwrt/openwrt.git"
 openwrt_pkg_repo="https://github.com/openwrt/packages.git"
 openwrt_luci_repo="https://github.com/openwrt/luci.git"
 immortalwrt_repo="https://github.com/immortalwrt/immortalwrt.git"
+zxcvbnmv_repo="https://github.com/zxcvbnmv/immortalwrt.git"
 immortalwrt_pkg_repo="https://github.com/immortalwrt/packages.git"
 immortalwrt_luci_repo="https://github.com/immortalwrt/luci.git"
 lede_repo="https://github.com/coolsnowwolf/lede.git"
@@ -29,6 +30,7 @@ clone_repo $openwrt_pkg_repo master openwrt_pkg_main &
 clone_repo $openwrt_luci_repo master openwrt_luci_main &
 clone_repo $immortalwrt_repo master immortalwrt &
 clone_repo $immortalwrt_repo openwrt-23.05 immortalwrt_23 &
+clone_repo $zxcvbnmv_repo openwrt-23.05 zxcvbnmv_23 &
 clone_repo $immortalwrt_pkg_repo master immortalwrt_pkg &
 clone_repo $immortalwrt_luci_repo master immortalwrt_luci &
 clone_repo $immortalwrt_luci_repo openwrt-23.05 immortalwrt_luci_23 &
