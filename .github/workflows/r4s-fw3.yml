@@ -22,7 +22,7 @@ jobs:
     - name: Maximize build space
       uses: smallprogram/maximize-build-space@master
       with:
-        swap-size-mb: 2048
+        swap-size-mb: 1024
         temp-reserve-mb: 4096
         root-reserve-mb: 4096
         remove-dotnet: 'true'
