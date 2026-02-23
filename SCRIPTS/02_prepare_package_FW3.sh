@@ -185,4 +185,4 @@ rm -rf ./feeds/packages/libs/nghttp2
 cp -rf ../openwrt_pkg_main/libs/nghttp2 ./feeds/packages/libs/nghttp2
 # odhcpd update
 rm -rf ./package/network/services/odhcpd
-cp -rf ../immortalwrt/package/network/services/odhcpd ./package/network/services/odhcpd
+cp -rf ../openwrt_24/package/network/services/odhcpd ./package/network/services/odhcpd
