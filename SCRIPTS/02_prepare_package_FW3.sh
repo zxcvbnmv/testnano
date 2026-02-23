@@ -19,7 +19,7 @@ rm -rf ./package/libs/mbedtls
 cp -rf ../immortalwrt_23/package/libs/mbedtls ./package/libs/mbedtls
 # ## DOH3 ##
 rm -rf ./package/libs/openssl
-cp -rf ../openwrt/package/libs/openssl ./package/libs/openssl
+cp -rf ../zxcvbnmv_23/package/libs/openssl ./package/libs/openssl
 cp -rf ../PATCH/openssl/quic/* ./package/libs/openssl/patches
 rm -rf feeds/packages/libs/nghttp3
 git clone https://github.com/zxcvbnmv/nghttp3-package ./package/libs/nghttp3
